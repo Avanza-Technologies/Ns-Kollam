@@ -24,12 +24,6 @@ function Field({ f, form, errors, touched, onChange, onBlur }) {
     const maxDate = `${currentYear - 5}-12-31`;
     const minDate = '1940-01-01';
 
-    const showPicker = (e) => {
-      if (typeof e.target.showPicker === 'function') {
-        try { e.target.showPicker(); } catch (err) {}
-      }
-    };
-
     return (
       <div className="f-group">
         <label className="f-label" htmlFor="dob">
@@ -44,9 +38,6 @@ function Field({ f, form, errors, touched, onChange, onBlur }) {
           value={form.dob}
           onChange={onChange}
           onBlur={onBlur}
-          onClick={showPicker}
-          onFocus={showPicker}
-          onKeyDown={(e) => e.preventDefault()} // Block typing entirely to force calendar usage
           autoComplete="off"
         />
         {errors.dob && touched.dob && (
