@@ -138,7 +138,7 @@ export default function Registration({ onStart }) {
             <div className="reg-detail-icon">⏱</div>
             <div className="reg-detail-text">
               <div className="reg-detail-label">Duration</div>
-              <div className="reg-detail-val">60 Minutes</div>
+              <div className="reg-detail-val">30 Minutes</div>
             </div>
           </div>
           <div className="reg-detail-row">
@@ -218,7 +218,7 @@ export default function Registration({ onStart }) {
           <div className="reg-meta-strip">
             {[
               { num: '50', lbl: 'Questions' },
-              { num: '60', lbl: 'Minutes' },
+              { num: '30', lbl: 'Minutes' },
               { num: 'MCQ', lbl: 'Format' },
               { num: '1pt', lbl: 'Per Q' },
             ].map(m => (

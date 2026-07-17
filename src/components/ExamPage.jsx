@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { questions, decryptCorrectIndex } from '../data/questions';
 import './ExamPage.css';
 
-const TOTAL = 60 * 60;
+const TOTAL = 30 * 60;
 
 const fmt = s => `${Math.floor(s/60).toString().padStart(2,'0')}:${(s%60).toString().padStart(2,'0')}`;
 
