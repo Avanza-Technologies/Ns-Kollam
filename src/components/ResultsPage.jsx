@@ -20,7 +20,7 @@ export default function ResultsPage({ candidate, onRetake }) {
 
         <h1 className="done-title">Exam submitted successfully</h1>
         <p className="done-sub">
-          Thank you for completing the Tech Excellence Exam 2026.
+          Thank you for completing the Skill Connect Exam 2026.
           Your responses have been recorded.
         </p>
 
@@ -58,16 +58,6 @@ export default function ResultsPage({ candidate, onRetake }) {
             <div className="done-phone-icon">📞</div>
             <span className="done-phone-num">80 89 03 04 05</span>
           </div>
-        </div>
-
-        {/* Actions */}
-        <div className="done-actions">
-          <button className="btn btn-outline" onClick={() => window.print()}>
-            Print
-          </button>
-          <button className="btn btn-primary" onClick={onRetake}>
-            Take Again
-          </button>
         </div>
 
       </div>
