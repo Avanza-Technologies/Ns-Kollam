@@ -11,9 +11,33 @@ const FIELDS = [
 function validate(f) {
   const e = {};
   if (!f.name.trim() || f.name.trim().length < 2) e.name = 'Enter your full name.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) e.email = 'Enter a valid email.';
-  if (!/^[+\d\s\-()\[\]]{7,15}$/.test(f.phone)) e.phone = 'Enter a valid phone number.';
-  if (!f.dob) e.dob = 'Select date of birth.';
+  // Strict email validation (enforces letters, numbers, standard characters, and correct TLD suffix like .com, .net, etc.)
+  if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(f.email.trim())) {
+    e.email = 'Enter a valid email address.';
+  }
+  
+  // Strict 10-digit mobile number validation (allowing optional +91 prefix)
+  if (!/^(?:\+91)?[6789]\d{9}$/.test(f.phone.replace(/[\s\-()]/g, ''))) {
+    e.phone = 'Enter a valid 10-digit mobile number.';
+  }
+
+  // Date of birth validation (candidate must be at least 15 years old)
+  if (!f.dob) {
+    e.dob = 'Select date of birth.';
+  } else {
+    const dobDate = new Date(f.dob);
+    const today = new Date();
+    let age = today.getFullYear() - dobDate.getFullYear();
+    const monthDiff = today.getMonth() - dobDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
+      age--;
+    }
+    if (age < 15) {
+      e.dob = 'Candidate must be at least 15 years old.';
+    } else if (age > 100) {
+      e.dob = 'Enter a valid date of birth.';
+    }
+  }
   return e;
 }
 
