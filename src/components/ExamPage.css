@@ -1,5 +1,5 @@
 /* ── Exam page ──────────────────────────────────────── */
-.exam-page { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); }
+.exam-page { min-height: 100vh; display: flex; flex-direction: column; background: #f8fafc; }
 
 /* Top bar */
 .exam-bar {

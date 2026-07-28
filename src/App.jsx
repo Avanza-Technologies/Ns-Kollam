@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Registration from './components/Registration';
 import ExamPage from './components/ExamPage';
 import ResultsPage from './components/ResultsPage';
@@ -11,6 +11,18 @@ const WEB3FORMS_KEY = '1bf66af5-6a27-45fe-815d-2048a9571a25';
 export default function App() {
   const [phase, setPhase]         = useState(PHASE.REGISTER);
   const [candidate, setCandidate] = useState(null);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.color = '#111827';
+    const rootEl = document.getElementById('root');
+    if (rootEl) rootEl.style.backgroundColor = '#ffffff';
+    return () => {
+      document.body.style.backgroundColor = '';
+      document.body.style.color = '';
+      if (rootEl) rootEl.style.backgroundColor = '';
+    };
+  }, []);
 
   const handleStart  = (info)  => { setCandidate(info); setPhase(PHASE.EXAM); };
 

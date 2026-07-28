@@ -3,6 +3,7 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 420px 1fr;
+  background: #ffffff;
 }
 
 /* ── LEFT sidebar ────────────────────────────────────── */
@@ -142,7 +143,7 @@
   align-items: center;
   justify-content: center;
   padding: 48px 40px;
-  background: var(--bg);
+  background: #ffffff;
 }
 
 .reg-form-box {
