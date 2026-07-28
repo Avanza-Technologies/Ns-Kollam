@@ -22,7 +22,7 @@ const ALL_COURSES = Object.entries(COURSE_DETAILS)
     }))
   );
 
-const TABS = ['ALL', 'SOFTWARE', 'AI & ELECTRONICS', 'NETWORKING', 'BUSINESS', 'INTERNSHIP'];
+const TABS = ['NETWORKING', 'SOFTWARE', 'AI & ELECTRONICS', 'BUSINESS', 'INTERNSHIP', 'ALL'];
 
 /* ── Thumbnail gradient per chapter ── */
 const THUMB = {
@@ -547,12 +547,12 @@ function OfferModal({ course, onClose }) {
    MAIN PAGE
 ───────────────────────────────────────────────────────── */
 export default function NetworkzHome() {
-  const [tab, setTab] = useState('ALL');
+  const [tab, setTab] = useState('NETWORKING');
   const [scrolled, setScrolled] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   useEffect(() => {
-    document.body.style.background = '#0a0a0c';
+    document.body.style.background = '#1c2536';
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
@@ -769,12 +769,13 @@ export default function NetworkzHome() {
             {/* Right: 4 Foundation Pillar Cards (2x2 Grid) */}
             <div className="nz-pillar-grid-2x2">
               <div className="nz-pillar-tile nz-tile-gold">
+                <div className="nz-tile-orb" />
                 <div className="nz-tile-head">
                   <span className="nz-tile-stat">200+</span>
                   <span className="nz-tile-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                      <polyline points="22 4 12 14.01 9 11.01" />
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                     </svg>
                   </span>
                 </div>
@@ -782,15 +783,19 @@ export default function NetworkzHome() {
                 <p className="nz-tile-desc">
                   Active hiring tie-ups with 200+ top IT recruiters across South India. Mock technical interviews & direct placement drives.
                 </p>
-                <span className="nz-tile-pill">CAREER PROMISE</span>
+                <div className="nz-tile-foot-row">
+                  <span className="nz-tile-pill">CAREER PROMISE</span>
+                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> ACTIVE NETWORK</span>
+                </div>
               </div>
 
               <div className="nz-pillar-tile nz-tile-blue">
+                <div className="nz-tile-orb" />
                 <div className="nz-tile-head">
                   <span className="nz-tile-stat">∞</span>
                   <span className="nz-tile-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18.178 8c5.096 0 5.096 8 0 8-2.613 0-4.887-2.112-6.178-4.004C10.708 13.888 8.434 16 5.822 16c-5.096 0-5.096-8 0-8 2.613 0 4.887 2.112 6.178 4.004C13.292 10.112 15.566 8 18.178 8z" />
                     </svg>
                   </span>
                 </div>
@@ -798,14 +803,18 @@ export default function NetworkzHome() {
                 <p className="nz-tile-desc">
                   Permanent access to Networkz technical labs, updated course wares, e-workbooks, and ongoing guidance long after graduation.
                 </p>
-                <span className="nz-tile-pill">LIFELONG ACCESS</span>
+                <div className="nz-tile-foot-row">
+                  <span className="nz-tile-pill">LIFELONG ACCESS</span>
+                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> ALWAYS UNLOCKED</span>
+                </div>
               </div>
 
               <div className="nz-pillar-tile nz-tile-purple">
+                <div className="nz-tile-orb" />
                 <div className="nz-tile-head">
                   <span className="nz-tile-stat">CPD</span>
                   <span className="nz-tile-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <circle cx="12" cy="8" r="7" />
                       <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                     </svg>
@@ -815,14 +824,18 @@ export default function NetworkzHome() {
                 <p className="nz-tile-desc">
                   End-to-end industry-specific curriculum, CPD certified technical trainers, soft skills development, and Pearson VUE exam prep.
                 </p>
-                <span className="nz-tile-pill">CERTIFIED TRAINERS</span>
+                <div className="nz-tile-foot-row">
+                  <span className="nz-tile-pill">CERTIFIED TRAINERS</span>
+                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> VERIFIED CREDENTIALS</span>
+                </div>
               </div>
 
               <div className="nz-pillar-tile nz-tile-emerald">
+                <div className="nz-tile-orb" />
                 <div className="nz-tile-head">
                   <span className="nz-tile-stat">100%</span>
                   <span className="nz-tile-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polygon points="12 2 2 7 12 12 22 7 12 2" />
                       <polyline points="2 17 12 22 22 17" />
                       <polyline points="2 12 12 17 22 12" />
@@ -833,7 +846,10 @@ export default function NetworkzHome() {
                 <p className="nz-tile-desc">
                   Real-world client project exposure, live server lab practice, e-workbook exercises, and final-year academic project support.
                 </p>
-                <span className="nz-tile-pill">PRACTICAL LABS</span>
+                <div className="nz-tile-foot-row">
+                  <span className="nz-tile-pill">PRACTICAL LABS</span>
+                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> LIVE LABS ACTIVE</span>
+                </div>
               </div>
             </div>
 
@@ -901,7 +917,12 @@ export default function NetworkzHome() {
 
                 <div className="nz-kollam-info-list">
                   <div className="nz-kollam-info-item">
-                    <span className="nz-kollam-icon">📍</span>
+                    <span className="nz-kollam-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </span>
                     <div>
                       <div className="nz-kollam-info-label">CAMPUS ADDRESS</div>
                       <div className="nz-kollam-info-val">
@@ -911,7 +932,11 @@ export default function NetworkzHome() {
                   </div>
 
                   <div className="nz-kollam-info-item">
-                    <span className="nz-kollam-icon">📞</span>
+                    <span className="nz-kollam-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                    </span>
                     <div>
                       <div className="nz-kollam-info-label">ADMISSION HOTLINE</div>
                       <a href="tel:08089030405" className="nz-kollam-info-val nz-gold-link">
@@ -921,7 +946,12 @@ export default function NetworkzHome() {
                   </div>
 
                   <div className="nz-kollam-info-item">
-                    <span className="nz-kollam-icon">✉️</span>
+                    <span className="nz-kollam-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                    </span>
                     <div>
                       <div className="nz-kollam-info-label">EMAIL INQUIRIES</div>
                       <a href="mailto:support@nskollam.com" className="nz-kollam-info-val nz-gold-link">
@@ -931,7 +961,12 @@ export default function NetworkzHome() {
                   </div>
 
                   <div className="nz-kollam-info-item">
-                    <span className="nz-kollam-icon">🕒</span>
+                    <span className="nz-kollam-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </span>
                     <div>
                       <div className="nz-kollam-info-label">WORKING HOURS</div>
                       <div className="nz-kollam-info-val">Monday – Saturday: 9:00 AM – 6:30 PM</div>
