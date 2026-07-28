@@ -815,6 +815,7 @@ export default function NetworkzHome() {
   const [tab, setTab] = useState('NETWORKING');
   const [scrolled, setScrolled] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.background = '#1c2536';
@@ -837,12 +838,21 @@ export default function NetworkzHome() {
           NAVIGATION
           ════════════════════════════════════════ */}
       <header className={`nz-nav${scrolled ? ' nz-nav--scrolled' : ''}`}>
-        <nav className="nz-nav-links" aria-label="Main navigation">
-          <a href="#programs">Programs</a>
-          <a href="#catalog">Catalog</a>
-          <a href="#internship">Internship</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+        <button
+          className="nz-mobile-toggle"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle Navigation Menu"
+        >
+          {mobileMenuOpen ? '✕' : '☰'}
+        </button>
+
+        <nav className={`nz-nav-links ${mobileMenuOpen ? 'nz-mobile-open' : ''}`} aria-label="Main navigation">
+          <a href="#programs" onClick={() => setMobileMenuOpen(false)}>Programs</a>
+          <a href="#catalog" onClick={() => setMobileMenuOpen(false)}>Catalog</a>
+          <a href="#internship" onClick={() => setMobileMenuOpen(false)}>Internship</a>
+          <a href="#about" onClick={() => setMobileMenuOpen(false)}>About</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+          <a href="/exam" className="nz-mobile-portal-btn">STUDENT PORTAL →</a>
         </nav>
 
         <div className="nz-nav-right">
