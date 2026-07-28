@@ -305,7 +305,7 @@ export const COURSE_DETAILS = {
         id: 'kerala',
         name: 'Kerala',
         desc: 'Headquartered in Kollam · 2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada',
-        level: 'MAIN CAMPUS',
+        level: 'KOLLAM CAMPUS',
         duration: 'Ph: 080890 30405',
         cert: 'ISO 9001:2015',
         image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80',

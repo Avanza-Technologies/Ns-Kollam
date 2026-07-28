@@ -69,14 +69,110 @@ function StatRing({ value, label, fill }) {
   );
 }
 
+const WHATSAPP_PHONE = '918089030405';
+
+const getWhatsAppUrl = (customMsg) => {
+  const defaultMsg = [
+    'NETWORKZ SYSTEMS KOLLAM',
+    '══════════════════════',
+    'Admissions Inquiry',
+    '══════════════════════',
+    '',
+    'Hello Admissions Desk! I would like to inquire about your courses, fee structure, and batch schedules.',
+    '',
+    'Campus: Chinnakada, Kollam'
+  ].join('\n');
+  const msg = customMsg || defaultMsg;
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
+};
+
+const createOfferWhatsAppMessage = (name, phone, role, courseTitle) => {
+  return [
+    'NETWORKZ SYSTEMS KOLLAM',
+    '══════════════════════',
+    '25TH ANNIVERSARY 10% OFFER CLAIM',
+    '══════════════════════',
+    '',
+    `Candidate Name : ${name || 'N/A'}`,
+    `Phone Number : ${phone || 'N/A'}`,
+    `Current Status : ${role || 'N/A'}`,
+    `Selected Course : ${courseTitle}`,
+    '',
+    'Discount Voucher : NS25-OFFER10 (10% OFF)',
+    'Campus Location : Chinnakada, Kollam',
+    '',
+    '══════════════════════',
+    'Hello Admissions Team! Please verify my 10% discount voucher and send enrollment details. Thank you!'
+  ].join('\n');
+};
+
+const createCallbackWhatsAppMessage = (name, phone, program) => {
+  return [
+    'NETWORKZ SYSTEMS KOLLAM',
+    '══════════════════════',
+    'ADMISSION CALLBACK REQUEST',
+    '══════════════════════',
+    '',
+    `Candidate Name : ${name || 'N/A'}`,
+    `Phone Number : ${phone || 'N/A'}`,
+    `Program Interest : ${program}`,
+    '',
+    'Campus Location : Chinnakada, Kollam',
+    '',
+    '══════════════════════',
+    'Hello Admissions Team! Please call me with program syllabus, fee details, and batch timings. Thank you!'
+  ].join('\n');
+};
+
+const IT_WATERMARKS = {
+  NETWORKING: (
+    <svg className="nz-card-it-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M20 20h20v20H20zM60 20h20v20H60zM40 60h20v20H40z" strokeWidth="1.5" />
+      <path d="M30 40v10h40V40M50 50v10" strokeWidth="1.5" strokeDasharray="2 2" />
+      <circle cx="30" cy="45" r="2" fill="currentColor" />
+      <circle cx="70" cy="45" r="2" fill="currentColor" />
+    </svg>
+  ),
+  SOFTWARE: (
+    <svg className="nz-card-it-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M25 35L10 50l15 15M75 35l15 15-15 15M55 25L45 75" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  ),
+  'AI & ELECTRONICS': (
+    <svg className="nz-card-it-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <rect x="25" y="25" width="50" height="50" rx="6" strokeWidth="1.5" />
+      <rect x="40" y="40" width="20" height="20" rx="2" strokeWidth="1.5" />
+      <path d="M35 15v10M50 15v10M65 15v10M35 75v10M50 75v10M65 75v10M15 35h10M15 50h10M15 65h10M75 35h10M75 50h10M75 65h10" strokeWidth="1.5" />
+    </svg>
+  ),
+  BUSINESS: (
+    <svg className="nz-card-it-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <rect x="15" y="20" width="70" height="60" rx="4" strokeWidth="1.5" />
+      <path d="M25 65L45 45l15 15 25-25" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="85" cy="35" r="3" fill="currentColor" />
+    </svg>
+  ),
+  INTERNSHIP: (
+    <svg className="nz-card-it-watermark" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+      <path d="M50 15L15 35l35 20 35-20z" strokeWidth="1.5" />
+      <path d="M25 42v25c0 10 25 18 25 18s25-8 25-18V42" strokeWidth="1.5" />
+    </svg>
+  ),
+};
+
 /* ─────────────────────────────────────────────────────────
    COURSE CARD COMPONENT
 ───────────────────────────────────────────────────────── */
 function CourseCard({ course, onSelect }) {
   const [imgError, setImgError] = useState(false);
+  const watermark = IT_WATERMARKS[course.category] || IT_WATERMARKS.NETWORKING;
 
   return (
     <div className="nz-course-card" style={{ cursor: 'pointer' }} onClick={() => onSelect && onSelect(course)}>
+      
+      {/* High-Tech IT Watermark Overlay */}
+      {watermark}
+
       {/* Thumbnail with image & fallback */}
       <div className="nz-card-thumb" style={{ background: THUMB[course.chapId] }}>
         {course.image && !imgError ? (
@@ -92,6 +188,11 @@ function CourseCard({ course, onSelect }) {
         )}
         <div className="nz-card-thumb-overlay" />
         <span className="nz-card-badge">{course.category}</span>
+        
+        {/* IT Live Status Tag */}
+        <span className="nz-card-tech-live-tag">
+          <span className="nz-pulse-dot" /> LIVE LAB
+        </span>
       </div>
 
       {/* Body */}
@@ -137,18 +238,138 @@ function PillarCard({ title, tag, desc, highlight, stat, icon, gradient }) {
   );
 }
 
+const PROGRAM_OPTIONS = [
+  {
+    id: 'Software Product Training (Full Stack, C++, Data Science)',
+    label: 'Software Product Training (Full Stack, C++, Data Science)',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
+  },
+  {
+    id: 'AI & Electronics (Machine Learning, Deep Learning, Robotics)',
+    label: 'AI & Electronics (Machine Learning, Deep Learning, Robotics)',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <line x1="9" y1="1" x2="9" y2="4" />
+        <line x1="15" y1="1" x2="15" y2="4" />
+        <line x1="9" y1="20" x2="9" y2="23" />
+        <line x1="15" y1="20" x2="15" y2="23" />
+      </svg>
+    ),
+  },
+  {
+    id: 'Networking & Security (CCNA, CompTIA, AWS, Cyber)',
+    label: 'Networking & Security (CCNA, CompTIA, AWS, Cyber)',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="8" rx="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" />
+        <line x1="6" y1="6" x2="6.01" y2="6" />
+        <line x1="6" y1="18" x2="6.01" y2="18" />
+      </svg>
+    ),
+  },
+  {
+    id: 'Business & Management (Digital Marketing, MS Office)',
+    label: 'Business & Management (Digital Marketing, MS Office)',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" />
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+      </svg>
+    ),
+  },
+  {
+    id: 'Internship Programs (120 Hours to 1 Year)',
+    label: 'Internship Programs (120 Hours to 1 Year)',
+    icon: (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+        <path d="M6 12v5c3 3 9 3 12 0v-5" />
+      </svg>
+    ),
+  },
+];
+
+function CustomProgramSelect({ value, onChange }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectedObj = PROGRAM_OPTIONS.find((o) => o.id === value) || PROGRAM_OPTIONS[0];
+
+  return (
+    <div className="nz-custom-select-wrap">
+      <div
+        className={`nz-custom-select-trigger ${isOpen ? 'nz-open' : ''}`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="nz-select-val-text">
+          <span className="nz-select-option-icon">{selectedObj.icon}</span>
+          {selectedObj.label}
+        </span>
+        <svg
+          className={`nz-select-chevron ${isOpen ? 'nz-rotate' : ''}`}
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#00a8c6"
+          strokeWidth="2.5"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+
+      {isOpen && (
+        <div className="nz-custom-select-dropdown">
+          {PROGRAM_OPTIONS.map((opt) => (
+            <div
+              key={opt.id}
+              className={`nz-custom-select-item ${value === opt.id ? 'nz-active' : ''}`}
+              onClick={() => {
+                onChange(opt.id);
+                setIsOpen(false);
+              }}
+            >
+              <span className="nz-select-item-text">
+                <span className="nz-select-option-icon">{opt.icon}</span>
+                {opt.label}
+              </span>
+              {value === opt.id && <span className="nz-select-check">✓</span>}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ─────────────────────────────────────────────────────────
    CONTACT / ADVISOR INQUIRY FORM
 ───────────────────────────────────────────────────────── */
 function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: '', phone: '', program: 'Software' });
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    program: 'Software Product Training (Full Stack, C++, Data Science)'
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.name && formData.phone) {
       setSubmitted(true);
+      const waUrl = getWhatsAppUrl(createCallbackWhatsAppMessage(formData.name, formData.phone, formData.program));
+      window.open(waUrl, '_blank');
     }
+  };
+
+  const getSuccessWaUrl = () => {
+    return getWhatsAppUrl(createCallbackWhatsAppMessage(formData.name, formData.phone, formData.program));
   };
 
   return (
@@ -157,63 +378,91 @@ function ContactForm() {
         <span className="nz-form-tag">KOLLAM ADMISSION DESK</span>
         <h3 className="nz-form-title">REQUEST A CALLBACK</h3>
         <p className="nz-form-sub">
-          Fill in your details and our Kollam career advisor will call you with program syllabus & placement details.
+          Connect directly with our Kollam campus team for program inquiries, syllabus details, and admissions.
         </p>
       </div>
 
       {submitted ? (
         <div className="nz-form-success">
           <div className="nz-success-icon">✓</div>
-          <h4 className="nz-success-title">INQUIRY RECEIVED</h4>
+          <h4 className="nz-success-title">INQUIRY SENT TO WHATSAPP</h4>
           <p className="nz-success-text">
-            Thank you <strong>{formData.name}</strong>! Our Kollam admission officer will call you at <strong>{formData.phone}</strong> shortly.
+            Thank you <strong>{formData.name}</strong>! Your inquiry details have been forwarded to our Kollam admission desk on WhatsApp.
           </p>
-          <button className="nz-btn-ghost nz-btn-sm" onClick={() => setSubmitted(false)}>
-            SEND ANOTHER REQUEST
-          </button>
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.6rem' }}>
+            <a
+              href={getSuccessWaUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nz-btn-primary nz-btn-sm"
+              style={{ textDecoration: 'none' }}
+            >
+              RESEND ON WHATSAPP 💬
+            </a>
+            <button className="nz-btn-ghost nz-btn-sm" onClick={() => setSubmitted(false)}>
+              SEND ANOTHER
+            </button>
+          </div>
         </div>
       ) : (
-        <form className="nz-form-body" onSubmit={handleSubmit}>
-          <div className="nz-form-group">
-            <label className="nz-form-label">YOUR FULL NAME</label>
-            <input
-              type="text"
-              required
-              placeholder="e.g. Rahul Nair"
-              className="nz-form-input"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            />
+        <form className="nz-vcard-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+          
+          <div className="nz-vcard-field">
+            <span className="nz-vcard-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <div className="nz-vcard-input-box">
+              <label className="nz-vcard-lbl">YOUR FULL NAME *</label>
+              <input
+                type="text"
+                required
+                placeholder="e.g. Rahul Nair"
+                className="nz-vcard-input"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+            </div>
           </div>
 
-          <div className="nz-form-group">
-            <label className="nz-form-label">PHONE / WHATSAPP NUMBER</label>
-            <input
-              type="tel"
-              required
-              placeholder="e.g. +91 98765 43210"
-              className="nz-form-input"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            />
+          <div className="nz-vcard-field">
+            <span className="nz-vcard-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </span>
+            <div className="nz-vcard-input-box">
+              <label className="nz-vcard-lbl">PHONE / WHATSAPP NUMBER *</label>
+              <input
+                type="tel"
+                required
+                placeholder="e.g. +91 98765 43210"
+                className="nz-vcard-input"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
+            </div>
           </div>
 
-          <div className="nz-form-group">
-            <label className="nz-form-label">PROGRAM OF INTEREST</label>
-            <select
-              className="nz-form-select"
-              value={formData.program}
-              onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-            >
-              <option value="Software">Software Product Training (Full Stack, C++, Data Science)</option>
-              <option value="AI">AI & Electronics (Machine Learning, Deep Learning, Robotics)</option>
-              <option value="Networking">Networking & Security (CCNA, CompTIA, AWS, Cyber)</option>
-              <option value="Business">Business & Management (Digital Marketing, MS Office)</option>
-              <option value="Internship">Internship Programs (120 Hours to 1 Year)</option>
-            </select>
+          <div className="nz-vcard-field">
+            <span className="nz-vcard-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+            </span>
+            <div className="nz-vcard-input-box">
+              <label className="nz-vcard-lbl">PROGRAM OF INTEREST *</label>
+              <CustomProgramSelect
+                value={formData.program}
+                onChange={(val) => setFormData({ ...formData, program: val })}
+              />
+            </div>
           </div>
 
-          <button type="submit" className="nz-btn-primary nz-form-submit">
+          <button type="submit" className="nz-vcard-btn" style={{ marginTop: '0.4rem' }}>
             TALK TO ADVISOR →
           </button>
         </form>
@@ -418,6 +667,14 @@ function OfferModal({ course, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setClaimed(true);
+    const msg = createOfferWhatsAppMessage(formData.name, formData.phone, formData.role, courseTitle);
+    const waUrl = getWhatsAppUrl(msg);
+    window.open(waUrl, '_blank');
+  };
+
+  const getWaOfferUrl = () => {
+    const msg = createOfferWhatsAppMessage(formData.name, formData.phone, formData.role, courseTitle);
+    return getWhatsAppUrl(msg);
   };
 
   return (
@@ -463,10 +720,18 @@ function OfferModal({ course, onClose }) {
                 </div>
                 <span className="nz-qr-label">VOUCHER: NS25-OFFER10</span>
               </div>
-              <h4 className="nz-vcard-claimed-title">OFFER CLAIMED!</h4>
+              <h4 className="nz-vcard-claimed-title">OFFER DISPATCHED TO WHATSAPP!</h4>
               <p className="nz-vcard-claimed-sub">
-                Congratulations <strong>{formData.name}</strong> ({formData.role})! You have unlocked 10% discount for <strong>{courseTitle}</strong>.
+                Congratulations <strong>{formData.name}</strong> ({formData.role})! Your 10% discount claim for <strong>{courseTitle}</strong> has been opened on WhatsApp.
               </p>
+              <a
+                href={getWaOfferUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nz-vcard-btn-wa"
+              >
+                RE-OPEN WHATSAPP 💬 →
+              </a>
               <button className="nz-vcard-btn" onClick={onClose}>DONE & CLOSE</button>
             </div>
           ) : (
@@ -589,10 +854,35 @@ export default function NetworkzHome() {
           HERO
           ════════════════════════════════════════ */}
       <section className="nz-hero" id="programs">
-        {/* Background art */}
+        {/* Creative Background Art */}
         <div className="nz-hero-bg">
-          <div className="nz-hero-glow" />
-          <div className="nz-hero-grid" />
+          <div className="nz-hero-orb-cyan" />
+          <div className="nz-hero-orb-indigo" />
+          <div className="nz-hero-grid-overlay" />
+          
+          {/* Cyber Tech SVG Circuit Grid */}
+          <svg className="nz-hero-circuit-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00a8c6" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#38bdf8" stopOpacity="0.05" />
+              </linearGradient>
+            </defs>
+            <path d="M-100,200 Q300,150 600,300 T1500,250" fill="none" stroke="url(#cyanGlow)" strokeWidth="1.5" strokeDasharray="6 8" />
+            <path d="M-100,500 Q400,650 900,450 T1600,600" fill="none" stroke="url(#cyanGlow)" strokeWidth="1" strokeDasharray="4 6" />
+            <circle cx="300" cy="195" r="4" fill="#00a8c6" className="nz-glow-node" />
+            <circle cx="600" cy="300" r="5" fill="#38bdf8" className="nz-glow-node-pulse" />
+            <circle cx="900" cy="450" r="4" fill="#00a8c6" className="nz-glow-node" />
+          </svg>
+
+          {/* Floating Data Particles */}
+          <div className="nz-particle-field">
+            <span className="nz-particle p1">✦</span>
+            <span className="nz-particle p2">●</span>
+            <span className="nz-particle p3">◆</span>
+            <span className="nz-particle p4">✦</span>
+            <span className="nz-particle p5">●</span>
+          </div>
         </div>
 
         <div className="nz-hero-content">
@@ -889,7 +1179,7 @@ export default function NetworkzHome() {
       <section className="nz-locations" id="contact">
         <div className="nz-locations-inner">
           <div className="nz-location-header">
-            <p className="nz-section-eyebrow">HEADQUARTERS & MAIN CAMPUS — KOLLAM, KERALA</p>
+            <p className="nz-section-eyebrow">KOLLAM, KERALA</p>
             <h2 className="nz-section-title">CONTACT US</h2>
             <p className="nz-section-sub">
               Connect directly with our Kollam campus team for program inquiries, syllabus details, and admissions.
@@ -908,7 +1198,7 @@ export default function NetworkzHome() {
                   loading="lazy"
                 />
                 <div className="nz-kollam-banner-overlay" />
-                <span className="nz-kollam-badge">MAIN CAMPUS · KERALA</span>
+                <span className="nz-kollam-badge">KOLLAM CAMPUS</span>
               </div>
 
               <div className="nz-kollam-content">
@@ -939,7 +1229,12 @@ export default function NetworkzHome() {
                     </span>
                     <div>
                       <div className="nz-kollam-info-label">ADMISSION HOTLINE</div>
-                      <a href="tel:08089030405" className="nz-kollam-info-val nz-gold-link">
+                      <a
+                        href="https://wa.me/918089030405?text=Hi%20Networkz%20Systems%20Kollam!%20I%20want%20to%20inquire%20about%20admissions."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="nz-kollam-info-val nz-gold-link"
+                      >
                         +91 80890 30405
                       </a>
                     </div>

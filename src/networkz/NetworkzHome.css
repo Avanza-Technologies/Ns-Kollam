@@ -55,18 +55,18 @@ img { display: block; max-width: 100%; }
 .nz-root { min-height: 100vh; overflow-x: hidden; }
 
 .nz-section-eyebrow {
-  font-family: var(--font-m); font-size: 0.58rem;
-  letter-spacing: 0.32em; color: var(--gold); text-transform: uppercase;
+  font-family: var(--font-m); font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.22em; color: #00a8c6; text-transform: uppercase;
   margin-bottom: 0.8rem;
 }
 .nz-section-title {
   font-family: var(--font-h); font-size: clamp(2rem,4vw,3.5rem);
-  font-weight: 700; letter-spacing: -0.02em; color: var(--text);
+  font-weight: 800; letter-spacing: -0.02em; color: #ffffff;
   text-transform: uppercase; line-height: 0.95;
 }
 .nz-section-sub {
-  font-family: var(--font-m); font-size: 0.66rem;
-  letter-spacing: 0.04em; color: var(--text-dim); line-height: 1.9;
+  font-family: var(--font-h); font-size: 0.92rem; font-weight: 400;
+  color: #cbd5e1; line-height: 1.6;
   margin-top: 0.9rem;
 }
 .nz-center { text-align: center; }
@@ -168,20 +168,82 @@ img { display: block; max-width: 100%; }
 /* Background art */
 .nz-hero-bg {
   position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  z-index: 1;
 }
-.nz-hero-glow {
+
+.nz-hero-orb-cyan {
   position: absolute;
+  top: -150px; left: -100px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 168, 198, 0.22) 0%, rgba(0, 168, 198, 0.05) 50%, transparent 70%);
+  filter: blur(40px);
+  animation: nzHeroFloat 12s ease-in-out infinite alternate;
+}
+
+.nz-hero-orb-indigo {
+  position: absolute;
+  bottom: -150px; right: -100px;
   width: 800px; height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,162,74,0.08) 0%, transparent 70%);
-  top: -200px; right: -100px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(99, 102, 241, 0.04) 50%, transparent 70%);
+  filter: blur(50px);
+  animation: nzHeroFloat 15s ease-in-out infinite alternate-reverse;
 }
-.nz-hero-grid {
+
+@keyframes nzHeroFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-20px, 50px) scale(0.95); }
+}
+
+.nz-hero-grid-overlay {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(0, 168, 198, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 168, 198, 0.05) 1px, transparent 1px);
+  background-size: 55px 55px;
+  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 90%);
+}
+
+.nz-hero-circuit-svg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0.7;
+}
+
+.nz-glow-node { opacity: 0.6; }
+.nz-glow-node-pulse {
+  animation: nodePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.8); opacity: 1; filter: drop-shadow(0 0 8px #00a8c6); }
+}
+
+/* Floating Particles */
+.nz-particle-field {
+  position: absolute; inset: 0;
+}
+
+.nz-particle {
+  position: absolute;
+  color: rgba(0, 168, 198, 0.4);
+  font-size: 0.8rem;
+  animation: floatParticle 8s linear infinite;
+}
+
+.p1 { top: 20%; left: 15%; animation-duration: 9s; }
+.p2 { top: 60%; left: 25%; animation-duration: 12s; font-size: 0.5rem; }
+.p3 { top: 35%; left: 80%; animation-duration: 10s; }
+.p4 { top: 75%; left: 70%; animation-duration: 11s; font-size: 0.6rem; }
+.p5 { top: 15%; left: 65%; animation-duration: 14s; }
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-60px) rotate(180deg); opacity: 0.1; }
 }
 
 /* Hero content */
@@ -214,10 +276,10 @@ img { display: block; max-width: 100%; }
   font-style: normal; color: var(--gold);
 }
 .nz-hero-sub {
-  font-family: var(--font-m); font-size: 0.62rem;
-  color: var(--text-mid); line-height: 1.85;
-  letter-spacing: 0.03em; margin-bottom: 2.5rem;
-  max-width: 520px;
+  font-family: var(--font-h); font-size: 0.95rem; font-weight: 400;
+  color: #cbd5e1; line-height: 1.65;
+  letter-spacing: 0.01em; margin-bottom: 2.5rem;
+  max-width: 540px;
 }
 .nz-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
@@ -346,28 +408,81 @@ img { display: block; max-width: 100%; }
 /* Course grid */
 .nz-course-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.6rem;
 }
 
 /* ── Course card ── */
 .nz-course-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  position: relative;
+  background: linear-gradient(145deg, #243044 0%, #1c2536 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
   overflow: hidden;
   display: flex; flex-direction: column;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .nz-course-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
-  border-color: var(--border2);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 168, 198, 0.15);
+  border-color: rgba(0, 168, 198, 0.4);
+}
+
+/* IT Vector Watermark SVG in Card Corner */
+.nz-card-it-watermark {
+  position: absolute;
+  right: -15px;
+  bottom: 20px;
+  width: 150px;
+  height: 150px;
+  color: rgba(0, 168, 198, 0.08);
+  pointer-events: none;
+  z-index: 1;
+  transition: color 0.35s ease, transform 0.35s ease;
+}
+
+.nz-course-card:hover .nz-card-it-watermark {
+  color: rgba(0, 168, 198, 0.18);
+  transform: scale(1.1) rotate(-6deg);
+}
+
+.nz-card-code-stream {
+  font-family: var(--font-m);
+  font-size: 0.52rem;
+  letter-spacing: 0.16em;
+  color: rgba(0, 168, 198, 0.85);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: -0.2rem;
+  z-index: 2;
+  position: relative;
+}
+
+.nz-card-tech-live-tag {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 2;
+  font-family: var(--font-m);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #38bdf8;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  backdrop-filter: blur(6px);
+  border-radius: 4px;
+  padding: 0.22rem 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
 /* Thumbnail */
 .nz-card-thumb {
-  height: 160px; position: relative; overflow: hidden;
+  height: 175px; position: relative; overflow: hidden;
 }
 .nz-card-img {
   width: 100%;
@@ -382,60 +497,62 @@ img { display: block; max-width: 100%; }
 .nz-card-thumb-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(19,19,26,0.85) 100%);
+  background: linear-gradient(180deg, rgba(28, 37, 54, 0.1) 0%, rgba(28, 37, 54, 0.95) 100%);
 }
 .nz-card-badge {
-  position: absolute; top: 12px; left: 12px; z-index: 2;
-  font-family: var(--font-m); font-size: 0.4rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: #ffffff; background: rgba(0,0,0,0.65);
-  border: 1px solid rgba(255,255,255,0.15);
-  backdrop-filter: blur(4px);
-  border-radius: 3px; padding: 0.22rem 0.55rem;
+  position: absolute; top: 14px; left: 14px; z-index: 2;
+  font-family: var(--font-m); font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: #ffffff; background: rgba(0, 168, 198, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 5px; padding: 0.35rem 0.75rem;
+  box-shadow: 0 4px 15px rgba(0, 168, 198, 0.35);
 }
 
 /* Card body */
 .nz-card-body {
-  padding: 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1;
+  padding: 1.4rem; display: flex; flex-direction: column; gap: 0.85rem; flex: 1;
 }
 .nz-card-meta-row {
   display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
 }
 .nz-card-level {
-  font-family: var(--font-m); font-size: 0.4rem; letter-spacing: 0.2em;
-  text-transform: uppercase; padding: 0.18rem 0.5rem; border: 1px solid;
-  border-radius: 3px; white-space: nowrap;
+  font-family: var(--font-m); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.16em;
+  text-transform: uppercase; padding: 0.25rem 0.65rem; border: 1px solid;
+  border-radius: 4px; white-space: nowrap; background: rgba(255, 255, 255, 0.04);
 }
 .nz-card-dur {
-  font-family: var(--font-m); font-size: 0.44rem; letter-spacing: 0.12em;
-  color: var(--text-dim); text-transform: uppercase;
+  font-family: var(--font-m); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em;
+  color: rgba(226, 232, 240, 0.7); text-transform: uppercase;
 }
 .nz-card-title {
-  font-family: var(--font-h); font-size: 1.05rem; font-weight: 700;
-  letter-spacing: -0.01em; color: var(--text); line-height: 1.2;
-  text-transform: uppercase;
+  font-family: var(--font-h); font-size: 1.18rem; font-weight: 800;
+  letter-spacing: -0.01em; color: #ffffff; line-height: 1.25;
+  text-transform: uppercase; margin-top: 0.1rem;
 }
 .nz-card-desc {
-  font-family: var(--font-m); font-size: 0.48rem; color: var(--text-dim);
-  line-height: 1.85; letter-spacing: 0.03em; flex: 1;
+  font-family: var(--font-h); font-size: 0.72rem; color: #cbd5e1;
+  line-height: 1.5; letter-spacing: 0.01em; flex: 1; font-weight: 400;
 }
 .nz-card-foot {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 0.8rem; padding-top: 0.8rem;
-  border-top: 1px solid var(--border); margin-top: auto;
+  gap: 0.8rem; padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto;
 }
 .nz-card-cert {
-  font-family: var(--font-m); font-size: 0.38rem; letter-spacing: 0.14em;
-  color: var(--text-dim); text-transform: uppercase;
+  font-family: var(--font-m); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em;
+  color: #00a8c6; text-transform: uppercase;
 }
 .nz-card-btn {
-  font-family: var(--font-m); font-size: 0.44rem; letter-spacing: 0.18em;
-  text-transform: uppercase; color: #000; background: var(--gold);
-  border: none; border-radius: 4px; padding: 0.45rem 1rem;
+  font-family: var(--font-m); font-size: 0.58rem; font-weight: 800; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #ffffff; background: linear-gradient(135deg, #00a8c6 0%, #0da5b7 100%);
+  border: none; border-radius: 6px; padding: 0.55rem 1.1rem;
   cursor: pointer; white-space: nowrap;
-  transition: opacity 0.25s, transform 0.25s var(--ease);
+  box-shadow: 0 4px 15px rgba(0, 168, 198, 0.35);
+  transition: opacity 0.25s, transform 0.25s var(--ease), box-shadow 0.25s ease;
 }
-.nz-card-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.nz-card-btn:hover { opacity: 0.95; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 168, 198, 0.55); }
 
 /* ══════════════════════════════════════════════════════
    INTERNSHIP
@@ -455,15 +572,17 @@ img { display: block; max-width: 100%; }
 }
 
 .nz-tier-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 10px; overflow: hidden;
+  background: linear-gradient(145deg, #243044 0%, #1c2536 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px; overflow: hidden;
   display: flex; flex-direction: column;
-  transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s ease;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.35);
+  transition: border-color 0.35s, transform 0.35s var(--ease), box-shadow 0.35s ease;
 }
 .nz-tier-card:hover {
-  border-color: var(--border2);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  border-color: rgba(0, 168, 198, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 168, 198, 0.15);
 }
 .nz-tier-img-wrap {
   height: 180px; position: relative; overflow: hidden;
@@ -480,25 +599,26 @@ img { display: block; max-width: 100%; }
 }
 .nz-tier-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(19,19,26,0.9) 100%);
+  background: linear-gradient(180deg, rgba(28, 37, 54, 0.2) 0%, rgba(28, 37, 54, 0.95) 100%);
 }
 .nz-tier-badge {
   position: absolute; top: 12px; left: 12px; z-index: 2;
-  font-family: var(--font-m); font-size: 0.4rem; letter-spacing: 0.24em;
-  text-transform: uppercase; color: var(--gold);
-  background: rgba(0,0,0,0.65); border: 1px solid rgba(201,162,74,0.3);
-  backdrop-filter: blur(4px); border-radius: 3px; padding: 0.2rem 0.55rem;
+  font-family: var(--font-m); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: #ffffff;
+  background: rgba(0, 168, 198, 0.85); border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px); border-radius: 5px; padding: 0.35rem 0.75rem;
+  box-shadow: 0 4px 15px rgba(0, 168, 198, 0.35);
 }
 .nz-tier-body {
   padding: 1.4rem; display: flex; flex-direction: column; gap: 0.8rem; flex: 1;
 }
 .nz-tier-dur {
-  font-family: var(--font-h); font-size: 2.2rem; font-weight: 700;
-  letter-spacing: -0.03em; color: var(--text); line-height: 1;
+  font-family: var(--font-h); font-size: 2.2rem; font-weight: 800;
+  letter-spacing: -0.03em; color: #ffffff; line-height: 1;
 }
 .nz-tier-desc {
-  font-family: var(--font-m); font-size: 0.5rem; color: var(--text-dim);
-  line-height: 1.8; letter-spacing: 0.03em; flex: 1;
+  font-family: var(--font-h); font-size: 0.72rem; color: #cbd5e1;
+  line-height: 1.5; letter-spacing: 0.01em; flex: 1; font-weight: 400;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -565,8 +685,8 @@ img { display: block; max-width: 100%; }
   margin-bottom: 1.5rem;
 }
 .nz-vision-text {
-  font-family: var(--font-h); font-size: 0.92rem; font-weight: 400;
-  color: rgba(237, 234, 226, 0.78); line-height: 1.8;
+  font-family: var(--font-h); font-size: 0.95rem; font-weight: 400;
+  color: #cbd5e1; line-height: 1.65;
   margin-bottom: 2.2rem; flex: 1;
 }
 .nz-vision-pills {
@@ -657,7 +777,7 @@ img { display: block; max-width: 100%; }
 }
 .nz-tile-desc {
   font-family: var(--font-h); font-size: 0.78rem; font-weight: 400;
-  color: rgba(237, 234, 226, 0.65); line-height: 1.7; flex: 1;
+  color: #cbd5e1; line-height: 1.6; flex: 1;
 }
 .nz-tile-pill {
   display: inline-block; font-family: var(--font-m);
@@ -871,8 +991,8 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.02em; text-transform: uppercase; color: #ffffff;
 }
 .nz-form-sub {
-  font-family: var(--font-h); font-size: 0.78rem; font-weight: 400;
-  color: var(--text-dim); line-height: 1.6;
+  font-family: var(--font-h); font-size: 0.88rem; font-weight: 400;
+  color: #cbd5e1; line-height: 1.55;
 }
 
 .nz-form-body {
