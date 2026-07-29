@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import './NetworkzHome.css';
 import { COURSE_DETAILS } from './data/courseData';
 
@@ -38,10 +38,10 @@ const ICON = { 1: '<>', 2: 'AI', 3: '///', 4: '$$', 5: '✦' };
 
 /* ── Stat data ── */
 const STATS = [
-  { value: '15+',  label: 'Programs',   ring: 1 },
-  { value: '3',    label: 'States',     ring: 0.3 },
-  { value: 'ISO',  label: '9001:2015',  ring: 1 },
-  { value: '100%', label: 'Placement',  ring: 1 },
+  { value: '15+', label: 'Programs', ring: 1 },
+  { value: '3', label: 'States', ring: 0.3 },
+  { value: 'ISO', label: '9001:2015', ring: 1 },
+  { value: '100%', label: 'Placement', ring: 1 },
 ];
 
 /* ─────────────────────────────────────────────────────────
@@ -169,7 +169,7 @@ function CourseCard({ course, onSelect }) {
 
   return (
     <div className="nz-course-card" style={{ cursor: 'pointer' }} onClick={() => onSelect && onSelect(course)}>
-      
+
       {/* High-Tech IT Watermark Overlay */}
       {watermark}
 
@@ -188,7 +188,7 @@ function CourseCard({ course, onSelect }) {
         )}
         <div className="nz-card-thumb-overlay" />
         <span className="nz-card-badge">{course.category}</span>
-        
+
         {/* IT Live Status Tag */}
         <span className="nz-card-tech-live-tag">
           <span className="nz-pulse-dot" /> LIVE LAB
@@ -385,9 +385,9 @@ function ContactForm() {
       {submitted ? (
         <div className="nz-form-success">
           <div className="nz-success-icon">✓</div>
-          <h4 className="nz-success-title">INQUIRY SENT TO WHATSAPP</h4>
+          <h4 className="nz-success-title">INQUIRY SENT TO HELP DESK</h4>
           <p className="nz-success-text">
-            Thank you <strong>{formData.name}</strong>! Your inquiry details have been forwarded to our Kollam admission desk on WhatsApp.
+            Thank you <strong>{formData.name}</strong>! Your inquiry details have been forwarded to our Kollam admission desk.
           </p>
           <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '0.6rem' }}>
             <a
@@ -406,7 +406,7 @@ function ContactForm() {
         </div>
       ) : (
         <form className="nz-vcard-form" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-          
+
           <div className="nz-vcard-field">
             <span className="nz-vcard-icon">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -680,11 +680,11 @@ function OfferModal({ course, onClose }) {
   return (
     <div className="nz-modal-overlay" onClick={onClose}>
       <div className="nz-modal-vertical-card" onClick={(e) => e.stopPropagation()}>
-        
+
         {/* Top Dark Header (Logo Name style) */}
         <div className="nz-vcard-header">
           <button className="nz-vcard-close" onClick={onClose} aria-label="Close modal">✕</button>
-          
+
           <div className="nz-vcard-logo-emblem">
             <span className="nz-vcard-logo-text">NETWORKZ SYSTEMS</span>
           </div>
@@ -736,7 +736,7 @@ function OfferModal({ course, onClose }) {
             </div>
           ) : (
             <form className="nz-vcard-form" onSubmit={handleSubmit}>
-              
+
               <div className="nz-vcard-field">
                 <span className="nz-vcard-icon">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -813,23 +813,57 @@ function OfferModal({ course, onClose }) {
 ───────────────────────────────────────────────────────── */
 export default function NetworkzHome() {
   const [tab, setTab] = useState('NETWORKING');
+  const [searchQuery, setSearchQuery] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [activeNav, setActiveNav] = useState('programs');
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.background = '#1c2536';
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 60);
+
+      const sections = ['programs', 'catalog', 'internship', 'about', 'contact'];
+      const scrollPosition = window.scrollY + 140;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const sectionEl = document.getElementById(sections[i]);
+        if (sectionEl && sectionEl.offsetTop <= scrollPosition) {
+          setActiveNav(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => {
       document.body.style.background = '';
-      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  const filtered = tab === 'ALL'
-    ? ALL_COURSES
-    : ALL_COURSES.filter((c) => c.category === tab);
+  const categoryCounts = useMemo(() => {
+    const counts = { ALL: ALL_COURSES.length };
+    Object.values(CAT_LABELS).forEach((label) => {
+      counts[label] = ALL_COURSES.filter((c) => c.category === label).length;
+    });
+    return counts;
+  }, []);
+
+  const filtered = useMemo(() => {
+    return ALL_COURSES.filter((c) => {
+      const matchesTab = tab === 'ALL' || c.category === tab;
+      const q = searchQuery.trim().toLowerCase();
+      const matchesSearch =
+        !q ||
+        c.name.toLowerCase().includes(q) ||
+        c.desc.toLowerCase().includes(q) ||
+        c.cert.toLowerCase().includes(q);
+      return matchesTab && matchesSearch;
+    });
+  }, [tab, searchQuery]);
 
   return (
     <div className="nz-root">
@@ -838,6 +872,33 @@ export default function NetworkzHome() {
           NAVIGATION
           ════════════════════════════════════════ */}
       <header className={`nz-nav${scrolled ? ' nz-nav--scrolled' : ''}`}>
+        <nav className={`nz-nav-links ${mobileMenuOpen ? 'nz-mobile-open' : ''}`} aria-label="Main navigation">
+          {[
+            { id: 'programs', label: 'Programs' },
+            { id: 'catalog', label: 'Catalog' },
+            { id: 'internship', label: 'Internship' },
+            { id: 'about', label: 'About' },
+            { id: 'contact', label: 'Contact' },
+          ].map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={activeNav === id ? 'nz-nav-active' : ''}
+              onClick={() => {
+                setActiveNav(id);
+                setMobileMenuOpen(false);
+              }}
+            >
+              {label}
+            </a>
+          ))}
+          <a href="/exam" className="nz-mobile-portal-btn" onClick={() => setMobileMenuOpen(false)}>SKILL EXAM →</a>
+        </nav>
+
+        <div className="nz-nav-right">
+          <a href="/exam" className="nz-nav-portal">SKILL EXAM →</a>
+        </div>
+
         <button
           className="nz-mobile-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -846,18 +907,9 @@ export default function NetworkzHome() {
           {mobileMenuOpen ? '✕' : '☰'}
         </button>
 
-        <nav className={`nz-nav-links ${mobileMenuOpen ? 'nz-mobile-open' : ''}`} aria-label="Main navigation">
-          <a href="#programs" onClick={() => setMobileMenuOpen(false)}>Programs</a>
-          <a href="#catalog" onClick={() => setMobileMenuOpen(false)}>Catalog</a>
-          <a href="#internship" onClick={() => setMobileMenuOpen(false)}>Internship</a>
-          <a href="#about" onClick={() => setMobileMenuOpen(false)}>About</a>
-          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-          <a href="/exam" className="nz-mobile-portal-btn">STUDENT PORTAL →</a>
-        </nav>
-
-        <div className="nz-nav-right">
-          <a href="/exam" className="nz-nav-portal">STUDENT PORTAL →</a>
-        </div>
+        {mobileMenuOpen && (
+          <div className="nz-mobile-backdrop" onClick={() => setMobileMenuOpen(false)} />
+        )}
       </header>
 
       {/* ════════════════════════════════════════
@@ -869,7 +921,7 @@ export default function NetworkzHome() {
           <div className="nz-hero-orb-cyan" />
           <div className="nz-hero-orb-indigo" />
           <div className="nz-hero-grid-overlay" />
-          
+
           {/* Cyber Tech SVG Circuit Grid */}
           <svg className="nz-hero-circuit-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -910,8 +962,8 @@ export default function NetworkzHome() {
             in Software, AI, Networking, and Business — with 100% placement support.
           </p>
           <div className="nz-hero-actions">
-            <a href="#catalog" className="nz-btn-primary">EXPLORE PROGRAMS</a>
-            <a href="#contact"  className="nz-btn-ghost">TALK TO AN ADVISOR</a>
+            <a href="#catalog" className="nz-btn-primary" onClick={() => setActiveNav('catalog')}>EXPLORE PROGRAMS</a>
+            <a href="#contact" className="nz-btn-ghost" onClick={() => setActiveNav('contact')}>TALK TO AN ADVISOR</a>
           </div>
         </div>
 
@@ -936,10 +988,10 @@ export default function NetworkzHome() {
 
               {/* Integrated Stat Rings Grid */}
               <div className="nz-hero-stats">
-                <StatRing value="15+" label="Programs"  fill={1}   />
-                <StatRing value="3"   label="States"    fill={0.33} />
-                <StatRing value="ISO" label="9001:2015" fill={1}   />
-                <StatRing value="100%" label="Placement" fill={1}  />
+                <StatRing value="15+" label="Programs" fill={1} />
+                <StatRing value="3" label="States" fill={0.33} />
+                <StatRing value="ISO" label="9001:2015" fill={1} />
+                <StatRing value="100%" label="Placement" fill={1} />
               </div>
             </div>
 
@@ -958,12 +1010,35 @@ export default function NetworkzHome() {
           ════════════════════════════════════════ */}
       <section className="nz-catalog" id="catalog">
         <div className="nz-catalog-header">
-          <div>
+          <div className="nz-catalog-title-box">
             <h2 className="nz-section-title">COURSE CATALOG</h2>
             <p className="nz-section-sub">
-              {ALL_COURSES.length} programs across 5 disciplines
+              Showing {filtered.length} {filtered.length === 1 ? 'program' : 'programs'} {tab !== 'ALL' ? `in ${tab}` : 'across all disciplines'}
+              {searchQuery ? ` matching "${searchQuery}"` : ''}
             </p>
           </div>
+
+          {/* Search Box Input */}
+          <div className="nz-search-box">
+            <svg className="nz-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search courses by name or skill..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="nz-search-input"
+            />
+            {searchQuery && (
+              <button className="nz-search-clear" onClick={() => setSearchQuery('')} aria-label="Clear search">✕</button>
+            )}
+          </div>
+        </div>
+
+        {/* Category Filter Tabs Row */}
+        <div className="nz-tab-row-container">
           <div className="nz-tab-row" role="tablist" aria-label="Course categories">
             {TABS.map((t) => (
               <button
@@ -973,17 +1048,30 @@ export default function NetworkzHome() {
                 className={`nz-tab${tab === t ? ' nz-tab--active' : ''}`}
                 onClick={() => setTab(t)}
               >
-                {t}
+                <span>{t}</span>
+                <span className="nz-tab-badge">{categoryCounts[t] || 0}</span>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="nz-course-grid">
-          {filtered.map((c) => (
-            <CourseCard key={`${c.chapId}-${c.id}`} course={c} onSelect={setSelectedCourse} />
-          ))}
-        </div>
+        {/* Course Cards Grid or Empty State */}
+        {filtered.length > 0 ? (
+          <div className="nz-course-grid">
+            {filtered.map((c) => (
+              <CourseCard key={`${c.chapId}-${c.id}`} course={c} onSelect={setSelectedCourse} />
+            ))}
+          </div>
+        ) : (
+          <div className="nz-empty-catalog">
+            <div className="nz-empty-icon">🔍</div>
+            <h3 className="nz-empty-title">NO COURSES FOUND</h3>
+            <p className="nz-empty-sub">We couldn't find any courses matching your search "{searchQuery}" in category "{tab}".</p>
+            <button className="nz-btn-ghost nz-btn-sm" onClick={() => { setTab('ALL'); setSearchQuery(''); }}>
+              CLEAR FILTERS & SHOW ALL COURSES
+            </button>
+          </div>
+        )}
       </section>
 
       {/* ════════════════════════════════════════
@@ -1033,7 +1121,7 @@ export default function NetworkzHome() {
           ════════════════════════════════════════ */}
       <section className="nz-credentials" id="about">
         <div className="nz-credentials-inner">
-          
+
           <div className="nz-section-header-center">
             <p className="nz-section-eyebrow nz-center">ACCREDITATION & CAREER PROMISE</p>
             <h2 className="nz-section-title nz-center">WHY CHOOSE NETWORKZ SYSTEMS</h2>
@@ -1045,7 +1133,7 @@ export default function NetworkzHome() {
 
           {/* Asymmetric Vision + Pillars Showcase */}
           <div className="nz-asym-showcase">
-            
+
             {/* Left: Vision & Mission Panel */}
             <div className="nz-vision-card">
               <div className="nz-vision-bg-glow" />
@@ -1197,7 +1285,7 @@ export default function NetworkzHome() {
           </div>
 
           <div className="nz-kollam-hub-grid">
-            
+
             {/* Left: Kollam Campus Details Card */}
             <div className="nz-kollam-card">
               <div className="nz-kollam-banner">
