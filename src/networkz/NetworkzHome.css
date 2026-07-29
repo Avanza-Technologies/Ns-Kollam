@@ -505,6 +505,44 @@ section[id] {
   color: #ffffff;
 }
 
+/* ══════════════════════════════════════════════════════
+   SECTION HEADINGS — shared across all sections
+   ══════════════════════════════════════════════════════ */
+.nz-section-eyebrow {
+  font-family: var(--font-m);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #00a8c6;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.nz-section-title {
+  font-family: var(--font-h);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 0.9rem;
+}
+.nz-section-sub {
+  font-family: var(--font-h);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(203, 213, 225, 0.85);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+.nz-section-header-center {
+  text-align: center;
+}
+.nz-center {
+  text-align: center;
+}
+
 /* Empty catalog state */
 .nz-empty-catalog {
   text-align: center; padding: 4rem 1.5rem;
