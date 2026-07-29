@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import './NetworkzHome.css';
 import { COURSE_DETAILS } from './data/courseData';
 
@@ -12,17 +12,60 @@ const CAT_LABELS = {
 };
 
 const ALL_COURSES = Object.entries(COURSE_DETAILS)
-  .filter(([id]) => parseInt(id) <= 5)
+  .filter(([id]) => parseInt(id, 10) <= 5)
   .flatMap(([id, data]) =>
     data.courses.map((c) => ({
       ...c,
-      category: CAT_LABELS[parseInt(id)],
+      category: CAT_LABELS[parseInt(id, 10)],
       accent: data.accent,
-      chapId: parseInt(id),
+      chapId: parseInt(id, 10),
     }))
   );
 
 const TABS = ['NETWORKING', 'SOFTWARE', 'AI & ELECTRONICS', 'BUSINESS', 'INTERNSHIP', 'ALL'];
+
+const TAB_ICONS = {
+  'NETWORKING': (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="8" rx="2" />
+      <rect x="2" y="14" width="20" height="8" rx="2" />
+      <line x1="6" y1="6" x2="6.01" y2="6" />
+      <line x1="6" y1="18" x2="6.01" y2="18" />
+    </svg>
+  ),
+  'SOFTWARE': (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  ),
+  'AI & ELECTRONICS': (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <rect x="9" y="9" width="6" height="6" />
+      <line x1="9" y1="1" x2="9" y2="4" />
+      <line x1="15" y1="1" x2="15" y2="4" />
+    </svg>
+  ),
+  'BUSINESS': (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </svg>
+  ),
+  'INTERNSHIP': (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
+  ),
+  'ALL': (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  ),
+};
 
 /* ── Thumbnail gradient per chapter ── */
 const THUMB = {
@@ -168,7 +211,19 @@ function CourseCard({ course, onSelect }) {
   const watermark = IT_WATERMARKS[course.category] || IT_WATERMARKS.NETWORKING;
 
   return (
-    <div className="nz-course-card" style={{ cursor: 'pointer' }} onClick={() => onSelect && onSelect(course)}>
+    <div
+      className="nz-course-card"
+      style={{ cursor: 'pointer' }}
+      role="button"
+      tabIndex={0}
+      onClick={() => onSelect && onSelect(course)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect && onSelect(course);
+        }
+      }}
+    >
 
       {/* High-Tech IT Watermark Overlay */}
       {watermark}
@@ -364,7 +419,7 @@ function ContactForm() {
     if (formData.name && formData.phone) {
       setSubmitted(true);
       const waUrl = getWhatsAppUrl(createCallbackWhatsAppMessage(formData.name, formData.phone, formData.program));
-      window.open(waUrl, '_blank');
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -669,7 +724,7 @@ function OfferModal({ course, onClose }) {
     setClaimed(true);
     const msg = createOfferWhatsAppMessage(formData.name, formData.phone, formData.role, courseTitle);
     const waUrl = getWhatsAppUrl(msg);
-    window.open(waUrl, '_blank');
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   };
 
   const getWaOfferUrl = () => {
@@ -853,17 +908,24 @@ export default function NetworkzHome() {
   }, []);
 
   const filtered = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
     return ALL_COURSES.filter((c) => {
-      const matchesTab = tab === 'ALL' || c.category === tab;
-      const q = searchQuery.trim().toLowerCase();
+      const matchesTab = !q ? (tab === 'ALL' || c.category === tab) : true;
       const matchesSearch =
         !q ||
         c.name.toLowerCase().includes(q) ||
         c.desc.toLowerCase().includes(q) ||
-        c.cert.toLowerCase().includes(q);
+        c.cert.toLowerCase().includes(q) ||
+        c.category.toLowerCase().includes(q) ||
+        c.level.toLowerCase().includes(q);
       return matchesTab && matchesSearch;
     });
   }, [tab, searchQuery]);
+
+  const handleTabSelect = (selectedCategory) => {
+    setTab(selectedCategory);
+    setSearchQuery('');
+  };
 
   return (
     <div className="nz-root">
@@ -872,6 +934,13 @@ export default function NetworkzHome() {
           NAVIGATION
           ════════════════════════════════════════ */}
       <header className={`nz-nav${scrolled ? ' nz-nav--scrolled' : ''}`}>
+        <div className="nz-nav-left">
+          <a href="#programs" className="nz-nav-brand">
+            <span className="nz-brand-title">NETWORKZ <span className="nz-brand-accent">SYSTEMS</span></span>
+            <span className="nz-brand-badge">KOLLAM</span>
+          </a>
+        </div>
+
         <nav className={`nz-nav-links ${mobileMenuOpen ? 'nz-mobile-open' : ''}`} aria-label="Main navigation">
           {[
             { id: 'programs', label: 'Programs' },
@@ -1013,8 +1082,10 @@ export default function NetworkzHome() {
           <div className="nz-catalog-title-box">
             <h2 className="nz-section-title">COURSE CATALOG</h2>
             <p className="nz-section-sub">
-              Showing {filtered.length} {filtered.length === 1 ? 'program' : 'programs'} {tab !== 'ALL' ? `in ${tab}` : 'across all disciplines'}
-              {searchQuery ? ` matching "${searchQuery}"` : ''}
+              {searchQuery
+                ? `Found ${filtered.length} ${filtered.length === 1 ? 'course' : 'courses'} matching "${searchQuery}" across all categories`
+                : `Showing ${filtered.length} ${filtered.length === 1 ? 'program' : 'programs'} ${tab !== 'ALL' ? `in ${tab}` : 'across all disciplines'}`
+              }
             </p>
           </div>
 
@@ -1040,18 +1111,22 @@ export default function NetworkzHome() {
         {/* Category Filter Tabs Row */}
         <div className="nz-tab-row-container">
           <div className="nz-tab-row" role="tablist" aria-label="Course categories">
-            {TABS.map((t) => (
-              <button
-                key={t}
-                role="tab"
-                aria-selected={tab === t}
-                className={`nz-tab${tab === t ? ' nz-tab--active' : ''}`}
-                onClick={() => setTab(t)}
-              >
-                <span>{t}</span>
-                <span className="nz-tab-badge">{categoryCounts[t] || 0}</span>
-              </button>
-            ))}
+            {TABS.map((t) => {
+              const isActive = tab === t && !searchQuery;
+              return (
+                <button
+                  key={t}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`nz-tab${isActive ? ' nz-tab--active' : ''}`}
+                  onClick={() => handleTabSelect(t)}
+                >
+                  <span className="nz-tab-icon">{TAB_ICONS[t]}</span>
+                  <span className="nz-tab-label">{t}</span>
+                  <span className="nz-tab-badge">{categoryCounts[t] || 0}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 

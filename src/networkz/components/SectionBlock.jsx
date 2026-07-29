@@ -38,14 +38,15 @@ export default function SectionBlock({ chapterId }) {
   if (!chapter || !data) return null;
 
   useEffect(() => {
-    let timeout;
+    const timeouts = [];
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setHeaderVisible(true);
           // Stagger each card
           data.courses.forEach((_, i) => {
-            timeout = setTimeout(() => setVisibleCount(i + 1), 150 + i * 90);
+            const t = setTimeout(() => setVisibleCount(i + 1), 150 + i * 90);
+            timeouts.push(t);
           });
         } else {
           setHeaderVisible(false);
@@ -58,7 +59,7 @@ export default function SectionBlock({ chapterId }) {
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
       observer.disconnect();
-      clearTimeout(timeout);
+      timeouts.forEach(clearTimeout);
     };
   }, [data.courses]);
 

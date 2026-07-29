@@ -66,7 +66,7 @@ export default function CourseWheel({ courses, chapterProgress, accentColor }) {
     });
 
     // Sort back to front so front card renders on top
-    return raw.sort((a, b) => a.cosA - b.cosA);
+    return [...raw].sort((a, b) => a.cosA - b.cosA);
   }, [courses, activeIndex, N, RADIUS]);
 
   return (

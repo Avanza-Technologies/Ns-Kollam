@@ -62,10 +62,15 @@ export default function ExamPage({ candidate, onSubmit }) {
     };
   }, []);
 
+  const ansRef = useRef(ans);
+  ansRef.current = ans;
+  const onSubmitRef = useRef(onSubmit);
+  onSubmitRef.current = onSubmit;
+
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setLeft(t => {
-        if (t <= 1) { clearInterval(timerRef.current); onSubmit(ans); return 0; }
+        if (t <= 1) { clearInterval(timerRef.current); onSubmitRef.current(ansRef.current); return 0; }
         return t - 1;
       });
     }, 1000);

@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NAV_ITEMS = [
   { label: 'PROGRAMS', href: '#programs' },
   { label: 'INTERNSHIP', href: '#internship' },
@@ -9,7 +7,7 @@ const NAV_ITEMS = [
 
 export default function Navigation() {
   return (
-    <nav className="nz-nav" role="navigation" aria-label="Main navigation">
+    <nav className="nz-nav" aria-label="Main navigation">
       <div className="nz-nav-logo" aria-label="Networkz Systems">
         NETWORKZ<br />SYSTEMS
       </div>
