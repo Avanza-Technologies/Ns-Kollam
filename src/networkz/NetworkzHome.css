@@ -712,12 +712,12 @@ section[id] {
   border-top: 1px solid var(--border);
 }
 .nz-internship-inner {
-  display: grid; grid-template-columns: 1fr 1.6fr;
-  gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 320px 1fr;
+  gap: 4rem; align-items: start; max-width: 1200px; margin: 0 auto;
 }
 .nz-internship-copy { display: flex; flex-direction: column; gap: 1rem; }
 .nz-internship-tiers {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
 }
 
 .nz-tier-card {
@@ -1607,9 +1607,13 @@ section[id] {
     display: none;
   }
   .nz-nav {
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0.8rem 1.2rem;
     height: 64px;
+  }
+  .nz-nav-left {
+    display: flex;
+    align-items: center;
   }
   
   /* Mobile Menu Overlay Drawer */
@@ -1702,14 +1706,36 @@ section[id] {
     gap: 1.2rem;
   }
 
-  /* Internship Tiers Mobile */
-  .nz-internship-tiers {
+  /* Internship Section Mobile */
+  .nz-internship {
+    padding: 4rem 1.2rem;
+  }
+  .nz-internship-inner {
     grid-template-columns: 1fr !important;
-    gap: 1.2rem !important;
+    gap: 2rem !important;
+  }
+  .nz-internship-tiers {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.9rem !important;
+  }
+  .nz-tier-img-wrap {
+    height: 130px !important;
+  }
+  .nz-tier-dur {
+    font-size: 1.5rem !important;
+  }
+  .nz-tier-desc {
+    font-size: 0.68rem !important;
   }
 
   /* 2x2 Pillars Grid Mobile */
   .nz-pillar-grid-2x2 {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+
+  /* Asymmetric showcase collapse */
+  .nz-asym-showcase {
     grid-template-columns: 1fr !important;
     gap: 1.2rem !important;
   }
