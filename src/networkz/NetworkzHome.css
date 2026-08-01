@@ -2,7 +2,7 @@
    NETWORKZ SYSTEMS — Premium Dark Portal
    ═══════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,8 +26,8 @@
   
   --border:     rgba(255, 255, 255, 0.09);
   --border2:    rgba(255, 255, 255, 0.18);
-  --font-h:     'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-m:     'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-h:     'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-m:     'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --ease:       cubic-bezier(0.16, 1, 0.3, 1);
   --r:          8px;
 }
@@ -713,7 +713,7 @@ section[id] {
 }
 .nz-internship-inner {
   display: grid; grid-template-columns: 320px 1fr;
-  gap: 4rem; align-items: start; max-width: 1200px; margin: 0 auto;
+  gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto;
 }
 .nz-internship-copy { display: flex; flex-direction: column; gap: 1rem; }
 .nz-internship-tiers {
@@ -1004,36 +1004,36 @@ section[id] {
    ══════════════════════════════════════════════════════ */
 .nz-locations {
   padding: 6rem 3rem;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
+  position: relative;
 }
 .nz-locations-inner { max-width: 1200px; margin: 0 auto; }
 .nz-location-header { margin-bottom: 3rem; }
 /* ─── Kollam Headquarters Hub ─── */
 .nz-kollam-hub-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1.1fr 0.9fr;
   gap: 1.8rem;
   align-items: stretch;
 }
 
 .nz-kollam-card {
-  background: linear-gradient(145deg, #243044 0%, #1c2536 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.8) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .nz-kollam-card:hover {
-  border-color: rgba(0, 168, 198, 0.35);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 168, 198, 0.15);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 168, 198, 0.15);
 }
 
 .nz-kollam-banner {
-  height: 200px;
+  height: 180px;
   position: relative;
   overflow: hidden;
 }
@@ -1045,103 +1045,170 @@ section[id] {
 }
 .nz-kollam-banner-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(28, 37, 54, 0.2) 0%, #1c2536 100%);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, #0f172a 100%);
 }
 .nz-kollam-badge {
   position: absolute; top: 16px; left: 16px; z-index: 2;
-  font-family: var(--font-m); font-size: 0.48rem; font-weight: 700;
-  letter-spacing: 0.22em; text-transform: uppercase;
-  color: #ffffff; background: rgba(0, 168, 198, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: var(--font-m); font-size: 0.55rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #38bdf8; background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 6px; padding: 0.4rem 0.85rem;
-  box-shadow: 0 4px 15px rgba(0, 168, 198, 0.35);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .nz-kollam-content {
-  padding: 2.2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.2rem;
   flex: 1;
 }
 .nz-kollam-title {
-  font-family: var(--font-h); font-size: 1.6rem; font-weight: 800;
-  letter-spacing: -0.02em; text-transform: uppercase; color: #ffffff;
+  font-family: var(--font-h); font-size: 1.5rem; font-weight: 800;
+  letter-spacing: -0.02em; text-transform: uppercase; color: #f8fafc;
 }
 .nz-kollam-subtitle {
-  font-family: var(--font-h); font-size: 0.82rem; font-weight: 500;
-  color: #00a8c6; letter-spacing: 0.04em; margin-top: -0.8rem;
+  font-family: var(--font-m); font-size: 0.82rem; font-weight: 500;
+  color: #94a3b8; letter-spacing: 0.02em; margin-top: -0.4rem;
+}
+
+.nz-contact-accent-line {
+  width: 45px;
+  height: 3px;
+  background: #38bdf8;
+  border-radius: 2px;
+  margin: 0.4rem 0 0.6rem;
 }
 
 .nz-kollam-info-list {
-  display: flex; flex-direction: column; gap: 0.85rem; margin: 0.5rem 0;
+  display: flex; flex-direction: column; gap: 0.85rem; margin: 0.3rem 0;
 }
 .nz-kollam-info-item {
   display: flex; align-items: flex-start; gap: 1.1rem;
   padding: 0.85rem 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-left: 3px solid #00a8c6;
+  border-left: 3px solid #38bdf8;
   border-radius: 8px;
   transition: all 0.25s ease;
 }
 .nz-kollam-info-item:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(0, 168, 198, 0.3);
-  border-left-color: #00a8c6;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(56, 189, 248, 0.3);
+  border-left-color: #38bdf8;
   transform: translateX(4px);
 }
 .nz-kollam-icon {
-  width: 32px; height: 32px; border-radius: 50%;
+  width: 34px; height: 34px; border-radius: 50%;
   background: rgba(0, 168, 198, 0.12);
-  border: 1px solid rgba(0, 168, 198, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.3);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; margin-top: 2px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
 }
 .nz-kollam-info-label {
-  font-family: var(--font-m); font-size: 0.46rem; font-weight: 700;
-  letter-spacing: 0.2em; color: rgba(226, 232, 240, 0.55); text-transform: uppercase;
+  font-family: var(--font-m); font-size: 0.52rem; font-weight: 700;
+  letter-spacing: 0.18em; color: #94a3b8; text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
 .nz-kollam-info-val {
   font-family: var(--font-h); font-size: 0.88rem; font-weight: 500;
-  color: #f1f5f9; line-height: 1.5;
+  color: #f8fafc; line-height: 1.5;
 }
 .nz-gold-link {
-  color: #00a8c6; transition: opacity 0.2s; font-weight: 600;
+  color: #38bdf8; transition: opacity 0.2s; font-weight: 600;
 }
 .nz-gold-link:hover { opacity: 0.85; text-decoration: underline; }
 
 .nz-kollam-actions {
   display: flex; gap: 1rem; flex-wrap: wrap; margin-top: auto; padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ─── Advisor Inquiry Form ─── */
 .nz-form-card {
-  background: linear-gradient(145deg, #243044 0%, #1c2536 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 3px solid #00a8c6;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.8) 100%);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 2.5rem 2.2rem;
-  display: flex; flex-direction: column; gap: 1.6rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  padding: 2.2rem 2rem;
+  display: flex; flex-direction: column; gap: 1.4rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+.nz-form-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 168, 198, 0.15);
+}
+
 .nz-form-header {
-  display: flex; flex-direction: column; gap: 0.4rem;
+  display: flex; flex-direction: column; gap: 0.3rem;
 }
 .nz-form-tag {
-  font-family: var(--font-m); font-size: 0.48rem; font-weight: 700;
-  letter-spacing: 0.24em; color: #00a8c6; text-transform: uppercase;
+  font-family: var(--font-m); font-size: 0.52rem; font-weight: 700;
+  letter-spacing: 0.2em; color: #38bdf8; text-transform: uppercase;
 }
 .nz-form-title {
   font-family: var(--font-h); font-size: 1.5rem; font-weight: 800;
-  letter-spacing: -0.02em; text-transform: uppercase; color: #ffffff;
+  letter-spacing: -0.02em; color: #f8fafc;
 }
 .nz-form-sub {
-  font-family: var(--font-h); font-size: 0.88rem; font-weight: 400;
-  color: #cbd5e1; line-height: 1.55;
+  font-family: var(--font-m); font-size: 0.82rem; font-weight: 400;
+  color: #94a3b8; line-height: 1.5;
+}
+
+.nz-security-note {
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+  font-family: var(--font-m); font-size: 0.75rem; color: #94a3b8; margin-top: 0.2rem;
+}
+
+/* Trust Bar inside Contact Form */
+.nz-contact-trust-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  padding-top: 1.2rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nz-contact-trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.3rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+
+.nz-trust-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 168, 198, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+}
+
+.nz-trust-title {
+  font-family: var(--font-h);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.nz-trust-sub {
+  font-family: var(--font-m);
+  font-size: 0.68rem;
+  color: #94a3b8;
 }
 
 .nz-form-body {
@@ -1369,24 +1436,24 @@ section[id] {
 }
 .nz-vcard-lbl {
   font-family: var(--font-m); font-size: 0.58rem; font-weight: 700;
-  letter-spacing: 0.16em; color: rgba(255, 255, 255, 0.6); text-transform: uppercase;
+  letter-spacing: 0.16em; color: #94a3b8; text-transform: uppercase;
 }
 .nz-vcard-input,
 .nz-vcard-select {
   width: 100%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
-  padding: 0.7rem 0.9rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 0.75rem 0.95rem;
   font-family: var(--font-h); font-size: 0.88rem;
-  color: #ffffff; outline: none;
+  color: #f8fafc; outline: none;
   transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
 }
-.nz-vcard-input::placeholder { color: rgba(255, 255, 255, 0.35); }
+.nz-vcard-input::placeholder { color: rgba(148, 163, 184, 0.5); }
 .nz-vcard-input:focus {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #00a8c6;
-  box-shadow: 0 0 15px rgba(0, 168, 198, 0.35);
+  background: rgba(30, 41, 59, 0.7);
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
 }
 
 /* Custom Luxury Role Dropdown */
@@ -1801,5 +1868,395 @@ section[id] {
   .nz-official-logo {
     transform: scale(0.9);
     transform-origin: left center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   OUR HIRING PARTNERS — RUNNING MARQUEE BANNER
+   ═══════════════════════════════════════════════════════════════════ */
+.nz-partners-section {
+  position: relative;
+  padding: 3.5rem 0 4rem;
+  background: rgba(30, 41, 59, 0.45);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  margin: 3rem 0;
+}
+
+.nz-partners-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.2rem;
+  padding: 0 1.5rem;
+}
+
+.nz-partners-title {
+  font-family: var(--font-h);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-top: 0.4rem;
+}
+
+.nz-partners-sub {
+  font-family: var(--font-m);
+  font-size: 0.92rem;
+  color: rgba(226, 232, 240, 0.75);
+  margin-top: 0.5rem;
+}
+
+.nz-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+.nz-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: max-content;
+  animation: nzMarqueeScroll 38s linear infinite;
+  padding: 0.5rem 0;
+}
+
+.nz-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes nzMarqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.nz-partner-card {
+  width: 200px;
+  height: 76px;
+  background: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+}
+
+.nz-partner-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 168, 198, 0.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   WHY CHOOSE NETWORKZ SYSTEMS — NEW REFINED SECTION (MATCHING DESIGN)
+   ═══════════════════════════════════════════════════════════════════ */
+.nz-credentials-new {
+  position: relative;
+  padding: 4rem 1.5rem 5rem;
+}
+
+.nz-credentials-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nz-why-header-center {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+/* 1. TOP 4-COLUMN WHITE FEATURE CARD */
+/* 1. TOP 4-COLUMN FEATURE CARD */
+.nz-feature-white-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.65) 0%, rgba(15, 23, 42, 0.8) 100%);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.nz-feature-col {
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+}
+
+.nz-feature-col:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 0;
+  height: 80%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nz-feature-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  background: rgba(0, 168, 198, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.1);
+}
+
+.nz-icon-teal,
+.nz-icon-green,
+.nz-icon-purple,
+.nz-icon-cyan {
+  background: rgba(0, 168, 198, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.nz-feature-title {
+  font-family: var(--font-h);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1.35;
+  margin-bottom: 0.75rem;
+}
+
+.nz-feature-highlight {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #38bdf8;
+}
+
+.nz-feature-desc {
+  font-family: var(--font-m);
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.nz-feature-link {
+  font-family: var(--font-m);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: transform 0.2s ease;
+}
+
+.nz-feature-link:hover {
+  transform: translateX(4px);
+}
+
+.nz-link-teal,
+.nz-link-green,
+.nz-link-purple,
+.nz-link-cyan {
+  color: #38bdf8;
+}
+
+/* 2. MIDDLE DARK STAT BAR */
+.nz-stat-dark-bar {
+  background: #0f172a;
+  border-radius: 14px;
+  margin: 2.5rem 0 3.5rem;
+  padding: 1.8rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nz-stat-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nz-stat-bar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nz-stat-bar-num {
+  font-family: var(--font-h);
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.nz-stat-bar-lbl {
+  font-family: var(--font-m);
+  font-size: 0.82rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.nz-stat-bar-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* 3. BOTTOM JOURNEY SECTION & GRID */
+.nz-journey-section {
+  position: relative;
+}
+
+.nz-journey-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.2rem;
+  gap: 2rem;
+}
+
+.nz-journey-eyebrow {
+  font-family: var(--font-m);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #00a8c6;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.4rem;
+}
+
+.nz-journey-title {
+  font-family: var(--font-h);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.nz-journey-line {
+  width: 45px;
+  height: 3px;
+  background: #00a8c6;
+  border-radius: 2px;
+  margin-top: 0.6rem;
+}
+
+.nz-journey-sub {
+  font-family: var(--font-m);
+  font-size: 0.92rem;
+  color: rgba(226, 232, 240, 0.75);
+  max-width: 420px;
+  line-height: 1.5;
+}
+
+.nz-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.nz-journey-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.55) 0%, rgba(15, 23, 42, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 1.3rem 1.1rem;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.nz-journey-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 25px rgba(0, 168, 198, 0.2);
+}
+
+.nz-journey-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 168, 198, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+}
+
+.nz-journey-card-title {
+  font-family: var(--font-h);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #f8fafc;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.nz-journey-card-desc {
+  font-family: var(--font-m);
+  font-size: 0.76rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1024px) {
+  .nz-feature-white-card {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2rem;
+  }
+  .nz-feature-col:nth-child(2)::after {
+    display: none;
+  }
+  .nz-stat-dark-bar {
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .nz-stat-bar-divider {
+    display: none;
+  }
+  .nz-journey-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .nz-feature-white-card {
+    grid-template-columns: 1fr;
+  }
+  .nz-feature-col::after {
+    display: none !important;
+  }
+  .nz-stat-dark-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nz-journey-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .nz-journey-grid {
+    grid-template-columns: 1fr;
   }
 }

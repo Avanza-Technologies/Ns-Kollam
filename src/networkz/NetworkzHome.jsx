@@ -431,9 +431,10 @@ function ContactForm() {
     <div className="nz-form-card">
       <div className="nz-form-header">
         <span className="nz-form-tag">KOLLAM ADMISSION DESK</span>
-        <h3 className="nz-form-title">REQUEST A CALLBACK</h3>
+        <h3 className="nz-form-title">Request a Callback</h3>
+        <div className="nz-contact-accent-line" />
         <p className="nz-form-sub">
-          Connect directly with our Kollam campus team for program inquiries, syllabus details, and admissions.
+          Connect with our campus team for course details, syllabus, fees and admissions.
         </p>
       </div>
 
@@ -464,7 +465,7 @@ function ContactForm() {
 
           <div className="nz-vcard-field">
             <span className="nz-vcard-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
@@ -484,7 +485,7 @@ function ContactForm() {
 
           <div className="nz-vcard-field">
             <span className="nz-vcard-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </span>
@@ -503,7 +504,7 @@ function ContactForm() {
 
           <div className="nz-vcard-field">
             <span className="nz-vcard-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                 <path d="M6 12v5c3 3 9 3 12 0v-5" />
               </svg>
@@ -518,8 +519,59 @@ function ContactForm() {
           </div>
 
           <button type="submit" className="nz-vcard-btn" style={{ marginTop: '0.4rem' }}>
-            TALK TO ADVISOR →
+            TALK TO ADVISOR <span style={{ fontSize: '1.1rem', marginLeft: '0.2rem' }}>↗</span>
           </button>
+
+          <div className="nz-security-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>Your information is safe with us.</span>
+          </div>
+
+          {/* Bottom 3 Trust Columns */}
+          <div className="nz-contact-trust-bar">
+            <div className="nz-contact-trust-item">
+              <div className="nz-trust-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-trust-title">Quick Response</div>
+                <div className="nz-trust-sub">Within 15 mins</div>
+              </div>
+            </div>
+
+            <div className="nz-contact-trust-item">
+              <div className="nz-trust-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                  <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-trust-title">Expert Advisors</div>
+                <div className="nz-trust-sub">We're here to help</div>
+              </div>
+            </div>
+
+            <div className="nz-contact-trust-item">
+              <div className="nz-trust-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <polyline points="9 12 11 14 15 10" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-trust-title">100% Secure</div>
+                <div className="nz-trust-sub">Privacy Protected</div>
+              </div>
+            </div>
+          </div>
+
         </form>
       )}
     </div>
@@ -864,6 +916,186 @@ function OfferModal({ course, onClose }) {
 }
 
 /* ─────────────────────────────────────────────────────────
+   OUR HIRING PARTNERS — INFINITE RUNNING MARQUEE BANNER
+───────────────────────────────────────────────────────── */
+function HiringPartnersBanner() {
+  const partners = [
+    {
+      id: 'akhira',
+      name: 'Akhira Services',
+      logo: (
+        <svg viewBox="0 0 140 40" width="120" height="34">
+          <path d="M10 28 L18 10 L26 28 L22 28 L18 17 L14 28 Z" fill="#e30613" />
+          <path d="M14 22 L22 22" stroke="#1c2536" strokeWidth="2" />
+          <text x="32" y="24" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="13.5" fill="#1c2536">Akhira</text>
+          <text x="32" y="32" fontFamily="'Sora', sans-serif" fontWeight="600" fontSize="6.5" fill="#64748b" letterSpacing="0.12em">SERVICES</text>
+        </svg>
+      )
+    },
+    {
+      id: 'alpha',
+      name: 'Alpha Technologies Group Inc.',
+      logo: (
+        <svg viewBox="0 0 160 40" width="130" height="34">
+          <circle cx="16" cy="20" r="10" fill="none" stroke="#00839c" strokeWidth="2.5" />
+          <path d="M10 20 L22 20 M16 10 L16 30" stroke="#00839c" strokeWidth="1.5" />
+          <text x="32" y="21" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="11" fill="#0f172a">ALPHA</text>
+          <text x="32" y="30" fontFamily="'Sora', sans-serif" fontWeight="700" fontSize="6.5" fill="#334155" letterSpacing="0.05em">TECHNOLOGIES</text>
+        </svg>
+      )
+    },
+    {
+      id: 'asko',
+      name: 'ASKO',
+      logo: (
+        <svg viewBox="0 0 120 40" width="100" height="34">
+          <path d="M10 8 H32 V32 H10 Z" fill="#e30613" rx="3" />
+          <path d="M15 28 L21 13 L27 28 H23 L21 21 H19 L17 28 Z" fill="#ffffff" />
+          <text x="38" y="27" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="16" fill="#1e293b" letterSpacing="0.05em">ASKO</text>
+        </svg>
+      )
+    },
+    {
+      id: 'ooma',
+      name: 'OOMA Cyber Solutions',
+      logo: (
+        <svg viewBox="0 0 140 40" width="115" height="34">
+          <circle cx="16" cy="20" r="10" fill="none" stroke="#38bdf8" strokeWidth="2.5" strokeDasharray="4 2" />
+          <circle cx="16" cy="20" r="4" fill="#0284c7" />
+          <text x="32" y="22" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="13.5" fill="#0f172a" letterSpacing="0.1em">OOMA</text>
+          <text x="32" y="31" fontFamily="'Sora', sans-serif" fontWeight="600" fontSize="6" fill="#64748b" letterSpacing="0.1em">CYBER SOLUTIONS</text>
+        </svg>
+      )
+    },
+    {
+      id: 'hatch',
+      name: 'HATCH',
+      logo: (
+        <svg viewBox="0 0 110 40" width="95" height="34">
+          <rect x="5" y="8" width="95" height="24" rx="2" fill="#e30613" />
+          <text x="52.5" y="24.5" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="13" fill="#ffffff" textAnchor="middle" letterSpacing="0.14em">HATCH</text>
+        </svg>
+      )
+    },
+    {
+      id: 'ust',
+      name: 'UST',
+      logo: (
+        <svg viewBox="0 0 120 40" width="100" height="34">
+          <path d="M10 26 L18 10 L26 26 Z" fill="#e30613" />
+          <path d="M16 26 L24 10 L32 26 Z" fill="#00a8c6" />
+          <path d="M22 26 L30 10 L38 26 Z" fill="#22c55e" />
+          <text x="44" y="26" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="18" fill="#0f172a" letterSpacing="0.05em">UST</text>
+        </svg>
+      )
+    },
+    {
+      id: 'muthoot-finance',
+      name: 'Muthoot Finance',
+      logo: (
+        <svg viewBox="0 0 150 40" width="125" height="34">
+          <rect x="5" y="6" width="28" height="28" fill="#e30613" rx="3" />
+          <circle cx="19" cy="20" r="8" fill="none" stroke="#ffffff" strokeWidth="2" />
+          <path d="M15 24 V16 L19 20 L23 16 V24" fill="none" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <text x="38" y="20" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="11" fill="#e30613">Muthoot</text>
+          <text x="38" y="30" fontFamily="'Sora', sans-serif" fontWeight="700" fontSize="10" fill="#1e293b">Finance</text>
+        </svg>
+      )
+    },
+    {
+      id: 'muthoot-honda',
+      name: 'Muthoot Honda',
+      logo: (
+        <svg viewBox="0 0 150 40" width="125" height="34">
+          <path d="M6 10 H28 V16 H14 V20 H26 V26 H14 V30 H28 V36 H6 Z" fill="#0284c7" />
+          <text x="34" y="20" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="12" fill="#0284c7" letterSpacing="0.02em">muthoot</text>
+          <text x="34" y="31" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="11" fill="#e30613" letterSpacing="0.08em">HONDA</text>
+        </svg>
+      )
+    },
+    {
+      id: 'netweb',
+      name: 'Netweb Technologies',
+      logo: (
+        <svg viewBox="0 0 160 40" width="135" height="34">
+          <text x="5" y="22" fontFamily="'Space Grotesk', sans-serif" fontStyle="italic" fontWeight="900" fontSize="17" fill="#00a8c6">Netweb</text>
+          <text x="5" y="32" fontFamily="'Sora', sans-serif" fontWeight="700" fontSize="8" fill="#38bdf8" letterSpacing="0.22em">TECHNOLOGIES</text>
+        </svg>
+      )
+    },
+    {
+      id: 'reliance',
+      name: 'Reliance Industries Limited',
+      logo: (
+        <svg viewBox="0 0 160 40" width="130" height="34">
+          <polygon points="18,8 24,14 18,20 12,14" fill="#d97706" />
+          <circle cx="18" cy="27" r="3" fill="#d97706" />
+          <text x="32" y="21" fontFamily="'Space Grotesk', sans-serif" fontWeight="800" fontSize="12.5" fill="#0f172a">Reliance</text>
+          <text x="32" y="30" fontFamily="'Sora', sans-serif" fontWeight="600" fontSize="6.5" fill="#64748b" letterSpacing="0.08em">Industries Limited</text>
+        </svg>
+      )
+    },
+    {
+      id: 'sameera',
+      name: 'Sameera',
+      logo: (
+        <svg viewBox="0 0 130 40" width="105" height="34">
+          <text x="5" y="24" fontFamily="'Space Grotesk', cursive, sans-serif" fontStyle="italic" fontWeight="900" fontSize="18" fill="#e30613">Sameera</text>
+          <text x="75" y="16" fontFamily="'Sora', sans-serif" fontWeight="700" fontSize="6" fill="#e30613">PVT LTD</text>
+        </svg>
+      )
+    },
+    {
+      id: 'technopark',
+      name: 'Technopark Trivandrum',
+      logo: (
+        <svg viewBox="0 0 160 40" width="135" height="34">
+          <rect x="6" y="10" width="8" height="20" fill="#16a34a" rx="1" />
+          <rect x="16" y="6" width="8" height="24" fill="#00a8c6" rx="1" />
+          <rect x="26" y="14" width="8" height="16" fill="#16a34a" rx="1" />
+          <text x="38" y="21" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="11.5" fill="#0f172a" letterSpacing="0.04em">TECHNOPARK</text>
+          <text x="38" y="30" fontFamily="'Sora', sans-serif" fontWeight="600" fontSize="6.5" fill="#16a34a" letterSpacing="0.14em">HARMONY AT WORK</text>
+        </svg>
+      )
+    },
+    {
+      id: 'zwan',
+      name: 'Zwan',
+      logo: (
+        <svg viewBox="0 0 110 40" width="95" height="34">
+          <text x="5" y="28" fontFamily="'Space Grotesk', sans-serif" fontWeight="900" fontSize="22" fill="#e30613" letterSpacing="-0.03em">zwan</text>
+        </svg>
+      )
+    }
+  ];
+
+  // Duplicate the array twice for an endless smooth seamless loop
+  const marqueeItems = [...partners, ...partners, ...partners];
+
+  return (
+    <section className="nz-partners-section">
+      <div className="nz-partners-header">
+        <p className="nz-section-eyebrow nz-center">CAREER TIE-UPS & PLACEMENTS</p>
+        <h2 className="nz-partners-title">Our Hiring Partners</h2>
+        <p className="nz-partners-sub">
+          Top tech enterprises, corporate leaders, and IT recruiters actively hiring Networkz Systems graduates
+        </p>
+      </div>
+
+      <div className="nz-marquee-wrapper">
+        <div className="nz-marquee-track">
+          {marqueeItems.map((item, idx) => (
+            <div key={`${item.id}-${idx}`} className="nz-partner-card">
+              {item.logo}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────
    MAIN PAGE
 ───────────────────────────────────────────────────────── */
 export default function NetworkzHome() {
@@ -1192,154 +1424,286 @@ export default function NetworkzHome() {
       </section>
 
       {/* ════════════════════════════════════════
+          OUR HIRING PARTNERS — RUNNING BANNER
+          ════════════════════════════════════════ */}
+      <HiringPartnersBanner />
+
+      {/* ════════════════════════════════════════
           WHY CHOOSE NETWORKZ SYSTEMS — LUXURY SHOWCASE
           ════════════════════════════════════════ */}
-      <section className="nz-credentials" id="about">
-        <div className="nz-credentials-inner">
+      <section className="nz-credentials-new" id="about">
+        <div className="nz-credentials-container">
 
-          <div className="nz-section-header-center">
+          {/* Section Header */}
+          <div className="nz-why-header-center">
             <p className="nz-section-eyebrow nz-center">ACCREDITATION & CAREER PROMISE</p>
             <h2 className="nz-section-title nz-center">WHY CHOOSE NETWORKZ SYSTEMS</h2>
             <p className="nz-section-sub nz-center" style={{ maxWidth: 640, margin: '0.8rem auto 3.5rem' }}>
-              Internationally accredited, government-certified, and industry-connected
-              — South India's most trusted technology training partner.
+              Internationally accredited, government-certified, and industry-connected — South India's most trusted technology training partner.
             </p>
           </div>
 
-          {/* Asymmetric Vision + Pillars Showcase */}
-          <div className="nz-asym-showcase">
+          {/* Top 4-Column Feature Card Container */}
+          <div className="nz-feature-white-card">
 
-            {/* Left: Vision & Mission Panel */}
-            <div className="nz-vision-card">
-              <div className="nz-vision-bg-glow" />
-              <div className="nz-vision-quote-mark">“</div>
-              <span className="nz-vision-tag">OUR VISION & MISSION</span>
-              <h3 className="nz-vision-title">
-                EMPOWERING SOUTH INDIA’S NEXT GENERATION OF TECH LEADERS.
-              </h3>
-              <p className="nz-vision-text">
-                To bridge the gap between academic learning and real-world tech engineering.
-                We empower every student across Kerala, Tamil Nadu, and Karnataka with world-class labs,
-                certified global credentials, and lifelong technical mentorship.
-              </p>
-              <div className="nz-vision-pills">
-                <span>ISO 9001:2015</span>
-                <span>PEARSON VUE</span>
-                <span>NSIM PARTNER</span>
+            {/* Col 1 */}
+            <div className="nz-feature-col">
+              <div className="nz-feature-icon-circle nz-icon-teal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
               </div>
+              <h3 className="nz-feature-title">
+                <span className="nz-feature-highlight">200+</span><br />
+                100% PLACEMENT ASSISTANCE
+              </h3>
+              <p className="nz-feature-desc">
+                Active tie-ups with 200+ top IT recruiters across South India. Mock interviews, resume building & placement drives.
+              </p>
             </div>
 
-            {/* Right: 4 Foundation Pillar Cards (2x2 Grid) */}
-            <div className="nz-pillar-grid-2x2">
-              <div className="nz-pillar-tile nz-tile-gold">
-                <div className="nz-tile-orb" />
-                <div className="nz-tile-head">
-                  <span className="nz-tile-stat">200+</span>
-                  <span className="nz-tile-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                    </svg>
-                  </span>
-                </div>
-                <h4 className="nz-tile-title">100% PLACEMENT ASSISTANCE</h4>
-                <p className="nz-tile-desc">
-                  Active hiring tie-ups with 200+ top IT recruiters across South India. Mock technical interviews & direct placement drives.
-                </p>
-                <div className="nz-tile-foot-row">
-                  <span className="nz-tile-pill">CAREER PROMISE</span>
-                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> ACTIVE NETWORK</span>
-                </div>
+            {/* Col 2 */}
+            <div className="nz-feature-col">
+              <div className="nz-feature-icon-circle nz-icon-green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18.178 8c5.096 0 5.096 8 0 8-2.613 0-4.887-2.112-6.178-4.004C10.708 13.888 8.434 16 5.822 16c-5.096 0-5.096-8 0-8 2.613 0 4.887 2.112 6.178 4.004C13.292 10.112 15.566 8 18.178 8z" />
+                </svg>
               </div>
+              <h3 className="nz-feature-title">
+                LIFELONG LAB<br />
+                & TRAINING SUPPORT
+              </h3>
+              <p className="nz-feature-desc">
+                Lifetime access to our technical labs, updated course content, recorded sessions, and guidance even after the course.
+              </p>
 
-              <div className="nz-pillar-tile nz-tile-blue">
-                <div className="nz-tile-orb" />
-                <div className="nz-tile-head">
-                  <span className="nz-tile-stat">∞</span>
-                  <span className="nz-tile-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M18.178 8c5.096 0 5.096 8 0 8-2.613 0-4.887-2.112-6.178-4.004C10.708 13.888 8.434 16 5.822 16c-5.096 0-5.096-8 0-8 2.613 0 4.887 2.112 6.178 4.004C13.292 10.112 15.566 8 18.178 8z" />
-                    </svg>
-                  </span>
-                </div>
-                <h4 className="nz-tile-title">LIFELONG LAB & TRAINING SUPPORT</h4>
-                <p className="nz-tile-desc">
-                  Permanent access to Networkz technical labs, updated course wares, e-workbooks, and ongoing guidance long after graduation.
-                </p>
-                <div className="nz-tile-foot-row">
-                  <span className="nz-tile-pill">LIFELONG ACCESS</span>
-                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> ALWAYS UNLOCKED</span>
-                </div>
-              </div>
+            </div>
 
-              <div className="nz-pillar-tile nz-tile-purple">
-                <div className="nz-tile-orb" />
-                <div className="nz-tile-head">
-                  <span className="nz-tile-stat">CPD</span>
-                  <span className="nz-tile-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="8" r="7" />
-                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                    </svg>
-                  </span>
-                </div>
-                <h4 className="nz-tile-title">SKILL DEVELOPMENT PROGRAMME</h4>
-                <p className="nz-tile-desc">
-                  End-to-end industry-specific curriculum, CPD certified technical trainers, soft skills development, and Pearson VUE exam prep.
-                </p>
-                <div className="nz-tile-foot-row">
-                  <span className="nz-tile-pill">CERTIFIED TRAINERS</span>
-                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> VERIFIED CREDENTIALS</span>
-                </div>
+            {/* Col 3 */}
+            <div className="nz-feature-col">
+              <div className="nz-feature-icon-circle nz-icon-purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                </svg>
               </div>
+              <h3 className="nz-feature-title">
+                <span className="nz-feature-highlight">CPD</span><br />
+                SKILL DEVELOPMENT PROGRAMME
+              </h3>
+              <p className="nz-feature-desc">
+                End-to-end industry-specific curriculum, CPD certified trainers, soft skills development, and Pearson VUE exam preparation.
+              </p>
+            </div>
 
-              <div className="nz-pillar-tile nz-tile-emerald">
-                <div className="nz-tile-orb" />
-                <div className="nz-tile-head">
-                  <span className="nz-tile-stat">100%</span>
-                  <span className="nz-tile-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polygon points="12 2 2 7 12 12 22 7 12 2" />
-                      <polyline points="2 17 12 22 22 17" />
-                      <polyline points="2 12 12 17 22 12" />
-                    </svg>
-                  </span>
-                </div>
-                <h4 className="nz-tile-title">INDUSTRIAL HANDS-ON TRAINING</h4>
-                <p className="nz-tile-desc">
-                  Real-world client project exposure, live server lab practice, e-workbook exercises, and final-year academic project support.
-                </p>
-                <div className="nz-tile-foot-row">
-                  <span className="nz-tile-pill">PRACTICAL LABS</span>
-                  <span className="nz-tile-live-dot"><span className="nz-pulse-dot" /> LIVE LABS ACTIVE</span>
-                </div>
+            {/* Col 4 */}
+            <div className="nz-feature-col">
+              <div className="nz-feature-icon-circle nz-icon-cyan">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
               </div>
+              <h3 className="nz-feature-title">
+                <span className="nz-feature-highlight">100%</span><br />
+                INDUSTRIAL HANDS-ON TRAINING
+              </h3>
+              <p className="nz-feature-desc">
+                Real-world client projects, live server lab practice, e-workbook exercises, and final-year academic project support.
+              </p>
             </div>
 
           </div>
 
-          {/* 8 Core Benefits Grid — Modern Matrix */}
-          <div className="nz-matrix-box">
-            <h3 className="nz-matrix-title">EVERYTHING INCLUDED IN YOUR TRAINING</h3>
-            <div className="nz-matrix-grid">
-              {[
-                { num: '01', title: 'Industry-Specific Skills', desc: 'Start-to-end curriculum aligned with top IT hiring managers' },
-                { num: '02', title: 'Certified Course Wares', desc: 'Official training course wares & reference materials' },
-                { num: '03', title: 'E-Workbook Lab Practice', desc: 'Guided e-workbooks for hands-on practical lab exercises' },
-                { num: '04', title: 'Placement Support', desc: 'Dedicated career cell, job alerts & placement drives' },
-                { num: '05', title: 'Academic Project Assistance', desc: 'Expert guidance & lab support for college projects' },
-                { num: '06', title: 'CPD Certified Trainers', desc: 'Instruction by experienced certified technical experts' },
-                { num: '07', title: 'Pearson VUE Testing Centre', desc: 'Authorized center for Cisco, AWS, Azure & CompTIA exams' },
-                { num: '08', title: 'Lifelong Tech Support', desc: 'Continued lab access and technical mentorship' },
-              ].map((item) => (
-                <div key={item.num} className="nz-matrix-item">
-                  <span className="nz-matrix-num">{item.num}</span>
-                  <div>
-                    <div className="nz-matrix-name">{item.title}</div>
-                    <div className="nz-matrix-desc">{item.desc}</div>
-                  </div>
+          {/* Middle Stat Counter Dark Bar */}
+          <div className="nz-stat-dark-bar">
+            <div className="nz-stat-bar-item">
+              <div className="nz-stat-bar-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-stat-bar-num">8K+</div>
+                <div className="nz-stat-bar-lbl">Students Trained</div>
+              </div>
+            </div>
+
+            <div className="nz-stat-bar-divider" />
+
+            <div className="nz-stat-bar-item">
+              <div className="nz-stat-bar-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-stat-bar-num">200+</div>
+                <div className="nz-stat-bar-lbl">Recruiter Partners</div>
+              </div>
+            </div>
+
+            <div className="nz-stat-bar-divider" />
+
+            <div className="nz-stat-bar-item">
+              <div className="nz-stat-bar-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-stat-bar-num">7+</div>
+                <div className="nz-stat-bar-lbl">Branches Across Kerala</div>
+              </div>
+            </div>
+
+            <div className="nz-stat-bar-divider" />
+
+            <div className="nz-stat-bar-item">
+              <div className="nz-stat-bar-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="8" r="7" />
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                </svg>
+              </div>
+              <div>
+                <div className="nz-stat-bar-num">95%</div>
+                <div className="nz-stat-bar-lbl">Placement Success Rate</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Journey Section */}
+          <div className="nz-journey-section">
+            <div className="nz-journey-header">
+              <div>
+                <p className="nz-journey-eyebrow">COMPLETE LEARNING EXPERIENCE</p>
+                <h3 className="nz-journey-title">
+                  EVERYTHING INCLUDED<br />
+                  IN YOUR TRAINING JOURNEY
+                </h3>
+                <div className="nz-journey-line" />
+              </div>
+              <p className="nz-journey-sub">
+                Our comprehensive ecosystem helps you build job-ready skills with confidence and competence.
+              </p>
+            </div>
+
+            {/* 8 Benefit Cards Grid */}
+            <div className="nz-journey-grid">
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 3v18h18" />
+                    <path d="m19 9-5 5-4-4-3 3" />
+                  </svg>
                 </div>
-              ))}
+                <div>
+                  <h4 className="nz-journey-card-title">Industry-Specific Skills</h4>
+                  <p className="nz-journey-card-desc">Start-to-end curriculum aligned with top IT hiring managers.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">Certified Coursewares</h4>
+                  <p className="nz-journey-card-desc">Official training course wares & reference materials.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                    <line x1="8" y1="21" x2="16" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">E-Workbook Lab Practice</h4>
+                  <p className="nz-journey-card-desc">Guided e-workbooks for hands-on practical lab exercises.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">Placement Support</h4>
+                  <p className="nz-journey-card-desc">Dedicated career cell, job alerts & placement drives.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">Academic Project Assistance</h4>
+                  <p className="nz-journey-card-desc">Expert guidance & lab support for college projects.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">CPD Certified Trainers</h4>
+                  <p className="nz-journey-card-desc">Instruction by experienced certified technical experts.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <polyline points="9 12 11 14 15 10" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">Pearson VUE Testing Centre</h4>
+                  <p className="nz-journey-card-desc">Authorized center for Cisco, AWS, Azure & CompTIA exams.</p>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="nz-journey-card-title">Lifelong Tech Support</h4>
+                  <p className="nz-journey-card-desc">Continued lab access and technical mentorship.</p>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -1371,17 +1735,18 @@ export default function NetworkzHome() {
                   loading="lazy"
                 />
                 <div className="nz-kollam-banner-overlay" />
-                <span className="nz-kollam-badge">KOLLAM CAMPUS</span>
+                <span className="nz-kollam-badge">• VISIT OUR CAMPUS</span>
               </div>
 
               <div className="nz-kollam-content">
-                <h3 className="nz-kollam-title">Networkz Systems Kollam</h3>
-                <p className="nz-kollam-subtitle">ISO 9001:2015 Certified · Pearson VUE Authorized Exam Centre</p>
+                <h3 className="nz-kollam-title">NETWORKZ SYSTEMS KOLLAM</h3>
+                <div className="nz-contact-accent-line" />
+                <p className="nz-kollam-subtitle">ISO 9001:2015 Certified &nbsp;|&nbsp; Pearson VUE Authorized Exam Centre</p>
 
                 <div className="nz-kollam-info-list">
                   <div className="nz-kollam-info-item">
                     <span className="nz-kollam-icon">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
@@ -1396,7 +1761,7 @@ export default function NetworkzHome() {
 
                   <div className="nz-kollam-info-item">
                     <span className="nz-kollam-icon">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                       </svg>
                     </span>
@@ -1415,7 +1780,7 @@ export default function NetworkzHome() {
 
                   <div className="nz-kollam-info-item">
                     <span className="nz-kollam-icon">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                         <polyline points="22,6 12,13 2,6" />
                       </svg>
@@ -1430,7 +1795,7 @@ export default function NetworkzHome() {
 
                   <div className="nz-kollam-info-item">
                     <span className="nz-kollam-icon">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12 6 12 12 16 14" />
                       </svg>
@@ -1443,14 +1808,14 @@ export default function NetworkzHome() {
                 </div>
 
                 <div className="nz-kollam-actions">
-                  <a href="tel:08089030405" className="nz-btn-primary">CALL NOW: 080890 30405</a>
                   <a
                     href="https://maps.google.com/?q=Networkz+Systems+Kollam+Chinnakada"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="nz-btn-ghost"
+                    className="nz-btn-primary"
+                    style={{ width: '100%', justifyContent: 'center' }}
                   >
-                    GET DIRECTIONS ↗
+                    Get Directions (View on Google Maps ↗)
                   </a>
                 </div>
               </div>
