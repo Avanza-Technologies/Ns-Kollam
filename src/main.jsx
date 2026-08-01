@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import NetworkzHome from './networkz/NetworkzHome.jsx'
 import CyberSecurityLanding from './networkz/CyberSecurityLanding.jsx'
+import DigitalMarketingLanding from './networkz/DigitalMarketingLanding.jsx'
 
 // ── DevTools guard — only active on /exam route ───────────────────────────
 if (typeof window !== 'undefined' && window.location.pathname.startsWith('/exam')) {
@@ -43,6 +44,10 @@ createRoot(document.getElementById('root')).render(
 
         {/* Dedicated Cyber Security & Ethical Hacking Course Landing Page */}
         <Route path="/cybersecurity" element={<CyberSecurityLanding />} />
+
+        {/* Dedicated Digital Marketing Professional Course Landing Page */}
+        <Route path="/digital-marketing" element={<DigitalMarketingLanding />} />
+        <Route path="/digitalmarketing" element={<DigitalMarketingLanding />} />
 
         {/* Existing exam portal — preserved as a sub-route */}
         <Route path="/exam" element={<App />} />

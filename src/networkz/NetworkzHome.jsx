@@ -1372,8 +1372,11 @@ export default function NetworkzHome() {
                 key={`${c.chapId}-${c.id}`}
                 course={c}
                 onSelect={(course) => {
-                  if (course.id === 'cyber' || course.id === 'ethical' || (course.name && (course.name.toLowerCase().includes('cyber') || course.name.toLowerCase().includes('ethical')))) {
+                  const nameLower = (course.name || '').toLowerCase();
+                  if (course.id === 'cyber' || course.id === 'ethical' || nameLower.includes('cyber') || nameLower.includes('ethical')) {
                     navigate('/cybersecurity');
+                  } else if (course.id === 'digital-marketing' || course.id === 'marketing' || nameLower.includes('digital marketing') || nameLower.includes('marketing')) {
+                    navigate('/digital-marketing');
                   } else {
                     setSelectedCourse(course);
                   }
