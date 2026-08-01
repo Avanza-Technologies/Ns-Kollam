@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './NetworkzHome.css';
 import { COURSE_DETAILS } from './data/courseData';
 
@@ -1099,6 +1100,7 @@ function HiringPartnersBanner() {
    MAIN PAGE
 ───────────────────────────────────────────────────────── */
 export default function NetworkzHome() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState('NETWORKING');
   const [searchQuery, setSearchQuery] = useState('');
   const [scrolled, setScrolled] = useState(false);
@@ -1366,7 +1368,17 @@ export default function NetworkzHome() {
         {filtered.length > 0 ? (
           <div className="nz-course-grid">
             {filtered.map((c) => (
-              <CourseCard key={`${c.chapId}-${c.id}`} course={c} onSelect={setSelectedCourse} />
+              <CourseCard
+                key={`${c.chapId}-${c.id}`}
+                course={c}
+                onSelect={(course) => {
+                  if (course.id === 'cyber' || course.id === 'ethical' || (course.name && (course.name.toLowerCase().includes('cyber') || course.name.toLowerCase().includes('ethical')))) {
+                    navigate('/cybersecurity');
+                  } else {
+                    setSelectedCourse(course);
+                  }
+                }}
+              />
             ))}
           </div>
         ) : (

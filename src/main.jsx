@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import NetworkzHome from './networkz/NetworkzHome.jsx'
+import CyberSecurityLanding from './networkz/CyberSecurityLanding.jsx'
 
 // ── DevTools guard — only active on /exam route ───────────────────────────
 if (typeof window !== 'undefined' && window.location.pathname.startsWith('/exam')) {
@@ -38,7 +39,10 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         {/* Networkz Systems cinematic experience — flagship route */}
-        <Route path="/"     element={<NetworkzHome />} />
+        <Route path="/" element={<NetworkzHome />} />
+
+        {/* Dedicated Cyber Security & Ethical Hacking Course Landing Page */}
+        <Route path="/cybersecurity" element={<CyberSecurityLanding />} />
 
         {/* Existing exam portal — preserved as a sub-route */}
         <Route path="/exam" element={<App />} />
