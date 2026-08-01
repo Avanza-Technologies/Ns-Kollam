@@ -1,47 +1,1081 @@
 /* ═══════════════════════════════════════════════════════════════════
-   DIGITAL MARKETING PROFESSIONAL COURSE LANDING PAGE STYLES
-   Ultra-Premium Vector Glowing Icons & Glassmorphic Cards
+   INTERNATIONAL LUXURY HERO SECTION
+   Stripe/Linear-grade dark luxury aesthetics with floating 3D chips
    ═══════════════════════════════════════════════════════════════════ */
 
-@import './NetworkzHome.css';
-@import './CyberSecurityLanding.css';
+.nz-dm-hero-sec {
+  position: relative;
+  padding: 6.5rem 0 5rem 0;
+  background: #060913;
+  overflow: hidden;
+}
 
-/* Custom vector icon glowing capsules */
-.nz-dm-icon-glowing-box {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: rgba(0, 240, 255, 0.12);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  display: flex;
+.nz-dm-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nz-dm-hero-orb-1 {
+  position: absolute;
+  top: -10%;
+  left: 15%;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(0, 240, 255, 0.02) 60%, transparent 80%);
+  filter: blur(80px);
+}
+
+.nz-dm-hero-orb-2 {
+  position: absolute;
+  bottom: -15%;
+  right: 10%;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(14, 165, 233, 0.02) 60%, transparent 80%);
+  filter: blur(90px);
+}
+
+.nz-dm-hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 45px 45px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+}
+
+.nz-dm-hero-light-beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.6), transparent);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+}
+
+.nz-dm-hero-inner {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3.5rem;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Column */
+.nz-dm-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nz-dm-hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 50px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 240, 255, 0.12);
+  margin-bottom: 1.4rem;
+}
+
+.nz-dm-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
+  animation: nzPulseCyan 2s infinite;
+}
+
+@keyframes nzPulseCyan {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+}
+
+.nz-dm-pill-text {
+  font-family: var(--nz-font-head);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+}
+
+.nz-dm-hero-title {
+  font-family: var(--nz-font-head);
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: -0.02em;
+}
+
+.nz-dm-hero-gradient-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+}
+
+.nz-dm-hero-subtitle {
+  font-family: var(--nz-font-body);
+  font-size: 1.02rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+  max-width: 620px;
+}
+
+/* ── LUXURY FINTECH OFFER CARD ── */
+.nz-dm-offer-card {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background: rgba(13, 20, 38, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.28);
+  border-radius: 22px;
+  padding: 1.8rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  margin-bottom: 2.2rem;
+  overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.nz-cyber-pillar-card:hover .nz-dm-icon-glowing-box {
+.nz-dm-offer-card:hover {
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 240, 255, 0.18);
+}
+
+.nz-dm-offer-card-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00f0ff 50%, transparent 100%);
+}
+
+.nz-dm-offer-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.nz-dm-fee-old {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nz-dm-fee-label {
+  font-family: var(--nz-font-head);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.nz-dm-fee-strike {
+  font-family: var(--nz-font-head);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ef4444;
+}
+
+.nz-dm-save-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 20px;
+  padding: 0.3rem 0.85rem;
+  font-family: var(--nz-font-body);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: 0.04em;
+}
+
+.nz-dm-save-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.nz-dm-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.nz-dm-price-label {
+  font-family: var(--nz-font-head);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+.nz-dm-price-amount {
+  font-family: var(--nz-font-head);
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: #00f0ff;
+  text-shadow: 0 0 25px rgba(0, 240, 255, 0.45);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.nz-dm-price-sub {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  text-shadow: none;
+}
+
+.nz-dm-offer-bonus-bar {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.nz-dm-bonus-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.nz-dm-bonus-info {
+  font-family: var(--nz-font-body);
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+.nz-dm-offer-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nz-dm-offer-chip {
+  font-family: var(--nz-font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 10px;
+  padding: 0.25rem 0.65rem;
+}
+
+/* ── CTA BUTTONS ── */
+.nz-dm-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.nz-dm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%);
+  color: #060913;
+  font-family: var(--nz-font-head);
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nz-dm-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 240, 255, 0.6);
+  background: linear-gradient(135deg, #38bdf8 0%, #00f0ff 100%);
+}
+
+.nz-dm-btn-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.25s ease;
+}
+
+.nz-dm-btn-primary:hover .nz-dm-btn-arrow {
+  transform: translate(3px, -3px);
+}
+
+.nz-dm-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 1.6rem;
+  border-radius: 14px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #10b981;
+  font-family: var(--nz-font-head);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nz-dm-btn-whatsapp:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ── RIGHT COLUMN 3D SHOWCASE WITH FLOATING GLASS CHIPS ── */
+.nz-dm-hero-media-showcase {
+  position: relative;
+  width: 100%;
+}
+
+.nz-dm-showcase-backdrop-glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.2) 0%, rgba(56, 189, 248, 0.05) 50%, transparent 80%);
+  filter: blur(40px);
+  border-radius: 30px;
+  z-index: 0;
+}
+
+.nz-dm-showcase-frame {
+  position: relative;
+  z-index: 2;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 26px;
+  padding: 0.8rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+}
+
+.nz-dm-showcase-img-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 480px;
+}
+
+.nz-dm-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.nz-dm-showcase-frame:hover .nz-dm-showcase-img {
+  transform: scale(1.03);
+}
+
+.nz-dm-showcase-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    rgba(6, 9, 19, 0.3) 0%, 
+    transparent 40%, 
+    rgba(6, 9, 19, 0.85) 100%
+  );
+}
+
+/* Top Badge */
+.nz-dm-badge-top-left {
+  position: absolute;
+  top: 1.4rem;
+  left: 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 30px;
+  padding: 0.45rem 1rem;
+  font-family: var(--nz-font-head);
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(14px);
+  z-index: 5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nz-dm-pulse-green {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: nzPulseGreen 2s infinite;
+}
+
+@keyframes nzPulseGreen {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* ── FLOATING GLASS CHIPS ── */
+.nz-dm-float-chip {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(13, 20, 38, 0.88);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 16px;
+  padding: 0.7rem 1.1rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 240, 255, 0.2);
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.nz-dm-float-chip:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: #00f0ff;
+}
+
+.nz-dm-float-chip--top-right {
+  top: 2.2rem;
+  right: -1rem;
+}
+
+.nz-dm-float-chip--bottom-left {
+  bottom: 5.5rem;
+  left: -1rem;
+}
+
+.nz-dm-chip-icon {
+  font-size: 1.3rem;
+}
+
+.nz-dm-chip-title {
+  font-family: var(--nz-font-head);
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #00f0ff;
+  line-height: 1.1;
+}
+
+.nz-dm-chip-sub {
+  font-family: var(--nz-font-body);
+  font-size: 0.68rem;
+  color: #94a3b8;
+  margin-top: 0.1rem;
+}
+
+/* Bottom Overlay Bar */
+.nz-dm-showcase-trust-bar {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 16px;
+  padding: 0.85rem 1.2rem;
+  backdrop-filter: blur(16px);
+  z-index: 5;
+}
+
+.nz-dm-trust-badge-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.nz-dm-trust-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.nz-dm-trust-h4 {
+  font-family: var(--nz-font-head);
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.nz-dm-trust-p {
+  font-family: var(--nz-font-body);
+  font-size: 0.72rem;
+  color: #38bdf8;
+}
+
+/* ── RESPONSIVE HERO ── */
+@media (max-width: 1100px) {
+  .nz-dm-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .nz-dm-hero-title {
+    font-size: 2.6rem;
+  }
+
+  .nz-dm-float-chip--top-right {
+    right: 1rem;
+  }
+
+  .nz-dm-float-chip--bottom-left {
+    left: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nz-dm-hero-title {
+    font-size: 2.1rem;
+  }
+
+  .nz-dm-offer-card {
+    padding: 1.3rem;
+  }
+
+  .nz-dm-price-amount {
+    font-size: 2rem;
+  }
+
+  .nz-dm-showcase-img-wrap {
+    height: 380px;
+  }
+
+  .nz-dm-float-chip {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .nz-dm-chip-title {
+    font-size: 0.8rem;
+  }
+}
+
+/* ── CENTER LINE TREE TIMELINE SECTION ── */
+.nz-dm-tree-sec {
+  padding: 6rem 0;
+  background: radial-gradient(circle at 50% 30%, rgba(0, 240, 255, 0.07) 0%, transparent 60%),
+              radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+              linear-gradient(180deg, #070a12 0%, #0b0f19 50%, #070a12 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.nz-dm-tree-main-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.nz-dm-tree-tags-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.nz-dm-tree-tag-divider {
+  color: #00f0ff;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.nz-dm-header-glow-line {
+  width: 90px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, #00f0ff 50%, transparent 100%);
+  margin: 0.8rem 0 1rem 0;
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+/* ── TREE WRAPPER & CENTER STEM ── */
+.nz-dm-tree-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0 3rem 0;
+}
+
+.nz-dm-tree-center-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 2rem;
+  width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, 
+    rgba(0, 240, 255, 0.05) 0%, 
+    rgba(0, 240, 255, 0.6) 12%, 
+    #00f0ff 50%, 
+    rgba(0, 240, 255, 0.6) 88%, 
+    rgba(0, 240, 255, 0.05) 100%
+  );
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.2);
+  z-index: 1;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* Laser Energy Pulse along center trunk */
+.nz-dm-tree-laser-pulse {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, #00f0ff, #ffffff, #00f0ff, transparent);
+  box-shadow: 0 0 25px #00f0ff;
+  animation: nzTreePulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes nzTreePulse {
+  0% { top: -20%; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 110%; opacity: 0; }
+}
+
+/* ── TREE ROWS & BRANCHES ── */
+.nz-dm-tree-rows-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.nz-dm-tree-row {
+  display: grid;
+  grid-template-columns: 1fr 76px 1fr;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* ── CENTER NODE BADGE ── */
+.nz-dm-tree-center-node {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.nz-dm-node-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #0b1326;
+  border: 2px solid rgba(0, 240, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 12px rgba(0, 240, 255, 0.2);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.nz-dm-node-num {
+  font-family: var(--nz-font-head);
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: #00f0ff;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+
+.nz-dm-node-halo {
+  position: absolute;
+  inset: -7px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 240, 255, 0.35);
+  animation: nzSpinHalo 15s linear infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes nzSpinHalo {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Center node hover state */
+.nz-dm-tree-row:hover .nz-dm-node-circle {
+  transform: scale(1.18);
+  border-color: #00f0ff;
+  background: #0d1b38;
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.8), inset 0 0 18px rgba(0, 240, 255, 0.5);
+}
+
+.nz-dm-tree-row:hover .nz-dm-node-halo {
+  border-color: #00f0ff;
+  inset: -10px;
+  animation-duration: 6s;
+}
+
+/* ── BRANCH CONTAINERS ── */
+.nz-dm-tree-branch {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.nz-dm-tree-branch--left {
+  justify-content: flex-end;
+}
+
+.nz-dm-tree-branch--right {
+  justify-content: flex-start;
+}
+
+.nz-dm-branch-line {
+  height: 2px;
+  flex: 1;
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), rgba(0, 240, 255, 0.4));
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+.nz-dm-tree-branch--left .nz-dm-branch-line {
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.4), rgba(0, 240, 255, 0.15));
+}
+
+.nz-dm-tree-row:hover .nz-dm-branch-line {
+  background: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
+}
+
+/* ── TREE CARDS (HIGHLIGHTS & TOOLS) ── */
+.nz-dm-tree-card {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 20px;
+  padding: 1.6rem;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  width: 100%;
+}
+
+.nz-dm-tree-card--highlight {
+  max-width: 480px;
+}
+
+.nz-dm-tree-card--tools {
+  max-width: 520px;
+}
+
+.nz-dm-tree-row:hover .nz-dm-tree-card {
+  border-color: rgba(0, 240, 255, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 240, 255, 0.18);
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* Card Connector Dot */
+.nz-dm-branch-connector-dot {
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
+  transform: translateY(-50%);
+}
+
+.nz-dm-branch-connector-dot--right {
+  right: -5px;
+}
+
+.nz-dm-branch-connector-dot--left {
+  left: -5px;
+}
+
+/* ── HIGHLIGHT CARD DETAILS ── */
+.nz-dm-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.nz-dm-card-index {
+  font-family: var(--nz-font-head);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: rgba(0, 240, 255, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.nz-dm-card-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.nz-dm-tree-row:hover .nz-dm-card-icon-box {
   background: rgba(0, 240, 255, 0.22);
   border-color: #00f0ff;
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
-  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
 }
 
-.nz-dm-icon-glowing-box-sm {
-  width: 40px;
-  height: 40px;
+.nz-dm-card-badge {
+  font-family: var(--nz-font-body);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #38bdf8;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.nz-dm-card-title {
+  font-family: var(--nz-font-head);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.01em;
+}
+
+.nz-dm-card-desc {
+  font-family: var(--nz-font-body);
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── TOOL CARD MINI GRID (RIGHT SIDE) ── */
+.nz-dm-tools-mini-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.nz-dm-tool-item-mini {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.nz-dm-tool-item-mini:hover {
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.nz-dm-tool-item-icon {
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
-  background: rgba(0, 240, 255, 0.1);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
-  transition: all 0.3s ease;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
 }
 
-.nz-cyber-tool-card:hover .nz-dm-icon-glowing-box-sm {
-  background: rgba(0, 240, 255, 0.2);
+.nz-dm-tool-item-mini:hover .nz-dm-tool-item-icon {
+  background: rgba(0, 240, 255, 0.22);
   border-color: #00f0ff;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
 }
+
+.nz-dm-tool-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.nz-dm-tool-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.nz-dm-tool-item-name {
+  font-family: var(--nz-font-head);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.nz-dm-tool-item-cat {
+  font-family: var(--nz-font-body);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #00f0ff;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 10px;
+  padding: 0.15rem 0.5rem;
+  white-space: nowrap;
+}
+
+.nz-dm-tool-item-desc {
+  font-family: var(--nz-font-body);
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── TREE FOOTER ACCENT BADGE ── */
+.nz-dm-tree-footer-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 3.5rem auto 0 auto;
+  max-width: fit-content;
+  padding: 0.75rem 1.6rem;
+  border-radius: 50px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+  font-family: var(--nz-font-head);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #00f0ff;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 3;
+}
+
+.nz-dm-footer-icon {
+  font-size: 1.1rem;
+}
+
+/* ── RESPONSIVE TABLET & MOBILE TREE ── */
+@media (max-width: 992px) {
+  .nz-dm-tree-center-line {
+    left: 28px;
+    transform: none;
+  }
+
+  .nz-dm-tree-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-left: 70px;
+  }
+
+  .nz-dm-tree-center-node {
+    position: absolute;
+    left: 2px;
+    top: 24px;
+  }
+
+  .nz-dm-tree-branch--left,
+  .nz-dm-tree-branch--right {
+    justify-content: flex-start;
+  }
+
+  .nz-dm-branch-line {
+    display: none;
+  }
+
+  .nz-dm-branch-connector-dot {
+    display: none;
+  }
+
+  .nz-dm-tree-card--highlight,
+  .nz-dm-tree-card--tools {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .nz-dm-tree-sec {
+    padding: 3.5rem 0;
+  }
+
+  .nz-dm-tree-row {
+    padding-left: 55px;
+  }
+
+  .nz-dm-node-circle {
+    width: 44px;
+    height: 44px;
+  }
+
+  .nz-dm-node-num {
+    font-size: 0.9rem;
+  }
+
+  .nz-dm-tree-center-line {
+    left: 21px;
+  }
+
+  .nz-dm-tree-card {
+    padding: 1.2rem;
+  }
+}
+
