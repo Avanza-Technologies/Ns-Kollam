@@ -64,8 +64,8 @@ export default function OpeningEnvironment() {
       <mesh>
         <sphereGeometry args={[0.18, 16, 16]} />
         <meshStandardMaterial
-          color="#6a9acc"
-          emissive="#4a7aa8"
+          color="#ffffff"
+          emissive="#ffffff"
           emissiveIntensity={2}
         />
       </mesh>
@@ -74,12 +74,12 @@ export default function OpeningEnvironment() {
       <mesh ref={icoRef}>
         <icosahedronGeometry args={[2.2, 1]} />
         <meshStandardMaterial
-          color="#1a2a3a"
+          color="#ffffff"
           wireframe
           transparent
-          opacity={0.45}
-          emissive="#2a4a6b"
-          emissiveIntensity={0.4}
+          opacity={0.3}
+          emissive="#ffffff"
+          emissiveIntensity={0.3}
         />
       </mesh>
 
@@ -87,11 +87,11 @@ export default function OpeningEnvironment() {
       <mesh ref={innerRef}>
         <icosahedronGeometry args={[1.1, 0]} />
         <meshPhysicalMaterial
-          color="#0f1520"
+          color="#0d0d0d"
           metalness={1}
           roughness={0.05}
           envMapIntensity={2}
-          emissive="#1a2a3a"
+          emissive="#222222"
           emissiveIntensity={0.2}
         />
       </mesh>
@@ -100,16 +100,16 @@ export default function OpeningEnvironment() {
       <mesh ref={rimRef} rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[3.2, 0.012, 8, 120]} />
         <meshStandardMaterial
-          color="#4a7aa8"
-          emissive="#4a7aa8"
+          color="#ffffff"
+          emissive="#ffffff"
           emissiveIntensity={0.5}
         />
       </mesh>
 
       {/* Orbital rings at different inclinations */}
-      <OrbitalRing radius={4.0} axis="y" speed={0.025} color="#2a4a6b" opacity={0.3} />
-      <OrbitalRing radius={3.5} axis="x" speed={0.018} color="#3a5a8a" opacity={0.2} />
-      <OrbitalRing radius={4.8} axis="z" speed={0.012} color="#1a3050" opacity={0.15} />
+      <OrbitalRing radius={4.0} axis="y" speed={0.025} color="#555555" opacity={0.3} />
+      <OrbitalRing radius={3.5} axis="x" speed={0.018} color="#444444" opacity={0.2} />
+      <OrbitalRing radius={4.8} axis="z" speed={0.012} color="#333333" opacity={0.15} />
 
       {/* Star field */}
       <points>
@@ -123,7 +123,7 @@ export default function OpeningEnvironment() {
         </bufferGeometry>
         <pointsMaterial
           size={0.025}
-          color="#4a7aa8"
+          color="#ffffff"
           transparent
           opacity={0.5}
           sizeAttenuation
@@ -131,8 +131,8 @@ export default function OpeningEnvironment() {
       </points>
 
       {/* Cinematic lighting */}
-      <pointLight position={[0, 0, 0]} intensity={3} color="#4a7aa8" distance={18} decay={2} />
-      <pointLight position={[4, 6, 3]} intensity={0.4} color="#aaccff" distance={20} decay={2} />
+      <pointLight position={[0, 0, 0]} intensity={3} color="#ffffff" distance={18} decay={2} />
+      <pointLight position={[4, 6, 3]} intensity={0.4} color="#ffffff" distance={20} decay={2} />
       <ambientLight intensity={0.04} />
     </group>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { questions, decryptCorrectIndex } from '../data/questions';
+import { questions } from '../data/questions';
 import './ExamPage.css';
 
 const TOTAL = 30 * 60;
@@ -24,12 +24,10 @@ export default function ExamPage({ candidate, onSubmit }) {
     const handleDragStart = (e) => e.preventDefault();
 
     const handleKeyDown = (e) => {
-      // Disable print screen key
       if (e.key === 'PrintScreen') {
         navigator.clipboard.writeText('');
         alert('Screenshots are restricted during the exam.');
       }
-      // Disable Ctrl+C, Ctrl+V, Ctrl+U (view source), Ctrl+Shift+I (devtools), F12
       if (
         (e.ctrlKey && ['c', 'C', 'u', 'U', 'v', 'V'].includes(e.key)) ||
         (e.ctrlKey && e.shiftKey && ['i', 'I', 'j', 'J'].includes(e.key)) ||
@@ -42,7 +40,6 @@ export default function ExamPage({ candidate, onSubmit }) {
     const handleBlur = () => setBlurred(true);
     const handleFocus = () => setBlurred(false);
 
-    // Apply event listeners to document
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('copy', handleCopy);
     document.addEventListener('selectstart', handleSelectStart);
@@ -77,19 +74,14 @@ export default function ExamPage({ candidate, onSubmit }) {
     return () => clearInterval(timerRef.current);
   }, []);
 
-  // We store draft selection state for currently loaded question
-  // and confirmed answers in ans. The count adjustments will only update
-  // when clicking Next, Previous, or navigating to another question.
   const [draftAns, setDraftAns] = useState(null);
 
   useEffect(() => {
-    // When cur changes, sync draft answer from the confirmed answers
     setDraftAns(ans[cur] !== undefined ? ans[cur] : null);
   }, [cur, ans]);
 
   const submit = useCallback(() => {
     clearInterval(timerRef.current);
-    // Submit with current drafts confirmed
     const finalAns = { ...ans };
     if (draftAns !== null) {
       finalAns[cur] = draftAns;
@@ -100,11 +92,7 @@ export default function ExamPage({ candidate, onSubmit }) {
   }, [ans, draftAns, cur, onSubmit]);
 
   const pick = (i) => {
-    setDraftAns((prev) => {
-      // If same index is clicked again, deselect option (returns null)
-      if (prev === i) return null;
-      return i;
-    });
+    setDraftAns((prev) => (prev === i ? null : i));
   };
 
   const commitDraftAndGo = (targetIndex) => {
@@ -131,8 +119,9 @@ export default function ExamPage({ candidate, onSubmit }) {
 
       {/* ── Top bar ── */}
       <header className="exam-bar">
-        <div className="bar-brand" style={{ marginRight: '24px' }}>
-          <span className="bar-brand-name" style={{ fontSize: '14px', fontWeight: '800', color: 'var(--ink)' }}>Avanza Technologies</span>
+        <div className="bar-brand">
+          <span className="bar-brand-name">SKILL CONNECT</span>
+          <span className="bar-brand-badge">EXAM 2026</span>
         </div>
 
         <div className="bar-progress">
@@ -159,18 +148,18 @@ export default function ExamPage({ candidate, onSubmit }) {
         </div>
       </header>
 
-      {/* ── Body ── */}
+      {/* ── Main Exam Layout ── */}
       <div className="exam-body">
 
-        {/* Question panel */}
+        {/* Question Panel */}
         <div className="q-area" key={cur}>
-          <div className="card q-card">
+          <div className="q-card">
             <div className="q-meta">
-              <span className="q-index">Question {cur + 1} / {questions.length}</span>
-              <span className="badge badge-blue">{questions[cur].category}</span>
+              <span className="q-index">Question {cur + 1} of {questions.length}</span>
+              <span className="badge badge-blue">{questions[cur].category || 'General IT'}</span>
             </div>
 
-            <p className="q-text">{questions[cur].question}</p>
+            <h2 className="q-text">{questions[cur].question}</h2>
 
             <div className="opts">
               {questions[cur].options.map((opt, i) => (
@@ -187,7 +176,7 @@ export default function ExamPage({ candidate, onSubmit }) {
             </div>
           </div>
 
-          {/* Nav row */}
+          {/* Navigation Controls */}
           <div className="q-nav">
             <span className="q-nav-info">
               <b>{answered}</b> answered &nbsp;·&nbsp; <b>{questions.length - answered}</b> unanswered
@@ -204,11 +193,11 @@ export default function ExamPage({ candidate, onSubmit }) {
           </div>
         </div>
 
-        {/* Sidebar */}
+        {/* Right Sidebar Navigator */}
         <aside className="exam-aside">
-          {/* Stats */}
-          <div className="card aside-card">
-            <div className="aside-section-title">Progress</div>
+          {/* Progress Summary Card */}
+          <div className="aside-card">
+            <div className="aside-section-title">Progress Overview</div>
             <div className="stat-row">
               <div className="stat-chip">
                 <div className="stat-val sv-green">{answered}</div>
@@ -229,9 +218,9 @@ export default function ExamPage({ candidate, onSubmit }) {
             </div>
           </div>
 
-          {/* Grid navigator */}
-          <div className="card aside-card">
-            <div className="aside-section-title">Questions</div>
+          {/* Question Grid Navigator */}
+          <div className="aside-card">
+            <div className="aside-section-title">Question Palette</div>
             <div className="q-grid">
               {questions.map((_, i) => (
                 <div
@@ -243,9 +232,9 @@ export default function ExamPage({ candidate, onSubmit }) {
               ))}
             </div>
             <div className="q-legend">
-              <div className="legend-row"><div className="ldot ldot-done"/>Answered</div>
-              <div className="legend-row"><div className="ldot ldot-cur"/>Current</div>
-              <div className="legend-row"><div className="ldot ldot-pending"/>Not answered</div>
+              <div className="legend-row"><div className="ldot ldot-done"/> Answered</div>
+              <div className="legend-row"><div className="ldot ldot-cur"/> Current Active</div>
+              <div className="legend-row"><div className="ldot ldot-pending"/> Unanswered</div>
             </div>
           </div>
 
@@ -255,40 +244,41 @@ export default function ExamPage({ candidate, onSubmit }) {
         </aside>
       </div>
 
-      {/* ── Modal ── */}
+      {/* Submit Confirmation Modal */}
       {modal && (
         <div className="modal-bg" onClick={() => setModal(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
             <div className="modal-icon">📋</div>
-            <h3>Submit your exam?</h3>
-            <p>You won't be able to change answers after submitting. Please review before continuing.</p>
+            <h3>Submit Your Exam?</h3>
+            <p>You won't be able to change your answers after submitting. Please confirm your submission.</p>
             <div className="modal-stats">
               <div className="ms-item">
-                <div className="ms-val" style={{color:'var(--green)'}}>{answered}</div>
+                <div className="ms-val" style={{color:'#059669'}}>{answered}</div>
                 <div className="ms-lbl">Answered</div>
               </div>
               <div className="ms-item">
-                <div className="ms-val" style={{color:'var(--amber)'}}>{questions.length - answered}</div>
+                <div className="ms-val" style={{color:'#d97706'}}>{questions.length - answered}</div>
                 <div className="ms-lbl">Skipped</div>
               </div>
               <div className="ms-item">
-                <div className="ms-val" style={{color:'var(--blue)'}}>{fmt(left)}</div>
+                <div className="ms-val" style={{color:'#2563eb'}}>{fmt(left)}</div>
                 <div className="ms-lbl">Remaining</div>
               </div>
             </div>
             <div className="modal-btns">
-              <button className="btn btn-outline" onClick={() => setModal(false)}>Review</button>
+              <button className="btn btn-outline" onClick={() => setModal(false)}>Review Answers</button>
               <button className="btn btn-primary" onClick={submit}>Submit Now</button>
             </div>
           </div>
         </div>
       )}
-      {/* Blur Overlay when tab is inactive */}
+
+      {/* Blur Overlay when tab loses focus */}
       {blurred && (
         <div style={{
           position: 'fixed',
           inset: 0,
-          background: 'rgba(255,255,255,0.96)',
+          background: 'rgba(9, 13, 22, 0.94)',
           backdropFilter: 'blur(20px)',
           display: 'flex',
           flexDirection: 'column',
@@ -296,13 +286,19 @@ export default function ExamPage({ candidate, onSubmit }) {
           justifyContent: 'center',
           zIndex: 9999,
           textAlign: 'center',
-          padding: '24px'
+          padding: '24px',
+          color: '#ffffff'
         }}>
-          <div style={{ fontSize: '32px', marginBottom: '16px' }}>🔒</div>
-          <h2 style={{ fontSize: '20px', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px' }}>Exam Content Protected</h2>
-          <p style={{ fontSize: '14px', color: 'var(--ink-3)' }}>Please return to the exam tab to continue. Switching windows or taking screenshots is restricted.</p>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚠️</div>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: '900', color: '#ef4444', marginBottom: '0.5rem' }}>
+            EXAM WINDOW PAUSED
+          </h2>
+          <p style={{ fontSize: '1rem', color: '#94a3b8', maxWidth: '460px', lineHeight: '1.6' }}>
+            Focus was lost from the exam screen. Switching tabs or applications is strictly monitored. Click back into this window to resume your test.
+          </p>
         </div>
       )}
+
     </div>
   );
 }

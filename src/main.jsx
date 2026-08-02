@@ -44,10 +44,14 @@ createRoot(document.getElementById('root')).render(
 
         {/* Dedicated Cyber Security & Ethical Hacking Course Landing Page */}
         <Route path="/cybersecurity" element={<CyberSecurityLanding />} />
+        <Route path="/cyber-security" element={<CyberSecurityLanding />} />
+        <Route path="/cyber" element={<CyberSecurityLanding />} />
+        <Route path="/ethical-hacking" element={<CyberSecurityLanding />} />
 
         {/* Dedicated Digital Marketing Professional Course Landing Page */}
         <Route path="/digital-marketing" element={<DigitalMarketingLanding />} />
         <Route path="/digitalmarketing" element={<DigitalMarketingLanding />} />
+        <Route path="/dm" element={<DigitalMarketingLanding />} />
 
         {/* Existing exam portal — preserved as a sub-route */}
         <Route path="/exam" element={<App />} />

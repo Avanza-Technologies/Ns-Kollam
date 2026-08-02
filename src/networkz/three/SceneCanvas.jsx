@@ -31,11 +31,11 @@ export default function SceneCanvas({ scrollRef, mouseRef }) {
       frameloop="always"
       shadows={false}
     >
-      {/* Deep space background */}
-      <color attach="background" args={['#080808']} />
+      {/* Stark white background */}
+      <color attach="background" args={['#ffffff']} />
 
       {/* Fog creates depth and hides pop-in of distant environments */}
-      <fog attach="fog" args={['#080808', 60, 260]} />
+      <fog attach="fog" args={['#ffffff', 60, 260]} />
 
       {/* Scroll-driven camera choreography */}
       <CameraRig scrollRef={scrollRef} mouseRef={mouseRef} />

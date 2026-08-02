@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import CustomSelect from './components/CustomSelect';
 import './NetworkzHome.css';
 import './CyberSecurityLanding.css';
 
@@ -131,8 +132,21 @@ const ROLE_OPTIONS = ['Student (Study)', 'Job Seeker (Job)', 'Working Profession
 
 export default function CyberSecurityLanding() {
   const navigate = useNavigate();
+  const cyberTrackRef = useRef(null);
   const [formData, setFormData] = useState({ name: '', phone: '', role: 'Student (Study)' });
   const [submitted, setSubmitted] = useState(false);
+
+  const scrollCyberLeft = () => {
+    if (cyberTrackRef.current) {
+      cyberTrackRef.current.scrollBy({ left: -380, behavior: 'smooth' });
+    }
+  };
+
+  const scrollCyberRight = () => {
+    if (cyberTrackRef.current) {
+      cyberTrackRef.current.scrollBy({ left: 380, behavior: 'smooth' });
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -167,31 +181,34 @@ export default function CyberSecurityLanding() {
       {/* ─────────────────────────────────────────────────────────
          TOP NAVIGATION (EXACT HOMEPAGE HEADER & LOGO)
       ───────────────────────────────────────────────────────── */}
-      <header className="nz-nav nz-nav--scrolled">
-        <div className="nz-nav-left">
-          <Link to="/" className="nz-nav-brand">
-            <span className="nz-brand-title">NETWORKZ <span className="nz-brand-accent">SYSTEMS</span></span>
-            <span className="nz-brand-badge">KOLLAM</span>
-          </Link>
-        </div>
+      <nav className="nz-luxury-nav">
+        <Link to="/" className="nz-nav-brand">
+          <div className="nz-brand-emblem">N</div>
+          <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
+          <span className="nz-brand-tag">KOLLAM CAMPUS</span>
+        </Link>
 
-        <nav className="nz-nav-links" aria-label="Cyber Security Landing Navigation">
-          <a href="#overview" className="nz-nav-active">OVERVIEW</a>
-          <a href="#syllabus">SYLLABUS</a>
-          <a href="#tools">SECURITY STACK</a>
-          <a href="#careers">CAREERS</a>
-          <a href="#contact">KOLLAM CAMPUS</a>
-        </nav>
+        <ul className="nz-nav-menu">
+          <li><a href="#overview" className="nz-nav-link">OVERVIEW</a></li>
+          <li><a href="#syllabus" className="nz-nav-link">SYLLABUS</a></li>
+          <li><a href="#tools" className="nz-nav-link">SECURITY STACK</a></li>
+          <li><a href="#careers" className="nz-nav-link">CAREERS</a></li>
+          <li><a href="#contact" className="nz-nav-link">KOLLAM CAMPUS</a></li>
+        </ul>
 
-        <div className="nz-nav-right" style={{ gap: '0.8rem' }}>
-          <button className="nz-nav-portal" onClick={scrollToBooking} style={{ cursor: 'pointer' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          <button className="nz-nav-cta" onClick={scrollToBooking} style={{ cursor: 'pointer', border: 'none' }}>
             CLAIM 20% OFFER ↗
           </button>
-          <button className="nz-btn-ghost" onClick={() => navigate('/')} style={{ padding: '0.55rem 1rem', fontSize: '0.78rem' }}>
+          <button
+            className="nz-btn-secondary"
+            onClick={() => navigate('/')}
+            style={{ padding: '0.65rem 1.1rem', fontSize: '0.78rem', background: '#222222', color: '#ffffff', border: '1px solid #333333' }}
+          >
             ← HOME
           </button>
         </div>
-      </header>
+      </nav>
 
       {/* ─────────────────────────────────────────────────────────
          TOP GLOWING RIBBON
@@ -240,7 +257,7 @@ export default function CyberSecurityLanding() {
               </div>
               <div className="nz-cyber-metric-item">
                 <span className="nz-metric-val">120+ HRS</span>
-                <span className="nz-metric-lbl">Live Practical Labs</span>
+                <span className="nz-metric-lbl">Hands-on Cyber Lab</span>
               </div>
               <div className="nz-cyber-metric-item">
                 <span className="nz-metric-val">LIFETIME</span>
@@ -248,38 +265,41 @@ export default function CyberSecurityLanding() {
               </div>
             </div>
 
-            {/* CTA Action Buttons */}
-            <div className="nz-cyber-cta-group">
-              <button className="nz-cyber-btn-primary" onClick={scrollToBooking}>
-                BOOK SEAT WITH 20% DISCOUNT 💬 ↗
+            {/* Hero Dual Action Buttons */}
+            <div className="nz-cyber-hero-ctas">
+              <button className="nz-btn-emerald-glow" onClick={scrollToBooking}>
+                CLAIM 20% DISCOUNT OFFER 💬 ↗
               </button>
-              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="nz-cyber-btn-whatsapp">
-                TALK TO ADVISOR ON WHATSAPP
+              <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer" className="nz-btn-secondary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+                WHATSAPP COUNSELOR 💬
               </a>
             </div>
           </div>
 
-          {/* Hero Right Showcase Card */}
-          <div className="nz-cyber-hero-media">
-            <div className="nz-cyber-glass-card">
-              <div className="nz-cyber-media-container">
-                <img
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80"
-                  alt="Cyber Security Command Center"
-                  className="nz-cyber-media-img"
-                />
-                <div className="nz-cyber-media-gradient" />
-
-                <div className="nz-cyber-live-badge">
-                  <span className="nz-cyber-pulse-green" /> LIVE LAB SESSIONS ACTIVE
+          {/* Hero Right Media Showcase */}
+          <div className="nz-cyber-hero-showcase">
+            <div className="nz-cyber-media-card">
+              <div className="nz-media-top-bar">
+                <div className="nz-live-status">
+                  <span className="nz-status-dot" /> KOLLAM CYBER LAB ACTIVE
                 </div>
+                <span className="nz-media-badge">CEH v12 ALIGNED</span>
+              </div>
 
-                <div className="nz-cyber-trust-footer">
-                  <div className="nz-trust-icon">🛡️</div>
-                  <div>
-                    <div className="nz-trust-title">ISO 9001:2015 Certified Academy</div>
-                    <div className="nz-trust-sub">Official Pearson VUE Authorized Exam Center</div>
-                  </div>
+              <img
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80"
+                alt="Networkz Systems Cyber Security Lab"
+                className="nz-media-img"
+              />
+
+              <div className="nz-media-footer">
+                <div>
+                  <div className="nz-media-title">Networkz Systems Cyber Lab</div>
+                  <div className="nz-media-sub">Pattathuvila Plaza, Chinnakada, Kollam</div>
+                </div>
+                <div className="nz-media-price-pill">
+                  <span style={{ fontSize: '0.65rem', opacity: 0.8, display: 'block', textDecoration: 'line-through' }}>FEES ₹25,000</span>
+                  <span>NOW 20% OFF</span>
                 </div>
               </div>
             </div>
@@ -347,33 +367,48 @@ export default function CyberSecurityLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         WHAT YOU WILL LEARN (RICH VISUAL MODULE CARDS)
+         WHAT YOU WILL LEARN (MOVABLE BANNER CAROUSEL)
       ───────────────────────────────────────────────────────── */}
       <section id="syllabus" className="nz-cyber-syllabus-sec">
         <div className="nz-cyber-container">
-          <div className="nz-cyber-sec-header">
-            <span className="nz-cyber-tag-cyan">MASTERCLASS CURRICULUM</span>
-            <h2 className="nz-cyber-sec-h2">What You Will Learn in This Program</h2>
-            <p className="nz-cyber-sec-p">Step-by-step masterclass taking you from beginner to job-ready ethical hacker.</p>
+          <div className="nz-cyber-sec-header" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '2.5rem' }}>
+            <div>
+              <span className="nz-cyber-tag-cyan">MASTERCLASS CURRICULUM</span>
+              <h2 className="nz-cyber-sec-h2">What You Will Learn in This Program</h2>
+              <p className="nz-cyber-sec-p" style={{ maxWidth: '600px' }}>
+                Step-by-step masterclass taking you from beginner to job-ready ethical hacker. Slide left & right to explore.
+              </p>
+            </div>
+
+            {/* BANNER CONTROLS */}
+            <div className="ix-banner-controls">
+              <button className="ix-banner-arrow" onClick={scrollCyberLeft} aria-label="Previous Module">
+                ←
+              </button>
+              <button className="ix-banner-arrow" onClick={scrollCyberRight} aria-label="Next Module">
+                →
+              </button>
+            </div>
           </div>
 
-          <div className="nz-cyber-modules-grid">
+          {/* MOVABLE BANNER TRACK */}
+          <div className="ix-banner-track" ref={cyberTrackRef}>
             {SYLLABUS_MODULES.map((m) => (
-              <div key={m.num} className="nz-cyber-module-card">
-                <div className="nz-module-media">
-                  <img src={m.image} alt={m.title} className="nz-module-img" loading="lazy" />
-                  <span className="nz-module-tag">{m.tag}</span>
-                  <span className="nz-module-dur">{m.dur}</span>
-                  <div className="nz-module-num-watermark">{m.num}</div>
+              <div key={m.num} className="ix-module-banner-card">
+                <div className="nz-module-media" style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
+                  <img src={m.image} alt={m.title} className="nz-module-img" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <span className="nz-module-tag" style={{ position: 'absolute', top: '1rem', left: '1rem', background: '#111111', color: '#ffffff', padding: '0.35rem 0.75rem', borderRadius: '6px', fontSize: '0.68rem', fontWeight: 800 }}>{m.tag}</span>
+                  <span className="nz-module-dur" style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255, 255, 255, 0.95)', color: '#111111', padding: '0.35rem 0.75rem', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 800 }}>{m.dur}</span>
+                  <div className="nz-module-num-watermark" style={{ position: 'absolute', bottom: '1rem', right: '1rem', fontSize: '2rem', fontWeight: 900, color: 'rgba(255, 255, 255, 0.9)', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>{m.num}</div>
                 </div>
 
-                <div className="nz-module-body">
-                  <h3 className="nz-module-title">{m.title}</h3>
-                  <p className="nz-module-desc">{m.desc}</p>
+                <div className="nz-module-body" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1, justifyContent: 'space-between' }}>
+                  <h3 className="nz-module-title" style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--ix-primary)', lineHeight: 1.3 }}>{m.title}</h3>
+                  <p className="nz-module-desc" style={{ fontSize: '0.92rem', color: 'var(--ix-text-sub)', lineHeight: 1.6 }}>{m.desc}</p>
 
-                  <div className="nz-module-skills-grid">
+                  <div className="nz-module-skills-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '0.5rem' }}>
                     {m.skills.map((sk) => (
-                      <span key={sk} className="nz-skill-chip">
+                      <span key={sk} className="nz-skill-chip" style={{ fontSize: '0.75rem', fontWeight: 700, background: '#F1F1F1', color: '#111111', padding: '0.35rem 0.75rem', borderRadius: '6px' }}>
                         ✦ {sk}
                       </span>
                     ))}
@@ -443,7 +478,7 @@ export default function CyberSecurityLanding() {
       <section id="contact" className="nz-cyber-booking-sec">
         <div id="nz-booking-sec" className="nz-cyber-container">
           <div className="nz-cyber-booking-grid">
-            
+
             {/* Left: Kollam Campus HQ Card */}
             <div className="nz-cyber-hq-card">
               <div className="nz-hq-tag">
@@ -545,18 +580,12 @@ export default function CyberSecurityLanding() {
 
                   <div className="nz-form-group">
                     <label className="nz-form-label">CURRENT STATUS / ROLE</label>
-                    <select
-                      className="nz-form-input"
-                      style={{ background: '#0f172a', color: '#ffffff' }}
+                    <CustomSelect
+                      theme="dark"
+                      options={ROLE_OPTIONS}
                       value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    >
-                      {ROLE_OPTIONS.map((r) => (
-                        <option key={r} value={r} style={{ background: '#0f172a', color: '#ffffff' }}>
-                          {r}
-                        </option>
-                      ))}
-                    </select>
+                      onChange={(val) => setFormData({ ...formData, role: val })}
+                    />
                   </div>
 
                   <button type="submit" className="nz-cyber-btn-primary" style={{ width: '100%', marginTop: '0.8rem' }}>
@@ -573,10 +602,70 @@ export default function CyberSecurityLanding() {
       {/* ─────────────────────────────────────────────────────────
          FOOTER
       ───────────────────────────────────────────────────────── */}
-      <footer className="nz-cyber-footer">
-        <div className="nz-cyber-container">
-          <div className="nz-footer-text">
-            © 2025 Networkz Systems · ISO 9001:2015 Certified · Ethical Hacking & Cyber Security Masterclass · Kollam Campus
+      <footer className="ix-footer">
+        <div className="ix-container">
+          <div className="ix-footer-grid">
+
+            {/* Col 1 */}
+            <div>
+              <div className="ix-footer-logo">NETWORKZ <span style={{ color: '#a5f3fc', fontWeight: 800 }}>SYSTEMS</span></div>
+              <p className="ix-footer-desc" style={{ marginBottom: '0.75rem' }}>
+                Networkz Systems Kollam — ISO 9001:2015 accredited technology & digital marketing training institute. Empowering career breakthroughs.
+              </p>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)', paddingTop: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <span>📍</span>
+                  <span>2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>📞</span>
+                  <a href="tel:+918089030405" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '700' }}>+91 80890 30405</a>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🕒</span>
+                  <span>Monday – Saturday: 9:00 AM – 5:30 PM</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Col 2 */}
+            <div>
+              <h4 className="ix-footer-heading">DISCIPLINE TRACKS</h4>
+              <ul className="ix-footer-links">
+                <li><a href="#syllabus">Ethical Hacking (CEH v12)</a></li>
+                <li><a href="#syllabus">Network Security & Auditing</a></li>
+                <li><a href="#syllabus">Web App Security (OWASP)</a></li>
+                <li><a href="#syllabus">SOC Operations & Defense</a></li>
+              </ul>
+            </div>
+
+            {/* Col 3 */}
+            <div>
+              <h4 className="ix-footer-heading">SECURITY TOOLS STACK</h4>
+              <ul className="ix-footer-links">
+                <li><a href="#tools">Kali Linux & Metasploit</a></li>
+                <li><a href="#tools">Wireshark & Nmap</a></li>
+                <li><a href="#tools">Burp Suite Pro</a></li>
+                <li><a href="#tools">Nessus & Snort IDS/IPS</a></li>
+              </ul>
+            </div>
+
+            {/* Col 4 */}
+            <div>
+              <h4 className="ix-footer-heading">ACCREDITATION & LEGAL</h4>
+              <ul className="ix-footer-links">
+                <li><span>ISO 9001:2015 Certified</span></li>
+                <li><span>Pearson VUE Authorized</span></li>
+                <li><span>100% Placement Guarantee</span></li>
+                <li><a href="#contact">Privacy & Terms</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div className="ix-footer-bottom">
+            <span>NETWORKZ SYSTEMS KOLLAM</span>
+            <span>© 2026 Networkz Systems Kollam. ISO 9001:2015 Certified. All rights reserved.</span>
           </div>
         </div>
       </footer>

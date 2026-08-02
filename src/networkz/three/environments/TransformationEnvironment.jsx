@@ -46,12 +46,12 @@ export default function TransformationEnvironment() {
       <mesh ref={outerRef}>
         <icosahedronGeometry args={[1.0, 1]} />
         <meshStandardMaterial
-          color="#2a4a6b"
+          color="#ffffff"
           wireframe
           transparent
           opacity={0.3}
-          emissive="#2a4a6b"
-          emissiveIntensity={0.4}
+          emissive="#ffffff"
+          emissiveIntensity={0.3}
         />
       </mesh>
 
@@ -71,9 +71,9 @@ export default function TransformationEnvironment() {
             <mesh>
               <torusGeometry args={[radius, 0.01, 6, 100]} />
               <meshStandardMaterial
-                color="#4a7aa8"
-                emissive="#4a7aa8"
-                emissiveIntensity={0.55}
+                color="#ffffff"
+                emissive="#ffffff"
+                emissiveIntensity={0.4}
                 transparent
                 opacity={0.35 - i * 0.03}
               />
@@ -83,7 +83,7 @@ export default function TransformationEnvironment() {
             <mesh position={[radius, 0, 0]}>
               <sphereGeometry args={[0.07 + i * 0.008, 8, 8]} />
               <meshStandardMaterial
-                color="#e8e6e0"
+                color="#ffffff"
                 emissive="#ffffff"
                 emissiveIntensity={0.6}
               />
@@ -113,7 +113,7 @@ export default function TransformationEnvironment() {
             itemSize={3}
           />
         </bufferGeometry>
-        <pointsMaterial size={0.022} color="#4a7aa8" transparent opacity={0.3} sizeAttenuation />
+        <pointsMaterial size={0.022} color="#ffffff" transparent opacity={0.3} sizeAttenuation />
       </points>
 
       {/* Ground mirror */}
@@ -123,7 +123,7 @@ export default function TransformationEnvironment() {
       </mesh>
 
       {/* Central glow + soft fill */}
-      <pointLight position={[0, 0, 0]} intensity={2.5} color="#4a7aa8" distance={18} decay={2} />
+      <pointLight position={[0, 0, 0]} intensity={2.5} color="#ffffff" distance={18} decay={2} />
       <pointLight position={[0, 8, 0]} intensity={0.4} color="#ffffff" distance={20} decay={2} />
       <ambientLight intensity={0.04} />
     </group>

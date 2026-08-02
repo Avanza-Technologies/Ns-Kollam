@@ -115,7 +115,7 @@ export default function NetworkInfraEnvironment() {
       {nodes.map((n, i) => (
         <mesh key={i} position={n.pos}>
           <sphereGeometry args={[n.size, 6, 6]} />
-          <meshStandardMaterial color="#3a6a9a" emissive="#4a7aa8" emissiveIntensity={0.4} />
+          <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={0.4} />
         </mesh>
       ))}
 
@@ -129,14 +129,14 @@ export default function NetworkInfraEnvironment() {
             itemSize={3}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#2a4a7a" transparent opacity={0.18} />
+        <lineBasicMaterial color="#ffffff" transparent opacity={0.18} />
       </lineSegments>
 
       {/* Traveling data packets */}
       {packetPhases.map((_, i) => (
         <mesh key={i} ref={(el) => { packetRefs.current[i] = el; }}>
           <sphereGeometry args={[0.055, 6, 6]} />
-          <meshStandardMaterial color="#7aafff" emissive="#4a7aa8" emissiveIntensity={1.5} />
+          <meshStandardMaterial color="#ffffff" emissive="#ffffff" emissiveIntensity={1.5} />
         </mesh>
       ))}
 

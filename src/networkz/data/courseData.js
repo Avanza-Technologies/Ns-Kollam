@@ -3,7 +3,7 @@
 export const COURSE_DETAILS = {
   1: {
     category: 'Software Product Training',
-    accent: '#00c8ff',
+    accent: '#ffffff',
     courses: [
       {
         id: 'cpp',
@@ -118,7 +118,7 @@ export const COURSE_DETAILS = {
 
   2: {
     category: 'AI + Electronics',
-    accent: '#38bdf8',
+    accent: '#ffffff',
     courses: [
       {
         id: 'ml',
@@ -179,7 +179,7 @@ export const COURSE_DETAILS = {
 
   3: {
     category: 'Networking & Security',
-    accent: '#00c8ff',
+    accent: '#ffffff',
     courses: [
       {
         id: 'ccna',
@@ -240,7 +240,7 @@ export const COURSE_DETAILS = {
 
   4: {
     category: 'Business & Management',
-    accent: '#0284c7',
+    accent: '#ffffff',
     courses: [
       {
         id: 'digi',
@@ -274,7 +274,7 @@ export const COURSE_DETAILS = {
 
   5: {
     category: 'Internship Programs',
-    accent: '#4a7aa8',
+    accent: '#ffffff',
     courses: [
       {
         id: 'i120',
@@ -311,83 +311,6 @@ export const COURSE_DETAILS = {
         duration: '1 Year',
         cert: 'Professional Certificate',
         image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=600&q=80',
-      },
-    ],
-  },
-
-  6: {
-    category: 'Our Presence',
-    accent: '#4a7aa8',
-    courses: [
-      {
-        id: 'kerala',
-        name: 'Kerala',
-        desc: 'Headquartered in Kollam · 2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada',
-        level: 'KOLLAM CAMPUS',
-        duration: 'Ph: 080890 30405',
-        cert: 'ISO 9001:2015',
-        image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80',
-      },
-      {
-        id: 'tn',
-        name: 'Tamil Nadu',
-        desc: 'Strategic centres serving students across Tamil Nadu with certified technology training',
-        level: 'REGIONAL',
-        duration: 'Multiple Centres',
-        cert: 'NSIM Certified',
-        image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80',
-      },
-      {
-        id: 'karnataka',
-        name: 'Karnataka',
-        desc: 'Expanding operations across Karnataka with industry-aligned curriculum and placement support',
-        level: 'REGIONAL',
-        duration: 'Multiple Centres',
-        cert: 'Pearson VUE',
-        image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=600&q=80',
-      },
-    ],
-  },
-
-  7: {
-    category: 'Networkz Systems',
-    accent: '#4a7aa8',
-    courses: [
-      {
-        id: 'iso',
-        name: 'ISO 9001:2015',
-        desc: 'Internationally accredited quality management system ensuring world-class training standards',
-        level: 'CERTIFICATION',
-        duration: 'Ongoing',
-        cert: 'ISO Certified',
-        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
-      },
-      {
-        id: 'pvue',
-        name: 'Pearson VUE',
-        desc: 'Authorized testing partner for global certifications · End-to-end exam lifecycle management',
-        level: 'AUTHORIZED CENTRE',
-        duration: 'All Year',
-        cert: 'Pearson VUE Partner',
-        image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80',
-      },
-      {
-        id: 'nsim',
-        name: 'NSIM Partner',
-        desc: 'National Skill India Mission authorized skill training and testing centre for Skill India',
-        level: 'GOVERNMENT',
-        duration: 'All Year',
-        cert: 'Govt. Certified',
-        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80',
-      },
-      {
-        id: 'placement',
-        name: '100% Placement',
-        desc: 'Dedicated placement cell · Industry tie-ups · Resume support · Mock interviews · Job fairs',
-        level: 'GUARANTEE',
-        duration: 'Lifelong Support',
-        cert: 'Placement Assured',
-        image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=600&q=80',
       },
     ],
   },

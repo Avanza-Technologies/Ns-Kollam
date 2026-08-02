@@ -2,8 +2,8 @@ import { useState } from 'react';
 import './Registration.css';
 
 const FIELDS = [
-  { id: 'name', label: 'Full Name', placeholder: 'John Doe', type: 'text', half: false },
-  { id: 'email', label: 'Email Address', placeholder: 'john@example.com', type: 'email', half: false },
+  { id: 'name', label: 'Full Name', placeholder: 'e.g. John Doe', type: 'text', half: false },
+  { id: 'email', label: 'Email Address', placeholder: 'e.g. john@example.com', type: 'email', half: false },
   { id: 'phone', label: 'Phone Number', placeholder: '+91 98765 43210', type: 'tel', half: true },
   { id: 'dob', label: 'Date of Birth', placeholder: '', type: 'date', half: true },
 ];
@@ -11,17 +11,15 @@ const FIELDS = [
 function validate(f) {
   const e = {};
   if (!f.name.trim() || f.name.trim().length < 2) e.name = 'Enter your full name.';
-  // Strict email validation (enforces letters, numbers, standard characters, and correct TLD suffix like .com, .net, etc.)
+  
   if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(f.email.trim())) {
     e.email = 'Enter a valid email address.';
   }
   
-  // Strict 10-digit mobile number validation (allowing optional +91 prefix)
   if (!/^(?:\+91)?[6789]\d{9}$/.test(f.phone.replace(/[\s\-()]/g, ''))) {
     e.phone = 'Enter a valid 10-digit mobile number.';
   }
 
-  // Date of birth validation (candidate must be at least 15 years old)
   if (!f.dob) {
     e.dob = 'Select date of birth.';
   } else {
@@ -42,8 +40,9 @@ function validate(f) {
 }
 
 function Field({ f, form, errors, touched, onChange, onBlur }) {
+  const isErr = errors[f.id] && touched[f.id];
+
   if (f.id === 'dob') {
-    // Generate valid min/max date strings
     const currentYear = new Date().getFullYear();
     const maxDate = `${currentYear - 5}-12-31`;
     const minDate = '1940-01-01';
@@ -55,7 +54,7 @@ function Field({ f, form, errors, touched, onChange, onBlur }) {
         </label>
         <input
           id="dob"
-          className={`f-input${errors.dob && touched.dob ? ' err' : ''}`}
+          className={`f-input ${isErr ? 'err' : ''}`}
           type="date"
           min={minDate}
           max={maxDate}
@@ -64,8 +63,15 @@ function Field({ f, form, errors, touched, onChange, onBlur }) {
           onBlur={onBlur}
           autoComplete="off"
         />
-        {errors.dob && touched.dob && (
-          <span className="f-error">{errors.dob}</span>
+        {isErr && (
+          <span className="f-error">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            {errors.dob}
+          </span>
         )}
       </div>
     );
@@ -78,7 +84,7 @@ function Field({ f, form, errors, touched, onChange, onBlur }) {
       </label>
       <input
         id={f.id}
-        className={`f-input${errors[f.id] && touched[f.id] ? ' err' : ''}`}
+        className={`f-input ${isErr ? 'err' : ''}`}
         type={f.type}
         placeholder={f.placeholder}
         value={form[f.id]}
@@ -86,8 +92,15 @@ function Field({ f, form, errors, touched, onChange, onBlur }) {
         onBlur={onBlur}
         autoComplete="off"
       />
-      {errors[f.id] && touched[f.id] && (
-        <span className="f-error">{errors[f.id]}</span>
+      {isErr && (
+        <span className="f-error">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          {errors[f.id]}
+        </span>
       )}
     </div>
   );
@@ -128,7 +141,8 @@ export default function Registration({ onStart }) {
 
       {/* ── LEFT SIDEBAR ── */}
       <aside className="reg-side">
-        <div className="reg-logo" style={{ marginBottom: '40px' }}>
+        <div className="reg-logo-badge">
+          ⚡ NETWORKZ SYSTEMS KOLLAM
         </div>
 
         <h1 className="reg-side-title">
@@ -192,7 +206,7 @@ export default function Registration({ onStart }) {
             <p>Please fill in the details below to register for Skill Connect Exam 2026.</p>
           </div>
 
-          <div className="card reg-form-card">
+          <div className="reg-form-card">
             <form onSubmit={onSubmit} noValidate>
               <div className="reg-fields">
                 {fullFields.map(f => (

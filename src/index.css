@@ -1,226 +1,95 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* ═══════════════════════════════════════════════════════════════════
+   LUXURY EDITORIAL DESIGN SYSTEM (Pentagram / Instrument / Aesop Inspired)
+   ═══════════════════════════════════════════════════════════════════ */
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 :root {
-  --blue:        #1d4ed8;
-  --blue-hover:  #1e40af;
-  --blue-light:  #eff6ff;
-  --blue-border: #bfdbfe;
-  --blue-mid:    #3b82f6;
+  /* Brand Color Tokens */
+  --color-primary:    #111111;
+  --color-secondary:  #ffffff;
+  --color-accent:     #1E5D42; /* Deep Emerald Green */
+  --color-accent-hover: #164632;
+  
+  --color-bg-warm:    #F8F8F8; /* Warm White */
+  --color-bg-light:   #F1F1F1; /* Light Gray */
+  --color-dark-gray:  #2A2A2A;
+  --color-border:     #E5E5E5;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
 
-  --ink:         #111827;
-  --ink-2:       #374151;
-  --ink-3:       #6b7280;
-  --ink-4:       #9ca3af;
+  --color-text-main:  #111111;
+  --color-text-sub:   #555555;
+  --color-text-muted: #888888;
 
-  --line:        #e5e7eb;
-  --line-2:      #f3f4f6;
-  --bg:          #ffffff;
-  --white:       #ffffff;
+  /* Typography Scale */
+  --font-display: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+  --font-body:    'Sora', 'Inter', -apple-system, sans-serif;
 
-  --green:       #16a34a;
-  --green-bg:    #f0fdf4;
-  --green-line:  #bbf7d0;
+  /* Card Geometry & Shadow Tokens */
+  --radius-card: 16px;
+  --radius-btn:  12px;
+  --shadow-luxury: 0 20px 50px rgba(0, 0, 0, 0.05);
+  --shadow-hover:  0 30px 70px rgba(0, 0, 0, 0.12);
 
-  --red:         #dc2626;
-  --red-bg:      #fef2f2;
-  --red-line:    #fecaca;
-
-  --amber:       #d97706;
-  --amber-bg:    #fffbeb;
-  --amber-line:  #fde68a;
-
-  --r:    8px;
-  --r-lg: 12px;
-
-  --font-h: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-m: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font: var(--font-m);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html { scroll-behavior: smooth; height: 100%; }
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+  background-color: var(--color-bg-warm);
+  color: var(--color-text-main);
+}
 
 body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--ink);
+  font-family: var(--font-body);
+  background-color: var(--color-bg-warm);
+  color: var(--color-text-main);
   min-height: 100vh;
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  font-size: 14px;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  overflow-x: hidden;
 }
 
-#root { min-height: 100vh; }
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
-
-/* ── Animations ─────────────────────────────────────── */
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes scale-in {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+#root {
+  min-height: 100vh;
 }
 
-/* ── Form inputs ────────────────────────────────────── */
-.f-group { display: flex; flex-direction: column; gap: 5px; }
-
-.f-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-2);
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
-
-.f-label .req { color: var(--red); margin-left: 2px; }
-
-.f-input {
-  height: 40px;
-  padding: 0 12px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--r);
-  font-family: var(--font);
-  font-size: 14px;
-  color: var(--ink);
-  outline: none;
-  width: 100%;
-  transition: border-color .15s, box-shadow .15s;
+::-webkit-scrollbar-track {
+  background: var(--color-bg-warm);
 }
-
-.f-input::placeholder { color: var(--ink-4); }
-
-.f-input:focus {
-  border-color: var(--blue-mid);
-  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
-}
-
-.f-input.err {
-  border-color: var(--red);
-  box-shadow: 0 0 0 3px rgba(220,38,38,.1);
-}
-
-.f-input[type="date"] { color: var(--ink); }
-
-.f-error {
-  font-size: 12px;
-  color: var(--red);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* ── Buttons ────────────────────────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  border-radius: var(--r);
-  transition: background .15s, box-shadow .15s, transform .1s;
-  white-space: nowrap;
-  height: 38px;
-  padding: 0 16px;
-}
-.btn:active { transform: scale(.98); }
-.btn:disabled { opacity: .45; cursor: not-allowed; transform: none !important; }
-
-.btn-primary {
-  background: var(--blue);
-  color: #fff;
-  box-shadow: 0 1px 3px rgba(29,78,216,.3);
-}
-.btn-primary:hover:not(:disabled) {
-  background: var(--blue-hover);
-  box-shadow: 0 2px 8px rgba(29,78,216,.35);
-}
-
-.btn-outline {
-  background: var(--white);
-  color: var(--ink-2);
-  border: 1px solid var(--line);
-}
-.btn-outline:hover:not(:disabled) {
-  background: var(--line-2);
-  border-color: #d1d5db;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--ink-3);
-  border: 1px solid var(--line);
-}
-.btn-ghost:hover:not(:disabled) {
-  background: var(--line-2);
-  color: var(--ink);
-}
-
-.btn-lg { height: 44px; padding: 0 24px; font-size: 15px; font-weight: 600; border-radius: var(--r-lg); }
-.btn-full { width: 100%; }
-
-.spinner {
-  width: 15px; height: 15px;
-  border: 2px solid rgba(255,255,255,.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin .6s linear infinite;
-}
-
-/* ── Card ───────────────────────────────────────────── */
-.card {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-}
-
-/* ── Badge ──────────────────────────────────────────── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 8px;
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
   border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .03em;
-  text-transform: uppercase;
 }
-.badge-blue  { background: var(--blue-light); color: var(--blue); }
-.badge-green { background: var(--green-bg);   color: var(--green); }
-.badge-red   { background: var(--red-bg);     color: var(--red); }
-.badge-amber { background: var(--amber-bg);   color: var(--amber); }
-.badge-gray  { background: var(--line-2);     color: var(--ink-3); }
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
 
-/* ── Progress ───────────────────────────────────────── */
-.prog-track {
-  width: 100%;
-  height: 4px;
-  background: var(--line-2);
-  border-radius: 4px;
-  overflow: hidden;
+/* Base Image Rendering */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
 }
-.prog-fill {
-  height: 100%;
-  background: var(--blue);
-  border-radius: 4px;
-  transition: width .3s ease;
+
+/* Typography Headings Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  letter-spacing: -0.03em;
+  font-weight: 800;
 }

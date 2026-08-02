@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import CustomSelect from './components/CustomSelect';
 import './NetworkzHome.css';
 import './CyberSecurityLanding.css';
 import './DigitalMarketingLanding.css';
@@ -25,6 +26,7 @@ const getWhatsAppUrl = (customMsg) => {
 const MARKETING_MODULES = [
   {
     num: '01',
+    shortLabel: '01 Search',
     title: 'Search Engine Optimization (SEO)',
     dur: '25 Hours Practical',
     tag: 'ORGANIC GROWTH',
@@ -34,6 +36,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '02',
+    shortLabel: '02 Google',
     title: 'Google Ads (PPC Campaigns)',
     dur: '25 Hours Practical',
     tag: 'PAID TRAFFIC',
@@ -43,6 +46,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '03',
+    shortLabel: '03 Meta',
     title: 'Meta Ads (Facebook & Instagram)',
     dur: '20 Hours Practical',
     tag: 'SOCIAL MEDIA',
@@ -52,6 +56,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '04',
+    shortLabel: '04 Google',
     title: 'Google Business Handling & Local SEO',
     dur: '15 Hours Practical',
     tag: 'LOCAL SEO',
@@ -61,6 +66,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '05',
+    shortLabel: '05 Website',
     title: 'Website Designing & Deployment',
     dur: '25 Hours Practical',
     tag: 'WEB ARCHITECTURE',
@@ -70,6 +76,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '06',
+    shortLabel: '06 CRM',
     title: 'CRM Tools & Lead Management',
     dur: '15 Hours Practical',
     tag: 'CRM AUTOMATION',
@@ -79,6 +86,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '07',
+    shortLabel: '07 Poster',
     title: 'Poster Design & Visual Branding',
     dur: '15 Hours Practical',
     tag: 'VISUAL BRANDING',
@@ -88,6 +96,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '08',
+    shortLabel: '08 AI',
     title: 'AI Tools Integration & Automations',
     dur: '15 Hours Practical',
     tag: 'AI AUTOMATIONS',
@@ -97,6 +106,7 @@ const MARKETING_MODULES = [
   },
   {
     num: '09',
+    shortLabel: '09 Email',
     title: 'Email Marketing & Automation',
     dur: '15 Hours Practical',
     tag: 'EMAIL DRIP',
@@ -144,6 +154,7 @@ const STAT_CARDS = [
 const TREE_TIERS = [
   {
     level: '01',
+    tag: 'PRACTICAL MODULE',
     highlight: {
       title: '100% Practical Training',
       desc: 'Execute live campaigns on active ad budgets and real business accounts.'
@@ -155,6 +166,7 @@ const TREE_TIERS = [
   },
   {
     level: '02',
+    tag: 'REAL CLIENT BRIEFS',
     highlight: {
       title: 'Live Projects & Case Studies',
       desc: 'Work on real-world client briefs to build a job-ready digital portfolio.'
@@ -166,6 +178,7 @@ const TREE_TIERS = [
   },
   {
     level: '03',
+    tag: 'INCLUDED SUITE',
     highlight: {
       title: 'Tools Worth ₹50,000+ Free',
       desc: 'Free access to premium SEO, AI, and graphics software licenses.'
@@ -177,6 +190,7 @@ const TREE_TIERS = [
   },
   {
     level: '04',
+    tag: 'ISO ACCREDITED',
     highlight: {
       title: 'Industry Recognized Certificate',
       desc: 'Official Networkz Systems & ISO 9001:2015 accredited qualification.'
@@ -188,6 +202,7 @@ const TREE_TIERS = [
   },
   {
     level: '05',
+    tag: 'CAREER DRIVES',
     highlight: {
       title: '100% Placement Assistance',
       desc: 'Resume engineering, mock interviews & direct corporate placement drives.'
@@ -199,6 +214,7 @@ const TREE_TIERS = [
   },
   {
     level: '06',
+    tag: 'CONTINUOUS GUIDANCE',
     highlight: {
       title: 'Lifetime Support & Updates',
       desc: 'Continuous access to updated course modules, alumni network & guidance.'
@@ -229,25 +245,16 @@ export default function DigitalMarketingLanding() {
   const [formData, setFormData] = useState({ name: '', phone: '', role: 'Student (Study)' });
   const [submitted, setSubmitted] = useState(false);
 
-  /* ── 3D ROTATING CAROUSEL STATE ── */
-  const [activeCardIndex, setActiveCardIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  /* ── 3D COVERFLOW CAROUSEL STATE (IMAGE 2 REFERENCE) ── */
+  const [activeModuleIndex, setActiveModuleIndex] = useState(3); // Module 04 active by default
 
-  const handlePrevCard = () => {
-    setActiveCardIndex((prev) => (prev === 0 ? MARKETING_MODULES.length - 1 : prev - 1));
+  const handlePrevCover = () => {
+    setActiveModuleIndex((prev) => (prev === 0 ? MARKETING_MODULES.length - 1 : prev - 1));
   };
 
-  const handleNextCard = () => {
-    setActiveCardIndex((prev) => (prev === MARKETING_MODULES.length - 1 ? 0 : prev + 1));
+  const handleNextCover = () => {
+    setActiveModuleIndex((prev) => (prev === MARKETING_MODULES.length - 1 ? 0 : prev + 1));
   };
-
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setActiveCardIndex((prev) => (prev === MARKETING_MODULES.length - 1 ? 0 : prev + 1));
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [isPaused]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -281,34 +288,35 @@ export default function DigitalMarketingLanding() {
   return (
     <div className="ix-theme-root">
       {/* ─────────────────────────────────────────────────────────
-         STICKY HEADER WRAPPER (TOP BANNER + NAV BAR)
+         STICKY LUXURY NAVIGATION BAR
       ───────────────────────────────────────────────────────── */}
-      <div className="ix-header-sticky-wrapper">
-        {/* TOP FESTIVAL OFFER BANNER */}
+      <nav className="nz-luxury-nav">
+        <Link to="/" className="nz-nav-brand">
+          <div className="nz-brand-emblem">N</div>
+          <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
+          <span className="nz-brand-tag">KOLLAM CAMPUS</span>
+        </Link>
 
-        {/* NAVIGATION BAR */}
-        <header className="ix-nav-bar">
-          <div className="ix-nav-container">
-            <Link to="/" className="ix-brand">
-              <span className="ix-brand-name">NETWORKZ <span style={{ color: '#a5f3fc', fontWeight: 800 }}>SYSTEMS</span></span>
-              <span className="ix-brand-badge">KOLLAM</span>
-            </Link>
+        <ul className="nz-nav-menu">
+          <li><a href="#overview" className="nz-nav-link">OVERVIEW</a></li>
+          <li><a href="#syllabus" className="nz-nav-link">SYLLABUS</a></li>
+          <li><a href="#tools" className="nz-nav-link">TOOLS & AI</a></li>
+          <li><a href="#contact" className="nz-nav-link">KOLLAM CAMPUS</a></li>
+        </ul>
 
-            <nav className="ix-nav-links">
-              <a href="#overview" className="ix-nav-link active">About</a>
-              <a href="#syllabus" className="ix-nav-link">Features</a>
-              <a href="#tools" className="ix-nav-link">Integration</a>
-              <a href="#contact" className="ix-nav-link">Services</a>
-            </nav>
-
-            <div className="ix-nav-actions">
-              <button className="ix-btn-pill-outline" onClick={scrollToBooking}>
-                Request Demo ↗
-              </button>
-            </div>
-          </div>
-        </header>
-      </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          <button className="nz-nav-cta" onClick={scrollToBooking} style={{ cursor: 'pointer', border: 'none' }}>
+            CLAIM SPECIAL FEE OFFER ↗
+          </button>
+          <button
+            className="nz-btn-secondary"
+            onClick={() => navigate('/')}
+            style={{ padding: '0.65rem 1.1rem', fontSize: '0.78rem', background: '#222222', color: '#ffffff', border: '1px solid #333333' }}
+          >
+            ← HOME
+          </button>
+        </div>
+      </nav>
 
       {/* ─────────────────────────────────────────────────────────
          SECTION 1: DEEP TEAL HERO HEADER (EXACT INTEGRATEX STYLE)
@@ -321,55 +329,78 @@ export default function DigitalMarketingLanding() {
 
         {/* HERO CONTENT */}
         <div className="ix-container">
-          <div className="ix-hero-content">
-            <h1 className="ix-hero-serif-title">
-              Unlock the power of<br />Digital Marketing Excellence
-            </h1>
+          <div className="ix-hero-grid">
+            {/* HERO LEFT */}
+            <div className="ix-hero-content">
+              <h1 className="ix-hero-serif-title">
+                Unlock the power of<br />Digital Marketing Excellence
+              </h1>
 
-            <p className="ix-hero-subtitle">
-              Learn. Practice. Grow. From Basics to Advanced Level. Master SEO, Google Ads, Meta Ads, AI Automations, Web Design & CRM tools with 100% practical hands-on training.
-            </p>
+              <p className="ix-hero-subtitle">
+                Learn. Practice. Grow. From Basics to Advanced Level. Master SEO, Google Ads, Meta Ads, AI Automations, Web Design & CRM tools with 100% practical hands-on training.
+              </p>
 
-            <div className="ix-hero-ctas">
-              <button className="ix-btn-pill-solid-dark" onClick={scrollToBooking}>
-                Start Free Trial
-              </button>
-              <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="ix-btn-pill-outline-hero">
-                Book a Demo
-              </a>
-            </div>
+              <div className="ix-hero-ctas">
+                <button className="ix-btn-pill-solid-dark" onClick={scrollToBooking}>
+                  Start Free Trial
+                </button>
+                <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="ix-btn-pill-outline-hero">
+                  Book a Demo
+                </a>
+              </div>
 
-            {/* 3D HELIX RIBBON GRAPHIC */}
-            <div className="ix-hero-ribbon-wrap">
-              <svg className="ix-hero-ribbon-svg" viewBox="0 0 1000 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 90C120 150 250 30 380 90C510 150 640 30 770 90C900 150 1000 90 1000 90" stroke="url(#cyan-helix-1)" strokeWidth="12" strokeLinecap="round" opacity="0.9" />
-                <path d="M0 105C140 40 270 160 410 95C550 30 680 150 820 95C930 50 1000 105 1000 105" stroke="url(#cyan-helix-2)" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
-                <defs>
-                  <linearGradient id="cyan-helix-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#38bdf8" />
-                    <stop offset="50%" stopColor="#22d3ee" />
-                    <stop offset="100%" stopColor="#06b6d4" />
-                  </linearGradient>
-                  <linearGradient id="cyan-helix-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#22d3ee" />
-                    <stop offset="100%" stopColor="#38bdf8" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
+              {/* 3D HELIX RIBBON GRAPHIC */}
+              <div className="ix-hero-ribbon-wrap">
+                <svg className="ix-hero-ribbon-svg" viewBox="0 0 1000 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M0 90C120 150 250 30 380 90C510 150 640 30 770 90C900 150 1000 90 1000 90" stroke="url(#cyan-helix-1)" strokeWidth="12" strokeLinecap="round" opacity="0.9" />
+                  <path d="M0 105C140 40 270 160 410 95C550 30 680 150 820 95C930 50 1000 105 1000 105" stroke="url(#cyan-helix-2)" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
+                  <defs>
+                    <linearGradient id="cyan-helix-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#38bdf8" />
+                      <stop offset="50%" stopColor="#22d3ee" />
+                      <stop offset="100%" stopColor="#06b6d4" />
+                    </linearGradient>
+                    <linearGradient id="cyan-helix-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#22d3ee" />
+                      <stop offset="100%" stopColor="#38bdf8" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
 
-            {/* LOGO STRIP AT HERO BOTTOM */}
-            <div className="ix-brand-strip">
-              <div className="ix-brand-cloud">
-                <span className="ix-cloud-item">✦ Google Analytics</span>
-                <span className="ix-cloud-item">✦ Meta Ads</span>
-                <span className="ix-cloud-item">✦ Google Ads</span>
-                <span className="ix-cloud-item">✦ HubSpot</span>
-                <span className="ix-cloud-item">✦ Mailchimp</span>
-                <span className="ix-cloud-item">✦ Canva Pro</span>
+              {/* LOGO STRIP AT HERO BOTTOM */}
+              <div className="ix-brand-strip">
+                <div className="ix-brand-cloud">
+                  <span className="ix-cloud-item">✦ Google Analytics</span>
+                  <span className="ix-cloud-item">✦ Meta Ads</span>
+                  <span className="ix-cloud-item">✦ Google Ads</span>
+                  <span className="ix-cloud-item">✦ HubSpot</span>
+                  <span className="ix-cloud-item">✦ Mailchimp</span>
+                  <span className="ix-cloud-item">✦ Canva Pro</span>
+                </div>
               </div>
             </div>
 
+            {/* HERO RIGHT SHOWCASE MEDIA CARD */}
+            <div className="ix-hero-media">
+              <div className="ix-hero-glass-card">
+                <img
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80"
+                  alt="Digital Marketing Campaign Analytics & Performance Hub"
+                  className="ix-hero-media-img"
+                />
+                <div className="ix-hero-badge-overlay">
+                  <span className="ix-pulse-dot" /> LIVE AD CAMPAIGNS ACTIVE
+                </div>
+                <div className="ix-hero-card-footer">
+                  <div className="ix-footer-stat">
+                    <span className="ix-stat-val">₹15,000</span>
+                    <span className="ix-stat-lbl">SPECIAL OFFER (ACTUAL ₹35,000)</span>
+                  </div>
+                  <span className="ix-footer-pill">KOLLAM LABS</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,7 +453,7 @@ export default function DigitalMarketingLanding() {
           </div>
 
           <div className="ix-prem-features-grid">
-            
+
             {/* Card 1: Search & Paid Traffic */}
             <div className="ix-prem-feature-card">
               <div className="ix-prem-card-preview dark-emerald-mesh">
@@ -543,76 +574,82 @@ export default function DigitalMarketingLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         SECTION 5: PREMIUM 3D ROTATING HORIZONTAL MODULES CAROUSEL
+         SECTION 5: WHAT YOU WILL LEARN — 3D COVERFLOW CAROUSEL (IMAGE 2 REFERENCE)
       ───────────────────────────────────────────────────────── */}
-      <section id="syllabus" className="ix-syllabus-sec" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="ix-bg-decor-wrapper">
-          <div className="ix-tech-grid-light" />
-          <div className="ix-ambient-orb-cyan" style={{ bottom: '-15%', right: '-10%' }} />
-        </div>
-
+      <section id="syllabus" className="ix-coverflow-sec">
         <div className="ix-container">
-          <div className="ix-sec-header text-center">
-            <h2 className="ix-serif-heading">What You Will Learn</h2>
-            <p className="ix-sec-desc">9 core modules designed to turn you into a complete Digital Marketing Specialist. Rotate left & right to explore.</p>
+          {/* Header */}
+          <div className="ix-sec-header" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            <h2 className="ix-coverflow-heading">What You Will Learn</h2>
+            <p className="ix-coverflow-sub" style={{ maxWidth: '650px', margin: '0.6rem auto 0', textAlign: 'center' }}>
+              9 core modules designed to turn you into a complete Digital Marketing Specialist.
+            </p>
+            <p className="ix-coverflow-hint">Rotate left & right to explore.</p>
           </div>
 
-          {/* 3D ROTATING CAROUSEL STAGE */}
-          <div 
-            className="ix-carousel-3d-wrapper"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            {/* Left Nav Arrow */}
-            <button 
-              className="ix-carousel-btn ix-btn-prev" 
-              onClick={handlePrevCard} 
-              aria-label="Previous Module"
-            >
-              ‹
+          {/* 3D Cover Flow Stage */}
+          <div className="ix-coverflow-stage-wrapper">
+            {/* Nav Prev */}
+            <button className="ix-cover-nav-btn ix-cover-prev" onClick={handlePrevCover} aria-label="Previous Module">
+              &lt;
             </button>
 
-            {/* Carousel Stage Container */}
-            <div className="ix-carousel-stage">
+            {/* 3D Track */}
+            <div className="ix-coverflow-track">
               {MARKETING_MODULES.map((m, idx) => {
-                let offset = idx - activeCardIndex;
-                const total = MARKETING_MODULES.length;
+                const diff = idx - activeModuleIndex;
+                const absDiff = Math.abs(diff);
+                const isActive = idx === activeModuleIndex;
 
-                // Handle circular wrap-around
-                if (offset > Math.floor(total / 2)) offset -= total;
-                if (offset < -Math.floor(total / 2)) offset += total;
-
-                const isActive = offset === 0;
-                const absOffset = Math.abs(offset);
-                const isVisible = absOffset <= 2;
+                let cardStyle = {};
+                if (isActive) {
+                  cardStyle = {
+                    transform: 'translateX(-50%) scale(1) translateZ(0)',
+                    opacity: 1,
+                    zIndex: 50,
+                    borderColor: '#10b981',
+                    boxShadow: '0 25px 60px rgba(16, 185, 129, 0.22), 0 0 0 2px #10b981',
+                    filter: 'none'
+                  };
+                } else if (absDiff <= 3) {
+                  const xOffset = diff * 290;
+                  const scale = Math.max(0.72, 1 - absDiff * 0.14);
+                  const rotY = diff < 0 ? 18 : -18;
+                  const op = Math.max(0.3, 1 - absDiff * 0.3);
+                  cardStyle = {
+                    transform: `translateX(calc(-50% + ${xOffset}px)) scale(${scale}) rotateY(${rotY}deg)`,
+                    opacity: op,
+                    zIndex: 30 - absDiff,
+                    filter: absDiff >= 2 ? 'blur(3px)' : 'none'
+                  };
+                } else {
+                  cardStyle = {
+                    display: 'none'
+                  };
+                }
 
                 return (
                   <div
                     key={m.num}
-                    className={`ix-module-card ix-carousel-card ${isActive ? 'active' : ''}`}
-                    style={{
-                      transform: `translateX(${offset * 310}px) scale(${1 - absOffset * 0.12}) rotateY(${offset * -14}deg) translateZ(${-absOffset * 90}px)`,
-                      opacity: isVisible ? Math.max(1 - absOffset * 0.35, 0) : 0,
-                      pointerEvents: isVisible ? 'auto' : 'none',
-                      zIndex: 20 - absOffset,
-                    }}
-                    onClick={() => setActiveCardIndex(idx)}
+                    className={`ix-coverflow-card ${isActive ? 'is-active' : ''}`}
+                    style={cardStyle}
+                    onClick={() => setActiveModuleIndex(idx)}
                   >
-                    <div className="ix-module-media">
-                      <img src={m.image} alt={m.title} className="ix-module-img" />
-                      <span className="ix-module-tag">{m.tag}</span>
-                      <span className="ix-module-dur">{m.dur}</span>
-                      <span className="ix-module-num-badge">{m.num}</span>
+                    <div className="ix-cover-card-media">
+                      <img src={m.image} alt={m.title} className="ix-cover-img" loading="lazy" />
+                      <span className="ix-cover-tag">{m.tag}</span>
+                      <span className="ix-cover-num">{m.num}</span>
+                      <span className="ix-cover-dur">{m.dur}</span>
                     </div>
 
-                    <div className="ix-module-body">
-                      <h3 className="ix-module-title">{m.title}</h3>
-                      <p className="ix-module-desc">{m.desc}</p>
+                    <div className="ix-cover-card-body">
+                      <h3 className="ix-cover-title">{m.title}</h3>
+                      <p className="ix-cover-desc">{m.desc}</p>
 
-                      <div className="ix-module-skills">
+                      <div className="ix-cover-skills">
                         {m.skills.map((sk) => (
-                          <span key={sk} className="ix-skill-chip">
-                            ✦ {sk}
+                          <span key={sk} className="ix-cover-skill-chip">
+                            + {sk}
                           </span>
                         ))}
                       </div>
@@ -622,26 +659,21 @@ export default function DigitalMarketingLanding() {
               })}
             </div>
 
-            {/* Right Nav Arrow */}
-            <button 
-              className="ix-carousel-btn ix-btn-next" 
-              onClick={handleNextCard} 
-              aria-label="Next Module"
-            >
-              ›
+            {/* Nav Next */}
+            <button className="ix-cover-nav-btn ix-cover-next" onClick={handleNextCover} aria-label="Next Module">
+              &gt;
             </button>
           </div>
 
-          {/* Carousel Pagination Dots */}
-          <div className="ix-carousel-pagination">
+          {/* Bottom 9 Filter Pills Row (Image 2 style) */}
+          <div className="ix-coverflow-pills-row">
             {MARKETING_MODULES.map((m, idx) => (
               <button
                 key={m.num}
-                className={`ix-pagination-dot ${idx === activeCardIndex ? 'active' : ''}`}
-                onClick={() => setActiveCardIndex(idx)}
+                className={`ix-cover-pill-btn ${idx === activeModuleIndex ? 'is-active' : ''}`}
+                onClick={() => setActiveModuleIndex(idx)}
               >
-                <span className="ix-dot-num">{m.num}</span>
-                <span className="ix-dot-label">{m.title.split(' ')[0]}</span>
+                {m.shortLabel}
               </button>
             ))}
           </div>
@@ -650,40 +682,45 @@ export default function DigitalMarketingLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         SECTION 7: 6-TIER CENTER-LINE MASTERCLASS TREE
+         SECTION 7: PROGRAM HIGHLIGHTS & MASTER TOOLS (TREE STEM MODEL - IMAGE 2 REFERENCE)
       ───────────────────────────────────────────────────────── */}
       <section id="benefits" className="ix-tree-sec">
         <div className="ix-container">
-          <div className="ix-sec-header text-center">
-            <h2 className="ix-serif-heading">Program Highlights & Master Tools</h2>
-            <p className="ix-sec-desc">
+          <div className="ix-sec-header" style={{ textAlign: 'center', marginBottom: '4.5rem' }}>
+            <h2 className="ix-tree-heading" style={{ textAlign: 'center' }}>Program Highlights & Master Tools</h2>
+            <p className="ix-tree-sub" style={{ maxWidth: '650px', margin: '0.6rem auto 0', textAlign: 'center' }}>
               Pairing practical course highlights with agency tool suites along a center stem.
             </p>
           </div>
 
-          <div className="ix-tree-wrapper">
-            <div className="ix-tree-stem" />
+          <div className="ix-tree-stem-container">
+            {/* Center Stem Line */}
+            <div className="ix-tree-center-line" />
 
-            <div className="ix-tree-rows">
+            {/* Tree Rows */}
+            <div className="ix-tree-rows-list">
               {TREE_TIERS.map((tier) => (
                 <div key={tier.level} className="ix-tree-row">
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <div className="ix-tree-card">
-                      <h3 className="ix-card-title">{tier.highlight.title}</h3>
-                      <p className="ix-card-desc">{tier.highlight.desc}</p>
+                  {/* Left: Guarantee Card */}
+                  <div className="ix-tree-left-col">
+                    <div className="ix-tree-left-card">
+                      <h3 className="ix-tree-card-title">{tier.highlight.title}</h3>
+                      <p className="ix-tree-card-desc">{tier.highlight.desc}</p>
                     </div>
                   </div>
 
-                  <div className="ix-tree-node-circle">
-                    <span>{tier.level}</span>
+                  {/* Center Node Badge */}
+                  <div className="ix-tree-node-col">
+                    <div className="ix-tree-node-badge">{tier.level}</div>
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <div className="ix-tree-card">
+                  {/* Right: Tools Suite Card */}
+                  <div className="ix-tree-right-col">
+                    <div className="ix-tree-right-card">
                       {tier.tools.map((t) => (
-                        <div key={t.name} style={{ marginBottom: '0.4rem' }}>
-                          <strong style={{ fontSize: '0.85rem', color: 'var(--ix-text-dark)' }}>{t.name}</strong>
-                          <div style={{ fontSize: '0.75rem', color: 'var(--ix-text-body)' }}>{t.desc}</div>
+                        <div key={t.name} className="ix-tree-tool-item">
+                          <div className="ix-tree-tool-name">{t.name}</div>
+                          <div className="ix-tree-tool-desc">{t.desc}</div>
                         </div>
                       ))}
                     </div>
@@ -692,94 +729,116 @@ export default function DigitalMarketingLanding() {
               ))}
             </div>
           </div>
+
         </div>
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         SECTION 9: KOLLAM CAMPUS & OFFER BOOKING FORM
+         SECTION 9: KOLLAM CAMPUS & OFFER BOOKING FORM (MATCHING REFERENCE 2)
       ───────────────────────────────────────────────────────── */}
-      <section id="contact" className="ix-booking-sec" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="ix-bg-decor-wrapper">
-          <div className="ix-tech-grid-light" />
-          <div className="ix-ambient-orb-mint" style={{ bottom: '-10%', left: '-5%' }} />
-        </div>
+      <section id="contact" className="ix-booking-sec">
         <div id="nz-booking-sec" className="ix-container">
           <div className="ix-booking-grid">
 
             {/* Left: Kollam HQ */}
             <div className="ix-hq-card">
-              <span style={{ fontSize: '0.72rem', fontWeight: 800, color: 'var(--ix-text-dark)', background: '#dce8e4', padding: '0.2rem 0.6rem', borderRadius: '12px' }}>
-                KOLLAM CAMPUS HQ
-              </span>
-              <h2 style={{ fontFamily: 'var(--ix-font-serif)', fontSize: '2rem', margin: '0.8rem 0 0.5rem 0', color: 'var(--ix-text-dark)' }}>
-                Networkz Systems Kollam
-              </h2>
-              <p style={{ fontSize: '0.9rem', color: 'var(--ix-text-body)', margin: '0 0 1.5rem 0', lineHeight: 1.6 }}>
+              <div className="ix-hq-badge">KOLLAM CAMPUS HQ</div>
+              <h2 className="ix-hq-title">Networkz Systems Kollam</h2>
+              <p className="ix-hq-address">
                 Pattathuvila Plaza, 2nd Floor, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001
               </p>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, marginBottom: '1rem' }}>
-                📞 Phone / WhatsApp: <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--ix-text-dark)' }}>+91 8089 03 04 05</a>
+              
+              <div className="ix-hq-contact-box">
+                <div className="ix-hq-contact-item">
+                  <span className="ix-hq-icon">📞</span>
+                  <span>Phone / WhatsApp: <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer">+91 80890 30405</a></span>
+                </div>
+                <div className="ix-hq-contact-item">
+                  <span className="ix-hq-icon">🕒</span>
+                  <span>Hours: Monday – Saturday (9:00 AM – 5:30 PM)</span>
+                </div>
               </div>
-              <a href="https://maps.google.com/?q=Networkz+Systems+Kollam+Chinnakada" target="_blank" rel="noopener noreferrer" className="ix-btn-pill-white" style={{ display: 'inline-block', textDecoration: 'none' }}>
-                📍 View on Google Maps ↗
+
+              <a href="https://maps.google.com/?q=Networkz+Systems+Kollam+Chinnakada" target="_blank" rel="noopener noreferrer" className="ix-hq-map-btn">
+                📍 VIEW ON GOOGLE MAPS ↗
               </a>
             </div>
 
-            {/* Right: Booking Form */}
-            <div className="ix-form-card">
-              <h3 style={{ fontFamily: 'var(--ix-font-serif)', fontSize: '1.8rem', margin: '0 0 0.5rem 0' }}>Enroll Now @ ₹15,000</h3>
-              <p style={{ fontSize: '0.85rem', color: '#bce5e8', margin: '0 0 1.4rem 0' }}>Submit your details to lock in the special offer price immediately.</p>
-
-              {submitted ? (
-                <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
-                  <h4 style={{ fontFamily: 'var(--ix-font-serif)', fontSize: '1.5rem' }}>₹15,000 OFFER CLAIM SENT!</h4>
-                  <p style={{ fontSize: '0.85rem', color: '#bce5e8' }}>Thank you <strong>{formData.name}</strong>! Your offer seat reservation has been sent on WhatsApp.</p>
-                  <button className="ix-btn-pill-solid-dark" style={{ background: '#ffffff', color: 'var(--ix-teal-dark)', marginTop: '1rem' }} onClick={() => setSubmitted(false)}>Book Another Seat</button>
+            {/* Right: Booking Form (Exact Match to Image 2 Reference) */}
+            <div className="ix-offer-card-ref">
+              {/* Top Banner Graphic (Image 2 visual style) */}
+              <div className="ix-offer-top-banner">
+                <span className="ix-banner-sub">SPECIAL ADMISSION OFFER</span>
+                <div className="ix-banner-price-row">
+                  <span className="ix-banner-old-price">₹35,000</span>
+                  <span className="ix-banner-main-price">₹15,000</span>
+                  <span className="ix-banner-save-badge">57% OFF</span>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div>
-                    <label style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.08em', color: '#bce5e8' }}>YOUR FULL NAME *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Rahul Nair"
-                      className="ix-form-input"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                  </div>
+              </div>
 
-                  <div>
-                    <label style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.08em', color: '#bce5e8' }}>PHONE / WHATSAPP NUMBER *</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="e.g. +91 80890 30405"
-                      className="ix-form-input"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
-                  </div>
+              {/* Lower Form Container (Image 2 style) */}
+              <div className="ix-offer-body-ref">
+                <div className="ix-ref-header">
+                  <span className="ix-ref-unlock">UNLOCK</span>
+                  <h2 className="ix-ref-headline">₹15,000 OFFER</h2>
+                  <span className="ix-ref-subhead">YOUR COURSE SEAT</span>
+                  <p className="ix-ref-desc-lead">when you sign up with your details today</p>
+                  <p className="ix-ref-desc-sub">
+                    Join Networkz Systems Kollam for early access to live agency campaign projects, 100% placement drives, and free software licenses.
+                  </p>
+                </div>
 
-                  <div>
-                    <label style={{ fontSize: '0.7rem', fontWeight: 800, letterSpacing: '0.08em', color: '#bce5e8' }}>CURRENT STATUS / ROLE</label>
-                    <select
-                      className="ix-form-input"
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    >
-                      {ROLE_OPTIONS.map((r) => (
-                        <option key={r} value={r}>{r}</option>
-                      ))}
-                    </select>
+                {submitted ? (
+                  <div className="ix-offer-success">
+                    <h4>₹15,000 OFFER CLAIM SENT!</h4>
+                    <p>Thank you <strong>{formData.name}</strong>! Your seat reservation details have been sent to WhatsApp.</p>
+                    <button className="ix-ref-cta-btn" onClick={() => setSubmitted(false)}>
+                      BOOK ANOTHER SEAT
+                    </button>
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="ix-ref-form">
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">YOUR FULL NAME *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Rahul Nair"
+                        className="ix-ref-input"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      />
+                    </div>
 
-                  <button type="submit" className="ix-btn-pill-solid-dark" style={{ background: '#ffffff', color: 'var(--ix-teal-dark)', width: '100%', marginTop: '0.5rem' }}>
-                    CLAIM ₹15,000 OFFER & ENROLL NOW 💬 ↗
-                  </button>
-                </form>
-              )}
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">PHONE / WHATSAPP NUMBER *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="e.g. +91 80890 30405"
+                        className="ix-ref-input"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">CURRENT STATUS / ROLE</label>
+                      <CustomSelect
+                        dropUp
+                        theme="light"
+                        options={ROLE_OPTIONS}
+                        value={formData.role}
+                        onChange={(val) => setFormData({ ...formData, role: val })}
+                      />
+                    </div>
+
+                    <button type="submit" className="ix-ref-cta-btn">
+                      CLAIM ₹15,000 OFFER & ENROLL NOW 💬 ↗
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
 
           </div>
@@ -787,7 +846,7 @@ export default function DigitalMarketingLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         SECTION 10: CRISP PURE WHITE FOOTER (EXACT MATCH)
+         SECTION 10: LUXURY FOOTER
       ───────────────────────────────────────────────────────── */}
       <footer className="ix-footer">
         <div className="ix-container">
@@ -795,51 +854,65 @@ export default function DigitalMarketingLanding() {
 
             {/* Col 1 */}
             <div>
-              <div className="ix-footer-logo">NETWORKZ <span style={{ color: '#0d3a3f', fontWeight: 800 }}>SYSTEMS</span></div>
-              <p className="ix-footer-desc">
+              <div className="ix-footer-logo">NETWORKZ <span style={{ color: '#a5f3fc', fontWeight: 800 }}>SYSTEMS</span></div>
+              <p className="ix-footer-desc" style={{ marginBottom: '0.75rem' }}>
                 Networkz Systems Kollam — ISO 9001:2015 accredited technology & digital marketing training institute. Empowering career breakthroughs.
               </p>
+              <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)', paddingTop: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <span>📍</span>
+                  <span>2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>📞</span>
+                  <a href="tel:+918089030405" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '700' }}>+91 80890 30405</a>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🕒</span>
+                  <span>Monday – Saturday: 9:00 AM – 5:30 PM</span>
+                </div>
+              </div>
             </div>
 
             {/* Col 2 */}
             <div>
-              <h4 className="ix-footer-heading">Resources</h4>
-              <ul className="ix-footer-links">
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#syllabus">Features</a></li>
-                <li><a href="#benefits">Integration</a></li>
-                <li><a href="#tools">Services</a></li>
-              </ul>
+                <h4 className="ix-footer-heading">Resources</h4>
+                <ul className="ix-footer-links">
+                  <li><a href="#overview">Overview</a></li>
+                  <li><a href="#syllabus">Features</a></li>
+                  <li><a href="#benefits">Integration</a></li>
+                  <li><a href="#tools">Services</a></li>
+                </ul>
+              </div>
+
+              {/* Col 3 */}
+              <div>
+                <h4 className="ix-footer-heading">Instruction</h4>
+                <ul className="ix-footer-links">
+                  <li><a href="#syllabus">SEO & Google Ads</a></li>
+                  <li><a href="#syllabus">Meta Ads</a></li>
+                  <li><a href="#syllabus">WordPress</a></li>
+                  <li><a href="#syllabus">CRM & AI Tools</a></li>
+                </ul>
+              </div>
+
+              {/* Col 4 */}
+              <div>
+                <h4 className="ix-footer-heading">Legal</h4>
+                <ul className="ix-footer-links">
+                  <li><a href="#contact">Privacy Policy</a></li>
+                  <li><a href="#contact">Terms of Service</a></li>
+                  <li><span>ISO 9001:2015 Accredited</span></li>
+                </ul>
+              </div>
+
             </div>
 
-            {/* Col 3 */}
-            <div>
-              <h4 className="ix-footer-heading">Instruction</h4>
-              <ul className="ix-footer-links">
-                <li><a href="#syllabus">SEO & Google Ads</a></li>
-                <li><a href="#syllabus">Meta Ads</a></li>
-                <li><a href="#syllabus">WordPress</a></li>
-                <li><a href="#syllabus">CRM & AI Tools</a></li>
-              </ul>
+            <div className="ix-footer-bottom">
+              <span>NETWORKZ SYSTEMS KOLLAM</span>
+              <span>© 2025 Networkz Systems Kollam. ISO 9001:2015 Certified. All rights reserved.</span>
             </div>
-
-            {/* Col 4 */}
-            <div>
-              <h4 className="ix-footer-heading">Legal</h4>
-              <ul className="ix-footer-links">
-                <li><a href="#contact">Privacy Policy</a></li>
-                <li><a href="#contact">Terms of Service</a></li>
-                <li><span>ISO 9001:2015 Accredited</span></li>
-              </ul>
-            </div>
-
           </div>
-
-          <div className="ix-footer-bottom">
-            <span>NETWORKZ SYSTEMS KOLLAM</span>
-            <span>© 2025 Networkz Systems Kollam. ISO 9001:2015 Certified. All rights reserved.</span>
-          </div>
-        </div>
       </footer>
 
     </div>
