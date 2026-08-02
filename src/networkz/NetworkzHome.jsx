@@ -787,128 +787,122 @@ function OfferModal({ course, onClose }) {
 
   return (
     <div className="nz-modal-overlay" onClick={onClose}>
-      <div className="nz-modal-vertical-card" onClick={(e) => e.stopPropagation()}>
+      <div className="nz-offer-popup-card" onClick={(e) => e.stopPropagation()}>
 
-        {/* Top Dark Header (Logo Name style) */}
-        <div className="nz-vcard-header">
-          <button className="nz-vcard-close" onClick={onClose} aria-label="Close modal">✕</button>
+        {/* Top Graphic Banner Matching Reference Pic Exactly */}
+        <div className="nz-offer-banner-graphic">
+          <button className="nz-offer-close-btn" onClick={onClose} aria-label="Close popup">✕</button>
 
-          <div className="nz-vcard-logo-emblem">
-            <span className="nz-vcard-logo-text">NETWORKZ SYSTEMS</span>
+          {/* Left Mockup Graphic Cards */}
+          <div className="nz-banner-item left-top">
+            <span className="nz-mock-tag">LEGEND</span>
+            <span className="nz-mock-sub">SINCE 2003</span>
+          </div>
+          
+          <div className="nz-banner-item left-bottom">
+            <span className="nz-mock-tag">I HAVE A 6 PACK</span>
+            <div className="nz-mock-sub">NETWORKZ PRO</div>
+          </div>
+
+          {/* Center Black Ribbon Shield with 10% OFF */}
+          <div className="nz-banner-ribbon-badge">
+            <div className="nz-banner-logo-black-pill">NETWORKZ</div>
+            <div className="nz-banner-num">10%</div>
+            <div className="nz-banner-off">OFF</div>
+          </div>
+
+          {/* Right Mockup Graphic Cards */}
+          <div className="nz-banner-item right-top">
+            <span className="nz-mock-tag-light">TECHNICAL</span>
+            <span className="nz-mock-sub-light">CERTIFIED</span>
+          </div>
+
+          <div className="nz-banner-item right-bottom-mug">
+            <span className="nz-mug-text">Engineer</span>
           </div>
         </div>
 
-        {/* Vibrant Red Facet Geometric Banner */}
-        <div className="nz-vcard-ribbon">
-          <div className="nz-ribbon-shimmer" />
-          <div className="nz-ribbon-content">
-            <span className="nz-ribbon-offer-text">🎉 25TH ANNIVERSARY CELEBRATION 🎉</span>
-          </div>
-        </div>
-
-        {/* Middle Details & Form Body */}
-        <div className="nz-vcard-body">
-          <div className="nz-vcard-person-head">
-            <h3 className="nz-vcard-name">
-              <strong>YOU GOT 10%</strong> <span>OFFER PRICE NOW!</span>
-            </h3>
-            <p className="nz-vcard-role">
-              For the 25th Anniversary Celebration, please fill the below form for getting offer ({courseTitle}).
-            </p>
-            <div className="nz-vcard-line" />
-          </div>
+        {/* White Card Content & Form Body */}
+        <div className="nz-offer-body">
 
           {claimed ? (
-            <div className="nz-vcard-success">
+            <div className="nz-offer-success">
               <div className="nz-vcard-qr-box">
                 <div className="nz-qr-inner">
-                  <svg width="72" height="72" viewBox="0 0 24 24" fill="#121216">
+                  <svg width="72" height="72" viewBox="0 0 24 24" fill="#10b981">
                     <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm1 1h2v2H5V5zm9-3h8v8h-8V2zm2 2v4h4V4h-4zm1 1h2v2h-2V5zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm1 1h2v2H5v-2zm13.5-2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm4 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z" />
                   </svg>
                 </div>
                 <span className="nz-qr-label">VOUCHER: NS25-OFFER10</span>
               </div>
-              <h4 className="nz-vcard-claimed-title">OFFER DISPATCHED TO WHATSAPP!</h4>
-              <p className="nz-vcard-claimed-sub">
-                Congratulations <strong>{formData.name}</strong> ({formData.role})! Your 10% discount claim for <strong>{courseTitle}</strong> has been opened on WhatsApp.
+              <h4 className="nz-offer-success-title">VOUCHER DISPATCHED TO WHATSAPP!</h4>
+              <p className="nz-offer-success-sub">
+                Congratulations <strong>{formData.name}</strong> ({formData.role})! Your 10% discount voucher for <strong>{courseTitle}</strong> has been opened on WhatsApp.
               </p>
               <a
                 href={getWaOfferUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nz-vcard-btn-wa"
+                className="nz-offer-wa-btn"
               >
                 RE-OPEN WHATSAPP 💬 →
               </a>
-              <button className="nz-vcard-btn" onClick={onClose}>DONE & CLOSE</button>
+              <button className="nz-offer-done-btn" onClick={onClose}>DONE & CLOSE</button>
             </div>
           ) : (
-            <form className="nz-vcard-form" onSubmit={handleSubmit}>
-
-              <div className="nz-vcard-field">
-                <span className="nz-vcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
-                </span>
-                <div className="nz-vcard-input-box">
-                  <label className="nz-vcard-lbl">NAME *</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Enter your name"
-                    className="nz-vcard-input"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  />
-                </div>
+            <form className="nz-offer-form" onSubmit={handleSubmit}>
+              
+              <div className="nz-offer-header">
+                <p className="nz-offer-eyebrow">UNLOCK</p>
+                <h3 className="nz-offer-title">10% OFF</h3>
+                <p className="nz-offer-sub-title">YOUR COURSE ENROLLMENT</p>
+                <p className="nz-offer-desc">
+                  Exclusive 25th Anniversary celebration offer for <strong>{courseTitle}</strong>. Fill the details below to claim your discount voucher.
+                </p>
               </div>
 
-              <div className="nz-vcard-field">
-                <span className="nz-vcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                </span>
-                <div className="nz-vcard-input-box">
-                  <label className="nz-vcard-lbl">NUMBER *</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Enter your mobile number"
-                    className="nz-vcard-input"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
+              <div className="nz-offer-field">
+                <label className="nz-offer-lbl">YOUR FULL NAME *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="Enter your full name"
+                  className="nz-offer-input"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                />
               </div>
 
-              <div className="nz-vcard-field">
-                <span className="nz-vcard-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                    <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                  </svg>
-                </span>
-                <div className="nz-vcard-input-box">
-                  <label className="nz-vcard-lbl">CURRENT ROLE (STUDY / JOB) *</label>
-                  <CustomRoleSelect
-                    value={formData.role}
-                    onChange={(val) => setFormData({ ...formData, role: val })}
-                  />
-                </div>
+              <div className="nz-offer-field">
+                <label className="nz-offer-lbl">PHONE / WHATSAPP NUMBER *</label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="Enter your mobile number"
+                  className="nz-offer-input"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                />
               </div>
 
-              <button type="submit" className="nz-vcard-btn">
-                GET 10% OFFER NOW 🎉 →
+              <div className="nz-offer-field">
+                <label className="nz-offer-lbl">CURRENT ROLE (STUDY / JOB) *</label>
+                <CustomRoleSelect
+                  value={formData.role}
+                  onChange={(val) => setFormData({ ...formData, role: val })}
+                />
+              </div>
+
+              <button type="submit" className="nz-offer-submit-btn">
+                CLAIM 10% DISCOUNT NOW →
               </button>
+
+              <p className="nz-offer-footer-text">
+                NETWORKZ SYSTEMS · 25TH ANNIVERSARY SPECIAL
+              </p>
             </form>
           )}
 
-          <div className="nz-vcard-footer-note">
-            NETWORKZ SYSTEMS · 25TH ANNIVERSARY SPECIAL
-          </div>
         </div>
 
       </div>
@@ -1160,7 +1154,7 @@ export default function NetworkzHome() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
 
-      const sections = ['programs', 'catalog', 'internship', 'about', 'contact'];
+      const sections = ['programs', 'catalog', 'about', 'contact'];
       const scrollPosition = window.scrollY + 140;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -1226,7 +1220,6 @@ export default function NetworkzHome() {
           {[
             { id: 'programs', label: 'Programs' },
             { id: 'catalog', label: 'Catalog' },
-            { id: 'internship', label: 'Internship' },
             { id: 'about', label: 'About' },
             { id: 'contact', label: 'Contact' },
           ].map(({ id, label }) => (
@@ -1443,51 +1436,7 @@ export default function NetworkzHome() {
         )}
       </section>
 
-      {/* ════════════════════════════════════════
-          INTERNSHIP
-          ════════════════════════════════════════ */}
-      <section className="nz-internship" id="internship">
-        <div className="nz-internship-inner">
-          <div className="nz-internship-copy">
-            <p className="nz-section-eyebrow">GET HANDS-ON EXPERIENCE</p>
-            <h2 className="nz-section-title">INTERNSHIP<br />PROGRAMS</h2>
-            <p className="nz-section-sub">
-              From 120-hour sprints to full-year professional programs — real project
-              experience with mentoring, portfolio building, and 100% placement support.
-            </p>
-          </div>
-          <div className="nz-internship-tiers">
-            {[
-              { dur: '120 HRS', tag: 'SHORT SPRINT', desc: 'Intensive real-project exposure. Perfect for college internship requirements.', img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80' },
-              { dur: '3 MONTHS', tag: 'STANDARD', desc: 'Structured program with weekly mentoring and portfolio deliverables.', img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80' },
-              { dur: '6 MONTHS', tag: 'PROFESSIONAL', desc: 'Deep-dive specialization with client-grade project experience and placement.', img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80' },
-              { dur: '1 YEAR', tag: 'FLAGSHIP', desc: 'Full professional training + internship + placement guarantee program.', img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80' },
-            ].map((tier) => (
-              <div
-                key={tier.dur}
-                className="nz-tier-card"
-                onClick={() => setSelectedCourse({ name: `Internship Program (${tier.dur} - ${tier.tag})`, category: 'INTERNSHIP' })}
-              >
-                <div className="nz-tier-img-wrap">
-                  <img src={tier.img} alt={`Tech Internship ${tier.dur}`} className="nz-tier-img" loading="lazy" />
-                  <div className="nz-tier-overlay" />
-                  <div className="nz-tier-badge">
-                    <span className="nz-pulse-dot" /> {tier.tag}
-                  </div>
-                </div>
-                <div className="nz-tier-body">
-                  <div className="nz-tier-dur">{tier.dur}</div>
-                  <p className="nz-tier-desc">{tier.desc}</p>
-                  <button className="nz-tier-btn">
-                    <span>APPLY NOW</span>
-                    <span className="nz-tier-btn-arrow">↗</span>
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* ════════════════════════════════════════
           OUR HIRING PARTNERS — RUNNING BANNER
@@ -1598,13 +1547,13 @@ export default function NetworkzHome() {
               </p>
             </div>
 
-            {/* 8 Luxury Bento Cards Grid */}
+            {/* 8 Multi-Accent Luxury Bento Cards Grid */}
             <div className="nz-journey-grid">
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-cyan">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 3v18h18" />
                       <path d="m19 9-5 5-4-4-3 3" />
                     </svg>
@@ -1618,10 +1567,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-emerald">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                       <polyline points="14 2 14 8 20 8" />
                     </svg>
@@ -1635,10 +1584,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-violet">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#818cf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
                       <line x1="8" y1="21" x2="16" y2="21" />
                     </svg>
@@ -1652,10 +1601,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-amber">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
                       <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                     </svg>
@@ -1669,10 +1618,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-rose">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb7185" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
                     </svg>
                   </div>
@@ -1685,10 +1634,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-teal">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                       <circle cx="12" cy="7" r="4" />
                     </svg>
@@ -1702,10 +1651,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-purple">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c084fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                       <polyline points="9 12 11 14 15 10" />
                     </svg>
@@ -1719,10 +1668,10 @@ export default function NetworkzHome() {
                 </div>
               </div>
 
-              <div className="nz-journey-card">
+              <div className="nz-journey-card theme-sky">
                 <div className="nz-journey-card-top">
                   <div className="nz-journey-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
                       <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
                     </svg>
@@ -1748,10 +1697,10 @@ export default function NetworkzHome() {
       <section className="nz-locations" id="contact">
         <div className="nz-locations-inner">
           <div className="nz-location-header">
-            <p className="nz-section-eyebrow">KOLLAM, KERALA</p>
-            <h2 className="nz-section-title">CONTACT US</h2>
-            <p className="nz-section-sub">
-              Connect directly with our Kollam campus team for program inquiries, syllabus details, and admissions.
+            <p className="nz-section-eyebrow nz-center">KOLLAM CAMPUS HEADQUARTERS • ADMISSIONS OPEN</p>
+            <h2 className="nz-section-title nz-center">CONNECT WITH OUR ADMISSION DESK</h2>
+            <p className="nz-section-sub nz-center" style={{ maxWidth: 680, margin: '0.8rem auto 3.5rem' }}>
+              Connect directly with our Kollam campus team for program inquiries, syllabus guides, fee structures, and Pearson VUE exam schedules.
             </p>
           </div>
 

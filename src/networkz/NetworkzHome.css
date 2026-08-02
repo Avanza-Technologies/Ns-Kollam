@@ -3593,21 +3593,22 @@ section[id] {
 }
 
 .nz-journey-card {
-  background: radial-gradient(circle at 85% 15%, #10484e 0%, #0d3a3f 70%, #072a2e 100%);
-  border: 1px solid rgba(165, 243, 252, 0.2);
+  position: relative;
+  background: linear-gradient(145deg, rgba(20, 27, 44, 0.9) 0%, rgba(11, 16, 27, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: 1.6rem 1.4rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0 12px 35px rgba(7, 42, 46, 0.25);
-  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
 .nz-journey-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(165, 243, 252, 0.45);
-  box-shadow: 0 20px 45px rgba(7, 42, 46, 0.45), 0 0 25px rgba(165, 243, 252, 0.15);
 }
 
 .nz-journey-card-top {
@@ -3621,13 +3622,11 @@ section[id] {
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .nz-journey-tag {
@@ -3635,16 +3634,13 @@ section[id] {
   font-size: 0.62rem;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: #a5f3fc;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
   padding: 0.2rem 0.55rem;
 }
 
 .nz-journey-card-title {
   font-family: var(--font-h);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 0.5rem;
@@ -3653,9 +3649,9 @@ section[id] {
 
 .nz-journey-card-desc {
   font-family: var(--font-m);
-  font-size: 0.8rem;
-  color: #e1eae6;
-  line-height: 1.5;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  line-height: 1.55;
   margin-bottom: 1rem;
   flex-grow: 1;
 }
@@ -3669,11 +3665,169 @@ section[id] {
   font-family: var(--font-h);
   font-size: 0.68rem;
   font-weight: 800;
-  color: #a5f3fc;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   padding: 0.2rem 0.6rem;
+}
+
+/* Multi-Accent Theme Rules */
+/* Theme 1: Cyan */
+.nz-journey-card.theme-cyan .nz-journey-icon {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+.nz-journey-card.theme-cyan .nz-journey-tag {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+}
+.nz-journey-card.theme-cyan .nz-journey-pill {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+.nz-journey-card.theme-cyan:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.2);
+}
+
+/* Theme 2: Emerald */
+.nz-journey-card.theme-emerald .nz-journey-icon {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.nz-journey-card.theme-emerald .nz-journey-tag {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+}
+.nz-journey-card.theme-emerald .nz-journey-pill {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.nz-journey-card.theme-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.2);
+}
+
+/* Theme 3: Violet */
+.nz-journey-card.theme-violet .nz-journey-icon {
+  background: rgba(129, 140, 248, 0.12);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+}
+.nz-journey-card.theme-violet .nz-journey-tag {
+  color: #818cf8;
+  background: rgba(129, 140, 248, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.22);
+}
+.nz-journey-card.theme-violet .nz-journey-pill {
+  color: #818cf8;
+  background: rgba(129, 140, 248, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+}
+.nz-journey-card.theme-violet:hover {
+  border-color: rgba(129, 140, 248, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(129, 140, 248, 0.2);
+}
+
+/* Theme 4: Amber */
+.nz-journey-card.theme-amber .nz-journey-icon {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+.nz-journey-card.theme-amber .nz-journey-tag {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.22);
+}
+.nz-journey-card.theme-amber .nz-journey-pill {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+.nz-journey-card.theme-amber:hover {
+  border-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(251, 191, 36, 0.2);
+}
+
+/* Theme 5: Rose */
+.nz-journey-card.theme-rose .nz-journey-icon {
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.3);
+}
+.nz-journey-card.theme-rose .nz-journey-tag {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.08);
+  border: 1px solid rgba(251, 113, 133, 0.22);
+}
+.nz-journey-card.theme-rose .nz-journey-pill {
+  color: #fb7185;
+  background: rgba(251, 113, 133, 0.08);
+  border: 1px solid rgba(251, 113, 133, 0.2);
+}
+.nz-journey-card.theme-rose:hover {
+  border-color: rgba(251, 113, 133, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(251, 113, 133, 0.2);
+}
+
+/* Theme 6: Teal */
+.nz-journey-card.theme-teal .nz-journey-icon {
+  background: rgba(45, 212, 191, 0.12);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+}
+.nz-journey-card.theme-teal .nz-journey-tag {
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.22);
+}
+.nz-journey-card.theme-teal .nz-journey-pill {
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+}
+.nz-journey-card.theme-teal:hover {
+  border-color: rgba(45, 212, 191, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(45, 212, 191, 0.2);
+}
+
+/* Theme 7: Purple */
+.nz-journey-card.theme-purple .nz-journey-icon {
+  background: rgba(192, 132, 252, 0.12);
+  border: 1px solid rgba(192, 132, 252, 0.3);
+}
+.nz-journey-card.theme-purple .nz-journey-tag {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.22);
+}
+.nz-journey-card.theme-purple .nz-journey-pill {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.2);
+}
+.nz-journey-card.theme-purple:hover {
+  border-color: rgba(192, 132, 252, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(192, 132, 252, 0.2);
+}
+
+/* Theme 8: Sky */
+.nz-journey-card.theme-sky .nz-journey-icon {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+.nz-journey-card.theme-sky .nz-journey-tag {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+}
+.nz-journey-card.theme-sky .nz-journey-pill {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+.nz-journey-card.theme-sky:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 30px rgba(56, 189, 248, 0.2);
 }
 
 /* RESPONSIVE BREAKPOINTS */
@@ -3856,11 +4010,11 @@ section[id] {
   position: absolute;
   width: 540px;
   height: 340px;
-  background: radial-gradient(circle at 85% 15%, #10484e 0%, #0d3a3f 70%, #072a2e 100%);
-  border: 1px solid rgba(165, 243, 252, 0.22);
+  background: linear-gradient(145deg, rgba(23, 32, 51, 0.95) 0%, rgba(13, 19, 33, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
   padding: 2.2rem 2rem;
-  box-shadow: 0 20px 50px rgba(7, 42, 46, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -3873,8 +4027,8 @@ section[id] {
   transform: translate3d(0, 0, 0) scale(1);
   opacity: 1;
   z-index: 10;
-  border-color: rgba(165, 243, 252, 0.5);
-  box-shadow: 0 25px 60px rgba(7, 42, 46, 0.5), 0 0 30px rgba(165, 243, 252, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.15);
 }
 
 .nz-why-card-item.prev {
@@ -4051,4 +4205,1132 @@ section[id] {
     transform: translate3d(150px, 0, -100px) scale(0.8);
     opacity: 0.2;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ULTRA-LUXURY EXECUTIVE PLATINUM CONTACT & CAMPUS HQ HUB
+   ═══════════════════════════════════════════════════════════════════ */
+.nz-locations {
+  padding: 6.5rem 0;
+  position: relative;
+  background: #080c14;
+  background-image: 
+    radial-gradient(ellipse at 50% -10%, rgba(56, 189, 248, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 100% 100%, rgba(7, 42, 46, 0.4) 0%, transparent 50%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nz-locations-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.nz-location-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 4rem auto;
+}
+
+.nz-kollam-hub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: stretch;
+}
+
+/* Left Card: Kollam Campus Details Card */
+.nz-kollam-card {
+  background: linear-gradient(145deg, rgba(13, 34, 40, 0.85) 0%, rgba(7, 20, 24, 0.92) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(165, 243, 252, 0.2);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nz-kollam-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 243, 252, 0.45);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 35px rgba(56, 189, 248, 0.15);
+}
+
+.nz-kollam-banner {
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+}
+
+.nz-kollam-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nz-kollam-card:hover .nz-kollam-banner-img {
+  transform: scale(1.06);
+}
+
+.nz-kollam-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(7, 20, 24, 0.1) 0%, rgba(7, 20, 24, 0.95) 100%);
+}
+
+.nz-kollam-badge {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(7, 20, 24, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(165, 243, 252, 0.35);
+  color: #a5f3fc;
+  font-family: var(--font-m);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nz-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 10px #22c55e;
+  animation: nzPulse 1.8s infinite;
+}
+
+.nz-kollam-content {
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.nz-kollam-title {
+  font-family: var(--font-h);
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.7rem;
+}
+
+.nz-contact-accent-line {
+  width: 55px;
+  height: 3px;
+  background: linear-gradient(90deg, #a5f3fc 0%, #38bdf8 100%);
+  border-radius: 2px;
+  margin-bottom: 1.3rem;
+}
+
+.nz-kollam-cert-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.8rem;
+}
+
+.nz-cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(165, 243, 252, 0.22);
+  color: #a5f3fc;
+  font-family: var(--font-m);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 30px;
+}
+
+.nz-cert-badge-gold {
+  border-color: rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.nz-kollam-info-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.nz-kollam-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 1.2rem;
+  border-radius: 16px;
+  transition: all 0.25s ease;
+}
+
+.nz-kollam-info-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(165, 243, 252, 0.35);
+  transform: translateX(4px);
+}
+
+.nz-kollam-inline-icon {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.nz-kollam-info-label {
+  font-family: var(--font-m);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #a5f3fc;
+  margin-bottom: 0.25rem;
+}
+
+.nz-kollam-info-val {
+  font-family: var(--font-m);
+  font-size: 0.88rem;
+  color: #ffffff;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.nz-gold-link {
+  color: #a5f3fc;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s ease;
+}
+
+.nz-gold-link:hover {
+  color: #ffffff;
+}
+
+.nz-kollam-btn-directions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 1rem 1.6rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(165, 243, 252, 0.3);
+  border-radius: 16px;
+  color: #a5f3fc;
+  font-family: var(--font-h);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nz-kollam-btn-directions:hover {
+  background: rgba(165, 243, 252, 0.18);
+  color: #ffffff;
+  border-color: rgba(165, 243, 252, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+}
+
+/* Right Card: Kollam Admission Desk Callback Form */
+.nz-form-card {
+  background: linear-gradient(145deg, rgba(13, 34, 40, 0.9) 0%, rgba(7, 20, 24, 0.96) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(165, 243, 252, 0.25);
+  border-radius: 28px;
+  padding: 2.8rem 2.4rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nz-form-card:hover {
+  border-color: rgba(165, 243, 252, 0.45);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 35px rgba(56, 189, 248, 0.15);
+}
+
+.nz-form-tag {
+  font-family: var(--font-m);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #a5f3fc;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.nz-form-title {
+  font-family: var(--font-h);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.nz-form-sub {
+  font-family: var(--font-m);
+  font-size: 0.88rem;
+  color: #e1eae6;
+  line-height: 1.55;
+  margin-bottom: 2rem;
+}
+
+.nz-vcard-field {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 243, 252, 0.22);
+  border-radius: 16px;
+  padding: 0.75rem 1.1rem;
+  transition: all 0.25s ease;
+}
+
+.nz-vcard-field:focus-within {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+}
+
+.nz-vcard-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nz-vcard-input-box {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.nz-vcard-lbl {
+  font-family: var(--font-m);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #a5f3fc;
+  margin-bottom: 0.25rem;
+}
+
+.nz-vcard-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-m);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  width: 100%;
+}
+
+.nz-vcard-input::placeholder {
+  color: rgba(225, 234, 230, 0.45);
+}
+
+.nz-vcard-btn {
+  width: 100%;
+  padding: 1.1rem 1.6rem;
+  background: linear-gradient(135deg, #38bdf8 0%, #00a8c6 100%);
+  border: none;
+  border-radius: 16px;
+  color: #072a2e;
+  font-family: var(--font-h);
+  font-size: 0.98rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.35);
+  transition: all 0.3s ease;
+  margin-top: 0.8rem;
+}
+
+.nz-vcard-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 100%);
+}
+
+.nz-security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-family: var(--font-m);
+  font-size: 0.78rem;
+  color: #a5f3fc;
+  margin: 1rem 0 1.4rem 0;
+}
+
+.nz-contact-trust-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(165, 243, 252, 0.18);
+}
+
+.nz-contact-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 0.75rem 0.8rem;
+}
+
+.nz-trust-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nz-trust-title {
+  font-family: var(--font-h);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.nz-trust-sub {
+  font-family: var(--font-m);
+  font-size: 0.68rem;
+  color: #a5f3fc;
+  margin-top: 0.15rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ULTRA-RESPONSIVE MEDIA QUERIES FOR ALL SCREEN RESOLUTIONS
+   ═══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .nz-locations {
+    padding: 4.5rem 0;
+  }
+  .nz-kollam-hub-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .nz-location-header {
+    margin-bottom: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nz-locations {
+    padding: 3.5rem 0;
+  }
+  .nz-locations-inner {
+    padding: 0 1rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .nz-location-header {
+    margin-bottom: 2.2rem;
+  }
+  .nz-section-eyebrow.nz-center {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+  }
+  .nz-section-title.nz-center {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+  .nz-section-sub.nz-center {
+    font-size: 0.85rem;
+    margin-bottom: 2rem !important;
+  }
+  .nz-kollam-card {
+    border-radius: 20px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .nz-kollam-banner {
+    height: 180px;
+  }
+  .nz-kollam-content {
+    padding: 1.4rem 1.2rem;
+    box-sizing: border-box;
+  }
+  .nz-kollam-title {
+    font-size: 1.35rem;
+  }
+  .nz-kollam-cert-badges {
+    gap: 0.4rem;
+  }
+  .nz-cert-badge {
+    font-size: 0.68rem;
+    padding: 0.35rem 0.65rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+  .nz-kollam-info-list {
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .nz-kollam-info-item {
+    padding: 0.8rem 0.9rem;
+    gap: 0.75rem;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+  .nz-kollam-info-val {
+    font-size: 0.82rem;
+    word-break: break-word;
+  }
+  .nz-kollam-btn-directions {
+    padding: 0.85rem 1.2rem;
+    font-size: 0.84rem;
+    box-sizing: border-box;
+  }
+  
+  /* Form Card Mobile */
+  .nz-form-card {
+    border-radius: 20px;
+    padding: 1.6rem 1.2rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .nz-form-title {
+    font-size: 1.45rem;
+  }
+  .nz-form-sub {
+    font-size: 0.82rem;
+    margin-bottom: 1.4rem;
+  }
+  .nz-vcard-field {
+    padding: 0.65rem 0.85rem;
+    gap: 0.75rem;
+    border-radius: 12px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .nz-vcard-lbl {
+    font-size: 0.6rem;
+  }
+  .nz-vcard-input {
+    font-size: 0.88rem;
+  }
+  .nz-vcard-btn {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+  }
+  .nz-contact-trust-bar {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+  .nz-contact-trust-item {
+    padding: 0.65rem 0.8rem;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .nz-locations-inner {
+    padding: 0 0.75rem;
+  }
+  .nz-kollam-badge {
+    top: 0.8rem;
+    left: 0.8rem;
+    font-size: 0.65rem;
+    padding: 0.35rem 0.75rem;
+  }
+  .nz-kollam-content,
+  .nz-form-card {
+    padding: 1.2rem 0.9rem;
+  }
+  .nz-vcard-field {
+    padding: 0.55rem 0.7rem;
+    gap: 0.6rem;
+  }
+  .nz-select-val-text {
+    font-size: 0.78rem;
+  }
+  .nz-kollam-btn-directions {
+    font-size: 0.8rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   25TH ANNIVERSARY SPECIAL OFFER MODAL — EXECUTIVE VIP POPUP
+   ═══════════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   HIGH-END E-COMMERCE PROMOTIONAL POPUP MODAL (MATCHING USER REFERENCE)
+   ═══════════════════════════════════════════════════════════════════ */
+.nz-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: nzFadeIn 0.3s ease-out;
+}
+
+.nz-offer-popup-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  animation: nzScaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nz-offer-banner-graphic {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  background: #1e2025;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nz-banner-ribbon-badge {
+  position: relative;
+  width: 190px;
+  background: #111216;
+  border-radius: 8px 8px 0 0;
+  padding: 1.2rem 1rem 1.8rem 1rem;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 50% 100%, 0 88%);
+}
+
+.nz-banner-logo-black-pill {
+  display: inline-block;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-h);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+}
+
+.nz-banner-num {
+  font-family: var(--font-h);
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.nz-banner-off {
+  font-family: var(--font-h);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #22c55e;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.nz-banner-item {
+  position: absolute;
+  background: #2b2d34;
+  border-radius: 6px;
+  padding: 0.8rem 0.9rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  font-family: var(--font-h);
+  z-index: 2;
+}
+
+.nz-banner-item.left-top {
+  top: 1.2rem;
+  left: 0.8rem;
+  width: 110px;
+  transform: rotate(-10deg);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nz-banner-item.left-bottom {
+  bottom: 1.2rem;
+  left: 0.6rem;
+  width: 125px;
+  transform: rotate(-16deg);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #202227;
+}
+
+.nz-banner-item.right-top {
+  top: 1.2rem;
+  right: 0.8rem;
+  width: 115px;
+  transform: rotate(10deg);
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.nz-banner-item.right-bottom-mug {
+  bottom: 1.2rem;
+  right: 1.2rem;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffffff 0%, #cbd5e1 100%);
+  color: #0f172a;
+  transform: rotate(14deg);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nz-mock-tag {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+}
+
+.nz-mock-sub {
+  display: block;
+  font-size: 0.65rem;
+  color: #94a3b8;
+  margin-top: 0.2rem;
+}
+
+.nz-mock-tag-light {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.nz-mock-sub-light {
+  display: block;
+  font-size: 0.62rem;
+  color: #64748b;
+  margin-top: 0.1rem;
+}
+
+.nz-mug-text {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #0f172a;
+  transform: rotate(-14deg);
+}
+
+.nz-offer-body {
+  padding: 1.8rem 1.8rem 2rem;
+  background: #ffffff;
+}
+
+.nz-offer-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.nz-offer-eyebrow {
+  font-family: var(--font-m);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  color: #64748b;
+  margin-bottom: 0.3rem;
+}
+
+.nz-offer-title {
+  font-family: var(--font-h);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.3rem;
+}
+
+.nz-offer-sub-title {
+  font-family: var(--font-h);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #0f172a;
+  margin-bottom: 0.8rem;
+}
+
+.nz-offer-desc {
+  font-family: var(--font-m);
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.nz-offer-desc strong {
+  color: #0f172a;
+}
+
+.nz-offer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nz-offer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.nz-offer-lbl {
+  font-family: var(--font-m);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #475569;
+}
+
+.nz-offer-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: var(--font-m);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.nz-offer-input::placeholder {
+  color: #94a3b8;
+}
+
+.nz-offer-input:focus {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+.nz-offer-submit-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: #000000;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: var(--font-h);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+  margin-top: 0.4rem;
+}
+
+.nz-offer-submit-btn:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.nz-offer-footer-text {
+  font-family: var(--font-m);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-align: center;
+  margin-top: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+/* Success State inside modal */
+.nz-offer-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.nz-offer-success-title {
+  font-family: var(--font-h);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.nz-offer-success-sub {
+  font-family: var(--font-m);
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 1.4rem;
+}
+
+.nz-offer-wa-btn {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  background: #25d366;
+  color: #ffffff;
+  font-family: var(--font-h);
+  font-size: 0.9rem;
+  font-weight: 800;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-bottom: 0.6rem;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+}
+
+.nz-offer-done-btn {
+  width: 100%;
+  padding: 0.75rem 1.2rem;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-family: var(--font-h);
+  font-size: 0.85rem;
+  font-weight: 800;
+  border-radius: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ULTRA-EXECUTIVE CUSTOM SELECT SYSTEM (ZERO LAYOUT SHIFT)
+   ═══════════════════════════════════════════════════════════════════ */
+.nz-offer-popup-card,
+.nz-offer-body,
+.nz-offer-form {
+  overflow: visible !important;
+}
+
+.nz-custom-select-wrap {
+  width: 100%;
+  position: relative;
+}
+
+/* Light Theme (OfferModal) */
+.nz-offer-form .nz-custom-select-trigger {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #0f172a;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.nz-offer-form .nz-custom-select-trigger:hover,
+.nz-offer-form .nz-custom-select-trigger.nz-open {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1);
+}
+
+.nz-offer-form .nz-select-val-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-m);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.nz-offer-form .nz-select-option-icon {
+  display: flex;
+  align-items: center;
+  color: #0f172a;
+}
+
+.nz-offer-form .nz-select-chevron {
+  stroke: #0f172a !important;
+  transition: transform 0.25s ease;
+}
+
+.nz-offer-form .nz-select-chevron.nz-rotate {
+  transform: rotate(180deg);
+}
+
+.nz-offer-form .nz-custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0.4rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: nzFadeIn 0.2s ease-out;
+}
+
+.nz-offer-form .nz-custom-select-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-m);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nz-offer-form .nz-select-item-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nz-offer-form .nz-custom-select-item:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.nz-offer-form .nz-custom-select-item.nz-active {
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nz-offer-form .nz-custom-select-item.nz-active .nz-select-option-icon {
+  color: #10b981;
+}
+
+.nz-offer-form .nz-select-check {
+  color: #10b981;
+  font-weight: 800;
+}
+
+/* Dark Glass Theme (Kollam Contact Desk) */
+.nz-vcard-form .nz-custom-select-trigger {
+  background: transparent;
+  border: none;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: var(--font-m);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.nz-vcard-form .nz-select-val-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #ffffff;
+}
+
+.nz-vcard-form .nz-select-option-icon {
+  display: flex;
+  align-items: center;
+  color: #38bdf8;
+}
+
+.nz-vcard-form .nz-select-chevron {
+  stroke: #38bdf8 !important;
+  transition: transform 0.25s ease;
+}
+
+.nz-vcard-form .nz-select-chevron.nz-rotate {
+  transform: rotate(180deg);
+}
+
+.nz-vcard-form .nz-custom-select-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: #091319;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  padding: 0.4rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  animation: nzFadeIn 0.2s ease-out;
+}
+
+.nz-vcard-form .nz-custom-select-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  font-family: var(--font-m);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nz-vcard-form .nz-select-item-text {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nz-vcard-form .nz-custom-select-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.nz-vcard-form .nz-custom-select-item.nz-active {
+  background: linear-gradient(135deg, #38bdf8 0%, #00a8c6 100%);
+  color: #072a2e;
+  font-weight: 800;
+}
+
+.nz-vcard-form .nz-custom-select-item.nz-active .nz-select-option-icon {
+  color: #072a2e;
+}
+
+.nz-vcard-form .nz-select-check {
+  color: #072a2e;
+  font-weight: 900;
 }
