@@ -1096,6 +1096,45 @@ function HiringPartnersBanner() {
   );
 }
 
+const WHY_CARDS = [
+  {
+    num: '01',
+    badge: '100% PLACEMENT ASSISTANCE',
+    title: '200+ IT Recruiter Partners & Direct Drives',
+    desc: 'Active tie-ups with 200+ top IT recruiters across South India. Dedicated career cell, mock interviews, resume polishing, and direct campus placement drives.',
+    highlight: '200+ Recruiters',
+    metric: '95% Success Rate',
+    skills: ['Mock Interviews', 'Resume Polishing', 'Direct Campus Drives']
+  },
+  {
+    num: '02',
+    badge: 'LIFELONG LAB ACCESS',
+    title: 'Lifetime Technical Lab & Training Support',
+    desc: 'Lifetime access to our high-performance technical labs, recorded video sessions, updated coursewares, and dedicated technical mentorship even after course completion.',
+    highlight: '24/7 Lab Access',
+    metric: 'Lifetime Validity',
+    skills: ['Live Hardware Labs', 'Recorded Sessions', 'Mentorship']
+  },
+  {
+    num: '03',
+    badge: 'CPD CERTIFIED PROGRAMME',
+    title: 'End-To-End Skill Development & Pearson VUE',
+    desc: 'Industry-aligned curriculum with CPD certified trainers, soft skills development, e-workbook practice, and Pearson VUE exam prep for Cisco, AWS & Azure.',
+    highlight: 'CPD Certified',
+    metric: 'Pearson VUE Centre',
+    skills: ['CPD Trainers', 'Pearson VUE', 'Soft Skills']
+  },
+  {
+    num: '04',
+    badge: 'INDUSTRIAL HANDS-ON TRAINING',
+    title: '100% Real-World Client Projects & Server Labs',
+    desc: 'Real-world client project exposure, live cloud server deployments, e-workbook lab exercises, and final-year academic project guidance.',
+    highlight: '100% Practical',
+    metric: 'Client Live Projects',
+    skills: ['Cloud Server Practice', 'Live Projects', 'Academic Support']
+  }
+];
+
 /* ─────────────────────────────────────────────────────────
    MAIN PAGE
 ───────────────────────────────────────────────────────── */
@@ -1107,6 +1146,14 @@ export default function NetworkzHome() {
   const [activeNav, setActiveNav] = useState('programs');
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [whyCardIndex, setWhyCardIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setWhyCardIndex((prev) => (prev === WHY_CARDS.length - 1 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     document.body.style.background = '#1c2536';
@@ -1462,141 +1509,78 @@ export default function NetworkzHome() {
             </p>
           </div>
 
-          {/* Top 4-Column Feature Card Container */}
-          <div className="nz-feature-white-card">
+          {/* Rotating Card Banner Carousel Suite */}
+          <div className="nz-why-carousel-wrapper">
+            <button
+              className="nz-why-carousel-btn"
+              onClick={() => setWhyCardIndex((prev) => (prev === 0 ? WHY_CARDS.length - 1 : prev - 1))}
+            >
+              ‹
+            </button>
 
-            {/* Col 1 */}
-            <div className="nz-feature-col">
-              <div className="nz-feature-icon-circle nz-icon-teal">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-              </div>
-              <h3 className="nz-feature-title">
-                <span className="nz-feature-highlight">200+</span><br />
-                100% PLACEMENT ASSISTANCE
-              </h3>
-              <p className="nz-feature-desc">
-                Active tie-ups with 200+ top IT recruiters across South India. Mock interviews, resume building & placement drives.
-              </p>
+            <div className="nz-why-carousel-track">
+              {WHY_CARDS.map((card, idx) => {
+                const isActive = idx === whyCardIndex;
+                const isPrev = idx === (whyCardIndex === 0 ? WHY_CARDS.length - 1 : whyCardIndex - 1);
+                const isNext = idx === (whyCardIndex === WHY_CARDS.length - 1 ? 0 : whyCardIndex + 1);
+
+                let cardClass = 'nz-why-card-item';
+                if (isActive) cardClass += ' active';
+                else if (isPrev) cardClass += ' prev';
+                else if (isNext) cardClass += ' next';
+                else cardClass += ' hidden';
+
+                return (
+                  <div
+                    key={card.num}
+                    className={cardClass}
+                    onClick={() => setWhyCardIndex(idx)}
+                  >
+                    <div className="nz-why-card-top">
+                      <span className="nz-why-card-num">{card.num}</span>
+                      <span className="nz-why-card-badge">{card.badge}</span>
+                    </div>
+
+                    <h3 className="nz-why-card-title">{card.title}</h3>
+                    <p className="nz-why-card-desc">{card.desc}</p>
+
+                    <div className="nz-why-card-skills">
+                      {card.skills.map((s) => (
+                        <span key={s} className="nz-why-skill-chip">{s}</span>
+                      ))}
+                    </div>
+
+                    <div className="nz-why-card-bottom">
+                      <span className="nz-why-metric-pill">✦ {card.highlight}</span>
+                      <span className="nz-why-metric-pill secondary">• {card.metric}</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Col 2 */}
-            <div className="nz-feature-col">
-              <div className="nz-feature-icon-circle nz-icon-green">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18.178 8c5.096 0 5.096 8 0 8-2.613 0-4.887-2.112-6.178-4.004C10.708 13.888 8.434 16 5.822 16c-5.096 0-5.096-8 0-8 2.613 0 4.887 2.112 6.178 4.004C13.292 10.112 15.566 8 18.178 8z" />
-                </svg>
-              </div>
-              <h3 className="nz-feature-title">
-                LIFELONG LAB<br />
-                & TRAINING SUPPORT
-              </h3>
-              <p className="nz-feature-desc">
-                Lifetime access to our technical labs, updated course content, recorded sessions, and guidance even after the course.
-              </p>
-
-            </div>
-
-            {/* Col 3 */}
-            <div className="nz-feature-col">
-              <div className="nz-feature-icon-circle nz-icon-purple">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                </svg>
-              </div>
-              <h3 className="nz-feature-title">
-                <span className="nz-feature-highlight">CPD</span><br />
-                SKILL DEVELOPMENT PROGRAMME
-              </h3>
-              <p className="nz-feature-desc">
-                End-to-end industry-specific curriculum, CPD certified trainers, soft skills development, and Pearson VUE exam preparation.
-              </p>
-            </div>
-
-            {/* Col 4 */}
-            <div className="nz-feature-col">
-              <div className="nz-feature-icon-circle nz-icon-cyan">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="16 18 22 12 16 6" />
-                  <polyline points="8 6 2 12 8 18" />
-                </svg>
-              </div>
-              <h3 className="nz-feature-title">
-                <span className="nz-feature-highlight">100%</span><br />
-                INDUSTRIAL HANDS-ON TRAINING
-              </h3>
-              <p className="nz-feature-desc">
-                Real-world client projects, live server lab practice, e-workbook exercises, and final-year academic project support.
-              </p>
-            </div>
-
+            <button
+              className="nz-why-carousel-btn"
+              onClick={() => setWhyCardIndex((prev) => (prev === WHY_CARDS.length - 1 ? 0 : prev + 1))}
+            >
+              ›
+            </button>
           </div>
 
-          {/* Middle Stat Counter Dark Bar */}
-          <div className="nz-stat-dark-bar">
-            <div className="nz-stat-bar-item">
-              <div className="nz-stat-bar-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                  <path d="M6 12v5c3 3 9 3 12 0v-5" />
-                </svg>
-              </div>
-              <div>
-                <div className="nz-stat-bar-num">8K+</div>
-                <div className="nz-stat-bar-lbl">Students Trained</div>
-              </div>
-            </div>
-
-            <div className="nz-stat-bar-divider" />
-
-            <div className="nz-stat-bar-item">
-              <div className="nz-stat-bar-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                </svg>
-              </div>
-              <div>
-                <div className="nz-stat-bar-num">200+</div>
-                <div className="nz-stat-bar-lbl">Recruiter Partners</div>
-              </div>
-            </div>
-
-            <div className="nz-stat-bar-divider" />
-
-            <div className="nz-stat-bar-item">
-              <div className="nz-stat-bar-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div>
-                <div className="nz-stat-bar-num">7+</div>
-                <div className="nz-stat-bar-lbl">Branches Across Kerala</div>
-              </div>
-            </div>
-
-            <div className="nz-stat-bar-divider" />
-
-            <div className="nz-stat-bar-item">
-              <div className="nz-stat-bar-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="8" r="7" />
-                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                </svg>
-              </div>
-              <div>
-                <div className="nz-stat-bar-num">95%</div>
-                <div className="nz-stat-bar-lbl">Placement Success Rate</div>
-              </div>
-            </div>
+          {/* Dots Pagination */}
+          <div className="nz-why-dots-wrap">
+            {WHY_CARDS.map((c, i) => (
+              <button
+                key={c.num}
+                className={`nz-why-dot ${i === whyCardIndex ? 'active' : ''}`}
+                onClick={() => setWhyCardIndex(i)}
+              >
+                <span>{c.num}</span>
+              </button>
+            ))}
           </div>
+
+
 
           {/* Bottom Journey Section */}
           <div className="nz-journey-section">
@@ -1614,112 +1598,141 @@ export default function NetworkzHome() {
               </p>
             </div>
 
-            {/* 8 Benefit Cards Grid */}
+            {/* 8 Luxury Bento Cards Grid */}
             <div className="nz-journey-grid">
 
               <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 3v18h18" />
-                    <path d="m19 9-5 5-4-4-3 3" />
-                  </svg>
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 3v18h18" />
+                      <path d="m19 9-5 5-4-4-3 3" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">01 • CURRICULUM</span>
                 </div>
-                <div>
-                  <h4 className="nz-journey-card-title">Industry-Specific Skills</h4>
-                  <p className="nz-journey-card-desc">Start-to-end curriculum aligned with top IT hiring managers.</p>
-                </div>
-              </div>
-
-              <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="16" y1="13" x2="8" y2="13" />
-                    <line x1="16" y1="17" x2="8" y2="17" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="nz-journey-card-title">Certified Coursewares</h4>
-                  <p className="nz-journey-card-desc">Official training course wares & reference materials.</p>
+                <h4 className="nz-journey-card-title">Industry-Specific Skills</h4>
+                <p className="nz-journey-card-desc">Start-to-end curriculum aligned with top IT hiring managers.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ Top IT Aligned</span>
                 </div>
               </div>
 
               <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                      <polyline points="14 2 14 8 20 8" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">02 • COURSEWARE</span>
                 </div>
-                <div>
-                  <h4 className="nz-journey-card-title">E-Workbook Lab Practice</h4>
-                  <p className="nz-journey-card-desc">Guided e-workbooks for hands-on practical lab exercises.</p>
-                </div>
-              </div>
-
-              <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="nz-journey-card-title">Placement Support</h4>
-                  <p className="nz-journey-card-desc">Dedicated career cell, job alerts & placement drives.</p>
+                <h4 className="nz-journey-card-title">Certified Coursewares</h4>
+                <p className="nz-journey-card-desc">Official training course wares & reference materials.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ Official Manuals</span>
                 </div>
               </div>
 
               <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                  </svg>
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                      <line x1="8" y1="21" x2="16" y2="21" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">03 • LAB PRACTICE</span>
                 </div>
-                <div>
-                  <h4 className="nz-journey-card-title">Academic Project Assistance</h4>
-                  <p className="nz-journey-card-desc">Expert guidance & lab support for college projects.</p>
-                </div>
-              </div>
-
-              <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                    <circle cx="12" cy="7" r="4" />
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="nz-journey-card-title">CPD Certified Trainers</h4>
-                  <p className="nz-journey-card-desc">Instruction by experienced certified technical experts.</p>
+                <h4 className="nz-journey-card-title">E-Workbook Lab Practice</h4>
+                <p className="nz-journey-card-desc">Guided e-workbooks for hands-on practical lab exercises.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ Live Hardware Labs</span>
                 </div>
               </div>
 
               <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <polyline points="9 12 11 14 15 10" />
-                  </svg>
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">04 • CAREERS</span>
                 </div>
-                <div>
-                  <h4 className="nz-journey-card-title">Pearson VUE Testing Centre</h4>
-                  <p className="nz-journey-card-desc">Authorized center for Cisco, AWS, Azure & CompTIA exams.</p>
+                <h4 className="nz-journey-card-title">Placement Support</h4>
+                <p className="nz-journey-card-desc">Dedicated career cell, job alerts & placement drives.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ 200+ Recruiters</span>
                 </div>
               </div>
 
               <div className="nz-journey-card">
-                <div className="nz-journey-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00a8c6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
-                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
-                  </svg>
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">05 • PROJECTS</span>
                 </div>
-                <div>
-                  <h4 className="nz-journey-card-title">Lifelong Tech Support</h4>
-                  <p className="nz-journey-card-desc">Continued lab access and technical mentorship.</p>
+                <h4 className="nz-journey-card-title">Academic Project Assistance</h4>
+                <p className="nz-journey-card-desc">Expert guidance & lab support for college projects.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ Final Year Support</span>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">06 • MENTORS</span>
+                </div>
+                <h4 className="nz-journey-card-title">CPD Certified Trainers</h4>
+                <p className="nz-journey-card-desc">Instruction by experienced certified technical experts.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ CPD Accredited</span>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <polyline points="9 12 11 14 15 10" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">07 • EXAMS</span>
+                </div>
+                <h4 className="nz-journey-card-title">Pearson VUE Testing Centre</h4>
+                <p className="nz-journey-card-desc">Authorized center for Cisco, AWS, Azure & CompTIA exams.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ Pearson VUE</span>
+                </div>
+              </div>
+
+              <div className="nz-journey-card">
+                <div className="nz-journey-card-top">
+                  <div className="nz-journey-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a5f3fc" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                    </svg>
+                  </div>
+                  <span className="nz-journey-tag">08 • SUPPORT</span>
+                </div>
+                <h4 className="nz-journey-card-title">Lifelong Tech Support</h4>
+                <p className="nz-journey-card-desc">Continued lab access and technical mentorship.</p>
+                <div className="nz-journey-pill-row">
+                  <span className="nz-journey-pill">✦ 24/7 Mentorship</span>
                 </div>
               </div>
 
