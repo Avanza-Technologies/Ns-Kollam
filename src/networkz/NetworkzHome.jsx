@@ -68,13 +68,13 @@ const TAB_ICONS = {
   ),
 };
 
-/* ── Thumbnail gradient per chapter ── */
+/* ── Thumbnail gradient per chapter (Unified Luxury Palette) ── */
 const THUMB = {
-  1: 'linear-gradient(135deg,#0d1f35 0%,#071020 100%)',
-  2: 'linear-gradient(135deg,#1a0d30 0%,#0c0618 100%)',
-  3: 'linear-gradient(135deg,#0d2520 0%,#061410 100%)',
-  4: 'linear-gradient(135deg,#2a1d08 0%,#140e04 100%)',
-  5: 'linear-gradient(135deg,#0d1820 0%,#060c10 100%)',
+  1: 'linear-gradient(135deg, #0b1329 0%, #131f37 100%)',
+  2: 'linear-gradient(135deg, #0b1329 0%, #131f37 100%)',
+  3: 'linear-gradient(135deg, #0b1329 0%, #131f37 100%)',
+  4: 'linear-gradient(135deg, #0b1329 0%, #131f37 100%)',
+  5: 'linear-gradient(135deg, #0b1329 0%, #131f37 100%)',
 };
 
 /* ── Category icon characters ── */

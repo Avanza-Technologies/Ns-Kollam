@@ -13,29 +13,29 @@
 }
 
 :root {
-  --bg: #1c2536;
-  --surface: #243044;
-  --surface2: #2a384e;
-  --card: #232f42;
-  --card-hover: #2d3b52;
-  --text: #f1f5f9;
-  --text-dim: rgba(226, 232, 240, 0.6);
-  --text-mid: rgba(226, 232, 240, 0.88);
+  --bg: #0b1329;
+  --surface: #0e192e;
+  --surface2: #131f37;
+  --card: #131f37;
+  --card-hover: #1c2b48;
+  --text: #f8fafc;
+  --text-dim: rgba(226, 232, 240, 0.65);
+  --text-mid: rgba(226, 232, 240, 0.9);
 
-  --red: #00a8c6;
-  --red-dark: #00839c;
-  --red-dim: rgba(0, 168, 198, 0.15);
+  --red: #00c8ff;
+  --red-dark: #0096c7;
+  --red-dim: rgba(0, 200, 255, 0.12);
 
-  --gold: #00a8c6;
-  --gold-dim: rgba(0, 168, 198, 0.15);
+  --gold: #00c8ff;
+  --gold-dim: rgba(0, 200, 255, 0.12);
   --blue: #38bdf8;
 
-  --border: rgba(255, 255, 255, 0.09);
-  --border2: rgba(255, 255, 255, 0.18);
+  --border: rgba(255, 255, 255, 0.08);
+  --border2: rgba(0, 200, 255, 0.25);
   --font-h: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-m: 'Sora', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  --r: 8px;
+  --r: 10px;
 }
 
 html {

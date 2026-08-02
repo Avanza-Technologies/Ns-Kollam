@@ -3,7 +3,7 @@
 export const COURSE_DETAILS = {
   1: {
     category: 'Software Product Training',
-    accent: '#4a7aa8',
+    accent: '#00c8ff',
     courses: [
       {
         id: 'cpp',
@@ -118,7 +118,7 @@ export const COURSE_DETAILS = {
 
   2: {
     category: 'AI + Electronics',
-    accent: '#7a4a9a',
+    accent: '#38bdf8',
     courses: [
       {
         id: 'ml',
@@ -179,7 +179,7 @@ export const COURSE_DETAILS = {
 
   3: {
     category: 'Networking & Security',
-    accent: '#2a7a6a',
+    accent: '#00c8ff',
     courses: [
       {
         id: 'ccna',
@@ -240,7 +240,7 @@ export const COURSE_DETAILS = {
 
   4: {
     category: 'Business & Management',
-    accent: '#8a6a2a',
+    accent: '#0284c7',
     courses: [
       {
         id: 'digi',
