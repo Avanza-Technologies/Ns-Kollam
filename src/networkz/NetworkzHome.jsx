@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './NetworkzHome.css';
 import { COURSE_DETAILS } from './data/courseData';
 
@@ -25,19 +25,19 @@ const FEATURES_DATA = [
 const TESTIMONIALS_DATA = [
   {
     quote: "Networkz Systems transformed my career trajectory. Within 3 months of completing the Python Full Stack program, I secured a Senior Developer role at an MNC.",
-    name: "Aravind Nair",
+    name: "Janeeta James",
     role: "Senior Full Stack Engineer",
-    company: "TCS / Technopark"
+    company: "Technopark"
   },
   {
     quote: "The live hands-on cyber lab experience in Kollam gave me real-world penetration testing skills that set me apart during technical interviews.",
-    name: "Anjali Krishna",
+    name: "Akhil P",
     role: "SOC Security Analyst",
-    company: "Wipro Cyber Defense"
+    company: "Cyber Defense"
   },
   {
     quote: "Exceptional faculty and structured curriculum. The AWS Cloud Architecture course provided practical knowledge that directly translates to client projects.",
-    name: "Rohan Kumar",
+    name: "Rahul R",
     role: "Cloud Solutions Architect",
     company: "Infosys"
   }
@@ -152,13 +152,21 @@ export default function NetworkzHome() {
     return matchesTab;
   });
 
+  useEffect(() => {
+    document.title = "Networkz Systems Kollam | #1 CCNA, Python, Java & Cyber Security Institute in Kerala";
+    let canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (canonicalEl) {
+      canonicalEl.setAttribute('href', 'https://nskollam.com/');
+    }
+  }, []);
+
   return (
     <div className="nz-luxury-root">
 
       {/* ─── SECTION 1: LUXURY STICKY HEADER NAVIGATION ─────────────── */}
       <nav className="nz-luxury-nav">
         <a href="/" className="nz-nav-brand">
-          <div className="nz-brand-emblem">N</div>
+          <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
           <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
           <span className="nz-brand-tag">KOLLAM CAMPUS</span>
         </a>
@@ -399,14 +407,14 @@ export default function NetworkzHome() {
                 <span className="nz-spotlight-role">Full Stack Developer — Placed at TRENSER, Technopark </span>
               </div>
             </div>
-
+            {/* 
             <div>
               <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
                 alt="Sudheesh P S - Full Stack Developer Spotlight"
                 style={{ width: '100%', height: '340px', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center 20%' }}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -605,24 +613,36 @@ export default function NetworkzHome() {
           <div className="nz-footer-grid">
             <div className="nz-footer-brand">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div className="nz-brand-emblem" style={{ background: '#ffffff', color: '#111111' }}>N</div>
+                <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
                 <span className="nz-brand-name" style={{ color: '#ffffff' }}>NETWORKZ SYSTEMS</span>
               </div>
               <p style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.65)', lineHeight: '1.6', margin: '0.75rem 0' }}>
                 An ISO 9001:2015 Certified Academy delivering enterprise IT & Cyber Security education across South India.
               </p>
-              <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)', paddingTop: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <span>📍</span>
-                  <span>2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001</span>
+              <div className="nz-footer-contact-clean">
+                <div className="nz-contact-row">
+                  <svg className="nz-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  <a href="https://maps.google.com/?q=Networkz+Systems+Pattathuvila+Plaza+Chinnakada+Kollam" target="_blank" rel="noopener noreferrer" className="nz-address-link">
+                    2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001
+                  </a>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span>📞</span>
-                  <a href="tel:+918089030405" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '700' }}>+91 80890 30405</a>
+
+                <div className="nz-contact-row">
+                  <svg className="nz-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <a href="tel:+918089030405" className="nz-phone-link">+91 80890 30405</a>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span>🕒</span>
-                  <span>Monday – Saturday: 9:00 AM – 5:30 PM</span>
+
+                <div className="nz-contact-row">
+                  <svg className="nz-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                  <span>Monday – Sunday: 9:00 AM – 5:30 PM</span>
                 </div>
               </div>
             </div>

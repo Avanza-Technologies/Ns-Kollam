@@ -186,6 +186,92 @@ export default function CyberSecurityLanding() {
     return () => clearInterval(timer);
   }, [isCareerTrackHovered]);
 
+  /* ── ON-PAGE SEO OPTIMIZATION FOR GOOGLE #1 RANKING IN KOLLAM ── */
+  useEffect(() => {
+    document.title = "Cyber Security Course in Kollam | Networkz Systems (100% Placement)";
+
+    // Set canonical link specifically for /cybersecurity
+    let canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (canonicalEl) {
+      canonicalEl.setAttribute('href', 'https://nskollam.com/cybersecurity');
+    }
+
+    // Set meta description specifically for Cyber Security
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', 'Best Cyber Security & Ethical Hacking Course in Kollam, Kerala at Networkz Systems. ISO 9001:2015 certified training, hands-on penetration testing lab, CEH certification syllabus, and 100% placement support.');
+    }
+
+    // Inject Course & FAQ JSON-LD Schema
+    const scriptId = 'cyber-security-jsonld-schema';
+    let existingScript = document.getElementById(scriptId);
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Course",
+            "name": "Ethical Hacking & Cyber Security Professional Course in Kollam",
+            "description": "Comprehensive Cyber Security, Ethical Hacking, Network Security & Penetration Testing certification course in Kollam, Kerala with 100% placement support.",
+            "provider": {
+              "@type": "EducationalOrganization",
+              "name": "Networkz Systems Kollam",
+              "sameAs": "https://nskollam.com/"
+            },
+            "educationalCredentialAwarded": "Certified Ethical Hacker & Networkz Professional Certification",
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "Offline / Classroom & Live Online",
+              "location": {
+                "@type": "Place",
+                "name": "Networkz Systems Kollam Campus",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Kollam",
+                  "addressRegion": "Kerala",
+                  "addressCountry": "IN"
+                }
+              }
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Which is the best Cyber Security course in Kollam?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Networkz Systems Kollam offers the #1 Cyber Security & Ethical Hacking course in Kollam, featuring live lab training, ISO 9001:2015 certification, and 100% placement assistance."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Does Networkz Systems Kollam offer placement for Cyber Security students?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, Networkz Systems Kollam has a 100% placement assistance cell connecting Cyber Security students with top MNCs and IT security firms in Kerala and South India."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the qualification required for the Cyber Security course in Kollam?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Students from B.Tech, BCA, BSc CS, Diploma, or any degree background interested in Ethical Hacking and Computer Networking can join the Cyber Security course at Networkz Systems Kollam."
+                }
+              }
+            ]
+          }
+        ]
+      });
+      document.head.appendChild(script);
+    }
+  }, []);
+
   const scrollCyberLeft = () => {
     if (cyberTrackRef.current) {
       cyberTrackRef.current.scrollBy({ left: -380, behavior: 'smooth' });
@@ -245,7 +331,7 @@ export default function CyberSecurityLanding() {
       ───────────────────────────────────────────────────────── */}
       <nav className="nz-luxury-nav">
         <Link to="/" className="nz-nav-brand">
-          <div className="nz-brand-emblem">N</div>
+          <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
           <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
           <span className="nz-brand-tag">KOLLAM CAMPUS</span>
         </Link>
@@ -298,9 +384,9 @@ export default function CyberSecurityLanding() {
             </div>
 
             <h1 className="nz-cyber-hero-title">
-              BECOME A MASTER IN<br />
-              <span className="nz-cyber-gradient-text">ETHICAL HACKING</span><br />
-              & CYBER SECURITY
+              #1 CYBER SECURITY &<br />
+              <span className="nz-cyber-gradient-text">ETHICAL HACKING COURSE</span><br />
+              IN KOLLAM, KERALA
             </h1>
 
             <p className="nz-cyber-hero-subtitle">
@@ -705,17 +791,29 @@ export default function CyberSecurityLanding() {
               <p className="ix-footer-desc" style={{ marginBottom: '0.75rem' }}>
                 Networkz Systems Kollam — ISO 9001:2015 accredited technology & digital marketing training institute. Empowering career breakthroughs.
               </p>
-              <div style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '1rem', borderTop: '1px solid rgba(255, 255, 255, 0.12)', paddingTop: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                  <span>📍</span>
-                  <span>2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001</span>
+              <div className="nz-footer-contact-clean">
+                <div className="nz-contact-row">
+                  <svg className="nz-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                  <a href="https://maps.google.com/?q=Networkz+Systems+Pattathuvila+Plaza+Chinnakada+Kollam" target="_blank" rel="noopener noreferrer" className="nz-address-link">
+                    2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001
+                  </a>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span>📞</span>
-                  <a href="tel:+918089030405" style={{ color: '#ffffff', textDecoration: 'none', fontWeight: '700' }}>+91 80890 30405</a>
+
+                <div className="nz-contact-row">
+                  <svg className="nz-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  </svg>
+                  <a href="tel:+918089030405" className="nz-phone-link">+91 80890 30405</a>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span>🕒</span>
+
+                <div className="nz-contact-row">
+                  <svg className="nz-contact-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
                   <span>Monday – Saturday: 9:00 AM – 5:30 PM</span>
                 </div>
               </div>

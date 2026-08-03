@@ -160,6 +160,16 @@
   font-weight: 900;
   border-radius: 8px;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.nz-brand-emblem-img {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .nz-brand-name {
@@ -1243,6 +1253,57 @@
 .nz-footer-links a:hover {
   color: var(--color-secondary);
 }
+
+/* ── CLEAN PROFESSIONAL FOOTER CONTACT BLOCK ── */
+.nz-footer-contact-clean {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nz-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+}
+
+.nz-contact-icon {
+  flex-shrink: 0;
+  margin-top: 0.18rem;
+  color: #f36f21;
+}
+
+.nz-address-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nz-address-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.nz-phone-link {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+.nz-phone-link:hover {
+  color: #f36f21;
+}
+
+
 
 .nz-footer-bottom {
   padding-top: 3rem;

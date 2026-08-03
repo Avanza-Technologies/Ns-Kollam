@@ -17,7 +17,7 @@ export const COURSE_DETAILS = {
       {
         id: 'python',
         name: 'Python Full Stack',
-        desc: 'Django · Flask · REST APIs · PostgreSQL · Redis · Deployment pipelines',
+        desc: 'Python · Django · Flask · REST APIs · PostgreSQL · Full Stack Development Course in Kollam',
         level: 'ADVANCED PLUS',
         duration: '160 Hours',
         cert: 'Networkz Certificate',
@@ -35,7 +35,7 @@ export const COURSE_DETAILS = {
       {
         id: 'java',
         name: 'Java Full Stack',
-        desc: 'Spring Boot · Hibernate ORM · Microservices · Maven · Enterprise architecture',
+        desc: 'Java · Spring Boot · Hibernate ORM · Microservices · Enterprise Software Development Course in Kollam',
         level: 'ADVANCED',
         duration: '120 Hours',
         cert: 'Networkz Certificate',
@@ -183,8 +183,8 @@ export const COURSE_DETAILS = {
     courses: [
       {
         id: 'ccna',
-        name: 'CCNA',
-        desc: 'Cisco routing & switching · IP addressing · VLANs · OSPF · Network troubleshooting',
+        name: 'CCNA 200-301 Networking',
+        desc: 'Cisco Routing & Switching · IP Addressing · VLANs · OSPF · CCNA Networking Certification Course in Kollam',
         level: 'ADVANCED',
         duration: '80 Hours',
         cert: 'Cisco CCNA Prep',
