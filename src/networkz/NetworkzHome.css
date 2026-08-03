@@ -582,9 +582,11 @@
   line-height: 1.6;
 }
 
-grid-template-columns: repeat(3, 1fr);
-gap: 2.5rem;
-margin-top: 4rem;
+.nz-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 4rem;
 }
 
 @media (max-width: 992px) {
