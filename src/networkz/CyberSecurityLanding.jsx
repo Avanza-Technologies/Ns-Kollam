@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import CustomSelect from './components/CustomSelect';
 import './NetworkzHome.css';
@@ -125,7 +125,9 @@ const CAREER_ROLES = [
   { role: 'Ethical Hacker / Pen Tester', pkg: '₹6.5L - ₹14.0L / yr', badge: 'HIGH DEMAND', desc: 'Authorized security specialist conducting vulnerability tests on live enterprise systems.' },
   { role: 'SOC Security Analyst', pkg: '₹5.5L - ₹12.0L / yr', badge: 'IMMEDIATE HIRING', desc: 'Monitors 24/7 Security Operations Centers (SOC) to stop cyber attacks in real time.' },
   { role: 'Cyber Security Engineer', pkg: '₹7.0L - ₹18.0L / yr', badge: 'HIGH DEMAND', desc: 'Architects and deploys enterprise security infrastructure, firewalls, and encryption.' },
-  { role: 'Information Security Auditor', pkg: '₹8.0L - ₹20.0L / yr', badge: 'PREMIUM ROLE', desc: 'Audits IT organizations for compliance with ISO 27001, NIST, and data protection laws.' }
+  { role: 'Information Security Auditor', pkg: '₹8.0L - ₹20.0L / yr', badge: 'PREMIUM ROLE', desc: 'Audits IT organizations for compliance with ISO 27001, NIST, and data protection laws.' },
+  { role: 'Cloud Security Architect', pkg: '₹9.0L - ₹22.0L / yr', badge: 'TOP TIER', desc: 'Designs secure cloud infrastructure across AWS, Azure, and multi-cloud networks.' },
+  { role: 'Incident Response Specialist', pkg: '₹6.0L - ₹15.0L / yr', badge: 'CRITICAL ROLE', desc: 'Rapid response engineer mitigating live breach incidents and forensic threat analysis.' }
 ];
 
 const ROLE_OPTIONS = ['Student (Study)', 'Job Seeker (Job)', 'Working Professional (Employee)', 'Other'];
@@ -133,8 +135,56 @@ const ROLE_OPTIONS = ['Student (Study)', 'Job Seeker (Job)', 'Working Profession
 export default function CyberSecurityLanding() {
   const navigate = useNavigate();
   const cyberTrackRef = useRef(null);
+  const careerTrackRef = useRef(null);
+
+  const [isCyberTrackHovered, setIsCyberTrackHovered] = useState(false);
+  const [isCareerTrackHovered, setIsCareerTrackHovered] = useState(false);
+
   const [formData, setFormData] = useState({ name: '', phone: '', role: 'Student (Study)' });
   const [submitted, setSubmitted] = useState(false);
+  const [showOfferModal, setShowOfferModal] = useState(false);
+
+  /* ── 15-SECOND RECURRING AUTO POPUP MODAL ── */
+  useEffect(() => {
+    if (submitted) return;
+    const timer = setTimeout(() => {
+      setShowOfferModal(true);
+    }, 15000);
+
+    return () => clearTimeout(timer);
+  }, [showOfferModal, submitted]);
+
+  /* ── AUTO-MOVING BANNER SLIDER FOR SYLLABUS CARDS ── */
+  useEffect(() => {
+    if (isCyberTrackHovered) return;
+    const timer = setInterval(() => {
+      if (cyberTrackRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = cyberTrackRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          cyberTrackRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          cyberTrackRef.current.scrollBy({ left: 380, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [isCyberTrackHovered]);
+
+  /* ── AUTO-MOVING BANNER SLIDER FOR CAREER ROLES CARDS ── */
+  useEffect(() => {
+    if (isCareerTrackHovered) return;
+    const timer = setInterval(() => {
+      if (careerTrackRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = careerTrackRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 15) {
+          careerTrackRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          careerTrackRef.current.scrollBy({ left: 380, behavior: 'smooth' });
+        }
+      }
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [isCareerTrackHovered]);
 
   const scrollCyberLeft = () => {
     if (cyberTrackRef.current) {
@@ -145,6 +195,18 @@ export default function CyberSecurityLanding() {
   const scrollCyberRight = () => {
     if (cyberTrackRef.current) {
       cyberTrackRef.current.scrollBy({ left: 380, behavior: 'smooth' });
+    }
+  };
+
+  const scrollCareerLeft = () => {
+    if (careerTrackRef.current) {
+      careerTrackRef.current.scrollBy({ left: -380, behavior: 'smooth' });
+    }
+  };
+
+  const scrollCareerRight = () => {
+    if (careerTrackRef.current) {
+      careerTrackRef.current.scrollBy({ left: 380, behavior: 'smooth' });
     }
   };
 
@@ -266,11 +328,11 @@ export default function CyberSecurityLanding() {
             </div>
 
             {/* Hero Dual Action Buttons */}
-            <div className="nz-cyber-hero-ctas">
-              <button className="nz-btn-emerald-glow" onClick={scrollToBooking}>
+            <div className="nz-cyber-hero-ctas ix-hero-ctas">
+              <button className="ix-btn-pill-solid-dark nz-btn-emerald-glow" onClick={scrollToBooking}>
                 CLAIM 20% DISCOUNT OFFER 💬 ↗
               </button>
-              <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer" className="nz-btn-secondary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+              <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer" className="ix-btn-pill-outline-hero">
                 WHATSAPP COUNSELOR 💬
               </a>
             </div>
@@ -381,7 +443,10 @@ export default function CyberSecurityLanding() {
             </div>
 
             {/* BANNER CONTROLS */}
-            <div className="ix-banner-controls">
+            <div className="ix-banner-controls" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span className="nz-banner-live-badge">
+                <span className="nz-pulse-cyan-dot" /> AUTO MOVING
+              </span>
               <button className="ix-banner-arrow" onClick={scrollCyberLeft} aria-label="Previous Module">
                 ←
               </button>
@@ -392,7 +457,12 @@ export default function CyberSecurityLanding() {
           </div>
 
           {/* MOVABLE BANNER TRACK */}
-          <div className="ix-banner-track" ref={cyberTrackRef}>
+          <div
+            className="ix-banner-track"
+            ref={cyberTrackRef}
+            onMouseEnter={() => setIsCyberTrackHovered(true)}
+            onMouseLeave={() => setIsCyberTrackHovered(false)}
+          >
             {SYLLABUS_MODULES.map((m) => (
               <div key={m.num} className="ix-module-banner-card">
                 <div className="nz-module-media" style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
@@ -421,25 +491,38 @@ export default function CyberSecurityLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         SECURITY TOOLS STACK SHOWCASE
+         SECURITY TOOLS STACK SHOWCASE (ULTRA-PREMIUM CARDS)
       ───────────────────────────────────────────────────────── */}
       <section id="tools" className="nz-cyber-tools-sec">
         <div className="nz-cyber-container">
-          <div className="nz-cyber-sec-header">
+          <div className="nz-cyber-sec-header" style={{ marginBottom: '3.5rem' }}>
             <span className="nz-cyber-tag-cyan">LAB STACK & EQUIPMENT</span>
             <h2 className="nz-cyber-sec-h2">Industry Standard Security Tools You Will Master</h2>
-            <p className="nz-cyber-sec-p">Gain direct practical command over software used by global cybersecurity teams.</p>
+            <p className="nz-cyber-sec-p" style={{ maxWidth: '680px' }}>
+              Gain direct hands-on practical command over software suites used by global cybersecurity operation teams.
+            </p>
           </div>
 
           <div className="nz-cyber-tools-grid">
             {SECURITY_TOOLS.map((t) => (
               <div key={t.name} className="nz-cyber-tool-card">
-                <div className="nz-tool-header">
-                  <span className="nz-tool-emoji">{t.icon}</span>
-                  <span className="nz-tool-cat">{t.cat}</span>
+                <div>
+                  <div className="nz-tool-card-top">
+                    <div className="nz-tool-icon-box">
+                      <span className="nz-tool-emoji">{t.icon}</span>
+                    </div>
+                    <span className="nz-tool-cat">{t.cat}</span>
+                  </div>
+
+                  <div className="nz-tool-card-body">
+                    <h4 className="nz-tool-title">{t.name}</h4>
+                    <p className="nz-tool-desc">{t.desc}</p>
+                  </div>
                 </div>
-                <h4 className="nz-tool-title">{t.name}</h4>
-                <p className="nz-tool-desc">{t.desc}</p>
+
+                <div className="nz-tool-card-footer">
+                  <span className="nz-tool-lab-badge">✦ HANDS-ON LAB MODULE</span>
+                </div>
               </div>
             ))}
           </div>
@@ -447,19 +530,40 @@ export default function CyberSecurityLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         CAREER ROLES & SALARY POTENTIAL
+         CAREER ROLES & SALARY POTENTIAL (AUTO-MOVING MODERN CARDS BANNER)
       ───────────────────────────────────────────────────────── */}
       <section id="careers" className="nz-cyber-careers-sec">
         <div className="nz-cyber-container">
-          <div className="nz-cyber-sec-header">
-            <span className="nz-cyber-tag-cyan">HIGH DEMAND CAREERS</span>
-            <h2 className="nz-cyber-sec-h2">Career Opportunities & Salary Packages</h2>
-            <p className="nz-cyber-sec-p">Cybersecurity is among the fastest-growing sectors in global IT.</p>
+          <div className="nz-cyber-sec-header-row" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1.5rem' }}>
+            <div className="nz-cyber-sec-header" style={{ marginBottom: 0 }}>
+              <span className="nz-cyber-tag-cyan">HIGH DEMAND CAREERS</span>
+              <h2 className="nz-cyber-sec-h2">Career Opportunities & Salary Packages</h2>
+              <p className="nz-cyber-sec-p">Cybersecurity is among the fastest-growing sectors in global IT.</p>
+            </div>
+
+            {/* AUTOMATICALLY MOVING BANNER CONTROLS */}
+            <div className="ix-banner-controls" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span className="nz-banner-live-badge">
+                <span className="nz-pulse-cyan-dot" /> AUTO MOVING
+              </span>
+              <button className="ix-banner-arrow" onClick={scrollCareerLeft} aria-label="Previous Career Role">
+                ←
+              </button>
+              <button className="ix-banner-arrow" onClick={scrollCareerRight} aria-label="Next Career Role">
+                →
+              </button>
+            </div>
           </div>
 
-          <div className="nz-cyber-careers-grid">
+          {/* MOVABLE CAREER BANNER TRACK */}
+          <div
+            className="nz-cyber-careers-banner-track"
+            ref={careerTrackRef}
+            onMouseEnter={() => setIsCareerTrackHovered(true)}
+            onMouseLeave={() => setIsCareerTrackHovered(false)}
+          >
             {CAREER_ROLES.map((c) => (
-              <div key={c.role} className="nz-cyber-career-card">
+              <div key={c.role} className="nz-cyber-career-card nz-cyber-career-banner-card">
                 <div className="nz-career-head">
                   <h3 className="nz-career-title">{c.role}</h3>
                   <span className="nz-career-badge">{c.badge}</span>
@@ -473,126 +577,115 @@ export default function CyberSecurityLanding() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-         BOOKING AREA & KOLLAM CAMPUS CONTACT
+         SECTION 9: KOLLAM CAMPUS & 20% DISCOUNT BOOKING FORM (DIGITAL MARKETING STYLE)
       ───────────────────────────────────────────────────────── */}
-      <section id="contact" className="nz-cyber-booking-sec">
-        <div id="nz-booking-sec" className="nz-cyber-container">
-          <div className="nz-cyber-booking-grid">
+      <section id="contact" className="ix-booking-sec">
+        <div id="nz-booking-sec" className="ix-container">
+          <div className="ix-booking-grid">
 
-            {/* Left: Kollam Campus HQ Card */}
-            <div className="nz-cyber-hq-card">
-              <div className="nz-hq-tag">
-                <span className="nz-cyber-pulse-green" /> KOLLAM HEADQUARTERS
-              </div>
-
-              <h2 className="nz-hq-title">Networkz Systems Kollam Campus</h2>
-              <p className="nz-hq-desc">
-                Visit our state-of-the-art campus or contact our admissions advisors today to lock in your 20% discount offer for this month.
+            {/* Left: Kollam HQ Card */}
+            <div className="ix-hq-card">
+              <div className="ix-hq-badge">KOLLAM CAMPUS HQ</div>
+              <h2 className="ix-hq-title">Networkz Systems Kollam</h2>
+              <p className="ix-hq-address">
+                Pattathuvila Plaza, 2nd Floor, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001
               </p>
-
-              <div className="nz-hq-details">
-                <div className="nz-hq-item">
-                  <span className="nz-hq-icon">📍</span>
-                  <div>
-                    <div className="nz-hq-lbl">Campus Address</div>
-                    <div className="nz-hq-val">Pattathuvila Plaza, 2nd Floor, Vadayattukotta Rd, Chinnakada, Kollam, Kerala 691001</div>
-                  </div>
+              
+              <div className="ix-hq-contact-box">
+                <div className="ix-hq-contact-item">
+                  <span className="ix-hq-icon">📞</span>
+                  <span>Admission Hotline: <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer">+91 80890 30405</a></span>
                 </div>
-
-                <div className="nz-hq-item">
-                  <span className="nz-hq-icon">📞</span>
-                  <div>
-                    <div className="nz-hq-lbl">Admission Hotline</div>
-                    <div className="nz-hq-val">
-                      <a href="https://wa.me/918089030405" target="_blank" rel="noopener noreferrer" className="nz-cyan-link">
-                        +91 8089 03 04 05
-                      </a>
-                    </div>
-                  </div>
+                <div className="ix-hq-contact-item">
+                  <span className="ix-hq-icon">✉️</span>
+                  <span>Official Email: <a href="mailto:support@nskollam.com">support@nskollam.com</a></span>
                 </div>
-
-                <div className="nz-hq-item">
-                  <span className="nz-hq-icon">✉️</span>
-                  <div>
-                    <div className="nz-hq-lbl">Official Email</div>
-                    <div className="nz-hq-val">
-                      <a href="mailto:support@nskollam.com" className="nz-cyan-link">support@nskollam.com</a>
-                    </div>
-                  </div>
+                <div className="ix-hq-contact-item">
+                  <span className="ix-hq-icon">🕒</span>
+                  <span>Hours: Monday – Saturday (9:00 AM – 5:30 PM)</span>
                 </div>
               </div>
 
-              <a
-                href="https://maps.google.com/?q=Networkz+Systems+Kollam+Chinnakada"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="nz-hq-maps-btn"
-              >
-                📍 GET DIRECTIONS ON GOOGLE MAPS ↗
+              <a href="https://maps.google.com/?q=Networkz+Systems+Kollam+Chinnakada" target="_blank" rel="noopener noreferrer" className="ix-hq-map-btn">
+                📍 VIEW ON GOOGLE MAPS ↗
               </a>
             </div>
 
-            {/* Right: Booking Form */}
-            <div className="nz-cyber-form-card">
-              <div className="nz-form-head">
-                <span className="nz-form-tag">LIMITED SEATS REMAINING</span>
-                <h3 className="nz-form-h3">Claim 20% Discount Offer</h3>
-                <p className="nz-form-p">Submit your name and phone number below to lock in your 20% discount for this month.</p>
+            {/* Right: Booking Form (Matching Digital Marketing Reference Style) */}
+            <div className="ix-offer-card-ref">
+              {/* Top Banner Graphic */}
+              <div className="ix-offer-top-banner">
+                <span className="ix-banner-sub">SPECIAL ADMISSION OFFER</span>
+                <div className="ix-banner-price-row">
+                  <span className="ix-banner-old-price">REGULAR FEE</span>
+                  <span className="ix-banner-main-price">20% OFF</span>
+                  <span className="ix-banner-save-badge">THIS MONTH</span>
+                </div>
               </div>
 
-              {submitted ? (
-                <div className="nz-cyber-success">
-                  <div className="nz-success-check">✓</div>
-                  <h4 className="nz-success-h4">20% DISCOUNT CLAIM SENT!</h4>
-                  <p className="nz-success-p">
-                    Thank you <strong>{formData.name}</strong>! Your 20% discount request has been dispatched to our Kollam admissions desk on WhatsApp.
+              {/* Lower Form Container */}
+              <div className="ix-offer-body-ref">
+                <div className="ix-ref-header">
+                  <span className="ix-ref-unlock">UNLOCK</span>
+                  <h2 className="ix-ref-headline">20% DISCOUNT OFFER</h2>
+                  <span className="ix-ref-subhead">YOUR CYBER SECURITY SEAT</span>
+                  <p className="ix-ref-desc-lead">when you sign up with your details today</p>
+                  <p className="ix-ref-desc-sub">
+                    Join Networkz Systems Kollam for early access to live ethical hacking lab tools, CEH preparation, and 100% placement drives.
                   </p>
-                  <a href={getWhatsAppUrl()} target="_blank" rel="noopener noreferrer" className="nz-cyber-btn-primary" style={{ display: 'inline-block', textAlign: 'center', textDecoration: 'none' }}>
-                    RE-OPEN WHATSAPP 💬 →
-                  </a>
-                  <button className="nz-cyber-btn-outline" onClick={() => setSubmitted(false)} style={{ marginTop: '0.5rem' }}>BOOK ANOTHER SEAT</button>
                 </div>
-              ) : (
-                <form className="nz-cyber-form" onSubmit={handleSubmit}>
-                  <div className="nz-form-group">
-                    <label className="nz-form-label">YOUR FULL NAME *</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Rahul Nair"
-                      className="nz-form-input"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                  </div>
 
-                  <div className="nz-form-group">
-                    <label className="nz-form-label">PHONE / WHATSAPP NUMBER *</label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="e.g. +91 80890 30405"
-                      className="nz-form-input"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
+                {submitted ? (
+                  <div className="ix-offer-success">
+                    <h4>20% DISCOUNT OFFER CLAIM SENT!</h4>
+                    <p>Thank you <strong>{formData.name}</strong>! Your seat reservation details have been sent to WhatsApp.</p>
+                    <button className="ix-ref-cta-btn" onClick={() => setSubmitted(false)}>
+                      BOOK ANOTHER SEAT
+                    </button>
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="ix-ref-form">
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">YOUR FULL NAME *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Rahul Nair"
+                        className="ix-ref-input"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      />
+                    </div>
 
-                  <div className="nz-form-group">
-                    <label className="nz-form-label">CURRENT STATUS / ROLE</label>
-                    <CustomSelect
-                      theme="dark"
-                      options={ROLE_OPTIONS}
-                      value={formData.role}
-                      onChange={(val) => setFormData({ ...formData, role: val })}
-                    />
-                  </div>
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">PHONE / WHATSAPP NUMBER *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="e.g. +91 80890 30405"
+                        className="ix-ref-input"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
 
-                  <button type="submit" className="nz-cyber-btn-primary" style={{ width: '100%', marginTop: '0.8rem' }}>
-                    CLAIM 20% DISCOUNT & BOOK SEAT 💬 ↗
-                  </button>
-                </form>
-              )}
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">CURRENT STATUS / ROLE</label>
+                      <CustomSelect
+                        dropUp
+                        theme="light"
+                        options={ROLE_OPTIONS}
+                        value={formData.role}
+                        onChange={(val) => setFormData({ ...formData, role: val })}
+                      />
+                    </div>
+
+                    <button type="submit" className="ix-ref-cta-btn">
+                      CLAIM 20% DISCOUNT & ENROLL NOW 💬 ↗
+                    </button>
+                  </form>
+                )}
+              </div>
             </div>
 
           </div>
@@ -669,6 +762,91 @@ export default function CyberSecurityLanding() {
           </div>
         </div>
       </footer>
+
+      {/* ─────────────────────────────────────────────────────────
+         15-SECOND AUTO POPUP OFFER MODAL
+      ───────────────────────────────────────────────────────── */}
+      {showOfferModal && (
+        <div className="nz-popup-overlay" onClick={() => setShowOfferModal(false)}>
+          <div className="nz-popup-container" onClick={(e) => e.stopPropagation()}>
+            <button className="nz-popup-close-btn" onClick={() => setShowOfferModal(false)} aria-label="Close Pop-up">
+              ✕
+            </button>
+
+            {/* Offer Card Container */}
+            <div className="ix-offer-card-ref" style={{ boxShadow: 'none' }}>
+              <div className="ix-offer-top-banner">
+                <span className="ix-banner-sub">SPECIAL ADMISSION OFFER</span>
+                <div className="ix-banner-price-row">
+                  <span className="ix-banner-old-price">REGULAR FEE</span>
+                  <span className="ix-banner-main-price">20% OFF</span>
+                  <span className="ix-banner-save-badge">THIS MONTH</span>
+                </div>
+              </div>
+
+              <div className="ix-offer-body-ref" style={{ padding: '2rem 1.75rem' }}>
+                <div className="ix-ref-header">
+                  <span className="ix-ref-unlock">UNLOCK</span>
+                  <h2 className="ix-ref-headline">20% DISCOUNT OFFER</h2>
+                  <span className="ix-ref-subhead">YOUR CYBER SECURITY SEAT</span>
+                  <p className="ix-ref-desc-lead">when you sign up with your details today</p>
+                </div>
+
+                {submitted ? (
+                  <div className="ix-offer-success">
+                    <h4>20% DISCOUNT OFFER CLAIM SENT!</h4>
+                    <p>Thank you <strong>{formData.name}</strong>! Your seat reservation details have been sent to WhatsApp.</p>
+                    <button className="ix-ref-cta-btn" onClick={() => { setSubmitted(false); setShowOfferModal(false); }}>
+                      CLOSE
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="ix-ref-form">
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">YOUR FULL NAME *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Rahul Nair"
+                        className="ix-ref-input"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">PHONE / WHATSAPP NUMBER *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="e.g. +91 80890 30405"
+                        className="ix-ref-input"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">CURRENT STATUS / ROLE</label>
+                      <CustomSelect
+                        dropUp
+                        theme="light"
+                        options={ROLE_OPTIONS}
+                        value={formData.role}
+                        onChange={(val) => setFormData({ ...formData, role: val })}
+                      />
+                    </div>
+
+                    <button type="submit" className="ix-ref-cta-btn">
+                      CLAIM 20% DISCOUNT & ENROLL NOW 💬 ↗
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

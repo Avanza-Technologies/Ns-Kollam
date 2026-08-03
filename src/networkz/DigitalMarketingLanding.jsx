@@ -244,6 +244,17 @@ export default function DigitalMarketingLanding() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', phone: '', role: 'Student (Study)' });
   const [submitted, setSubmitted] = useState(false);
+  const [showOfferModal, setShowOfferModal] = useState(false);
+
+  /* ── 15-SECOND RECURRING AUTO POPUP MODAL ── */
+  useEffect(() => {
+    if (submitted) return;
+    const timer = setTimeout(() => {
+      setShowOfferModal(true);
+    }, 15000);
+
+    return () => clearTimeout(timer);
+  }, [showOfferModal, submitted]);
 
   /* ── 3D COVERFLOW CAROUSEL STATE (IMAGE 2 REFERENCE) ── */
   const [activeModuleIndex, setActiveModuleIndex] = useState(3); // Module 04 active by default
@@ -910,11 +921,95 @@ export default function DigitalMarketingLanding() {
 
             <div className="ix-footer-bottom">
               <span>NETWORKZ SYSTEMS KOLLAM</span>
-              <span>© 2025 Networkz Systems Kollam. ISO 9001:2015 Certified. All rights reserved.</span>
+              <span>© 2026 Networkz Systems Kollam. ISO 9001:2015 Certified. All rights reserved.</span>
             </div>
           </div>
       </footer>
 
+      {/* ─────────────────────────────────────────────────────────
+         15-SECOND AUTO POPUP OFFER MODAL
+      ───────────────────────────────────────────────────────── */}
+      {showOfferModal && (
+        <div className="nz-popup-overlay" onClick={() => setShowOfferModal(false)}>
+          <div className="nz-popup-container" onClick={(e) => e.stopPropagation()}>
+            <button className="nz-popup-close-btn" onClick={() => setShowOfferModal(false)} aria-label="Close Pop-up">
+              ✕
+            </button>
+
+            {/* Offer Card Container */}
+            <div className="ix-offer-card-ref" style={{ boxShadow: 'none' }}>
+              <div className="ix-offer-top-banner">
+                <span className="ix-banner-sub">SPECIAL ADMISSION OFFER</span>
+                <div className="ix-banner-price-row">
+                  <span className="ix-banner-old-price">₹35,000</span>
+                  <span className="ix-banner-main-price">₹15,000</span>
+                  <span className="ix-banner-save-badge">57% OFF</span>
+                </div>
+              </div>
+
+              <div className="ix-offer-body-ref" style={{ padding: '2rem 1.75rem' }}>
+                <div className="ix-ref-header">
+                  <span className="ix-ref-unlock">UNLOCK</span>
+                  <h2 className="ix-ref-headline">₹15,000 OFFER</h2>
+                  <span className="ix-ref-subhead">YOUR COURSE SEAT</span>
+                  <p className="ix-ref-desc-lead">when you sign up with your details today</p>
+                </div>
+
+                {submitted ? (
+                  <div className="ix-offer-success">
+                    <h4>₹15,000 OFFER CLAIM SENT!</h4>
+                    <p>Thank you <strong>{formData.name}</strong>! Your seat reservation details have been sent to WhatsApp.</p>
+                    <button className="ix-ref-cta-btn" onClick={() => { setSubmitted(false); setShowOfferModal(false); }}>
+                      CLOSE
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="ix-ref-form">
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">YOUR FULL NAME *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Rahul Nair"
+                        className="ix-ref-input"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">PHONE / WHATSAPP NUMBER *</label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="e.g. +91 80890 30405"
+                        className="ix-ref-input"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      />
+                    </div>
+
+                    <div className="ix-ref-field-group">
+                      <label className="ix-ref-label">CURRENT STATUS / ROLE</label>
+                      <CustomSelect
+                        dropUp
+                        theme="light"
+                        options={ROLE_OPTIONS}
+                        value={formData.role}
+                        onChange={(val) => setFormData({ ...formData, role: val })}
+                      />
+                    </div>
+
+                    <button type="submit" className="ix-ref-cta-btn">
+                      CLAIM ₹15,000 OFFER & ENROLL NOW 💬 ↗
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
