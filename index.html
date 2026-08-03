@@ -63,20 +63,40 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "EducationalOrganization",
+          "@type": ["EducationalOrganization", "LocalBusiness"],
+          "@id": "https://nskollam.com/#organization",
           "name": "Networkz Systems Kollam",
+          "legalName": "Networkz Systems Kollam",
           "url": "https://nskollam.com/",
           "logo": "https://nskollam.com/nsk.jpeg",
           "image": "https://nskollam.com/nsk.jpeg",
+          "telephone": "+918089030405",
+          "priceRange": "₹₹",
           "description": "Kerala's premier ISO 9001:2015 Certified Technology Academy & Pearson VUE Authorized Test Center in Kollam, Kerala. Offering top-ranked courses in CCNA Networking, Python Full Stack, Java Full Stack, Cyber Security, Artificial Intelligence, and Digital Marketing.",
           "address": {
             "@type": "PostalAddress",
+            "streetAddress": "2nd Floor, Pattathuvila Plaza, Vadayattukotta Rd, Chinnakada",
             "addressLocality": "Kollam",
             "addressRegion": "Kerala",
+            "postalCode": "691001",
             "addressCountry": "IN"
           },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 8.8932,
+            "longitude": 76.6141
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "09:00",
+            "closes": "17:30"
+          },
           "hasCredential": "ISO 9001:2015 Certified, Pearson VUE Authorized Center",
-          "sameAs": ["https://nskollam.com"]
+          "sameAs": [
+            "https://nskollam.com",
+            "https://www.facebook.com/NetworkzSystemsKollam"
+          ]
         },
         {
           "@type": "ItemList",
