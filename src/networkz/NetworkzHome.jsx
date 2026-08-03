@@ -166,8 +166,6 @@ export default function NetworkzHome() {
         <ul className="nz-nav-menu">
           <li><a href="#features" className="nz-nav-link">PILLARS</a></li>
           <li><a href="#catalog" className="nz-nav-link">PROGRAMS</a></li>
-          <li><a href="/cybersecurity" className="nz-nav-link" style={{ color: 'var(--color-accent)' }}>CYBER SECURITY 🛡️</a></li>
-          <li><a href="/digital-marketing" className="nz-nav-link" style={{ color: 'var(--color-accent)' }}>DIGITAL MARKETING 🚀</a></li>
           <li><a href="#why-us" className="nz-nav-link">ABOUT</a></li>
           <li><a href="#success" className="nz-nav-link">SUCCESS</a></li>
           <li><a href="#faq" className="nz-nav-link">FAQ</a></li>
