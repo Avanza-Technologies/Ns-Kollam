@@ -22,6 +22,59 @@ const FEATURES_DATA = [
   }
 ];
 
+const RECENT_PLACEMENTS_DATA = [
+  {
+    id: 1,
+    name: 'Anoop A',
+    role: 'Digital Marketing Specialist',
+    company: 'Khadamath Accounts & Operations',
+    companyDetail: '(UAE Billing Software)',
+    location: 'UAE 🇦🇪',
+    image: '/placements/anoop.jpg',
+    badge: 'INTERNATIONAL PLACEMENT'
+  },
+  {
+    id: 2,
+    name: 'Belwin',
+    role: 'Associate Deployment Engineer',
+    company: 'ECS Fintech',
+    companyDetail: 'Technopark, Phase 1, Tvm, Kerala',
+    location: 'Technopark, Trivandrum 🇮🇳',
+    image: '/placements/belwin.jpg',
+    badge: 'TECHNOPARK PLACEMENT'
+  },
+  {
+    id: 3,
+    name: 'Reshma',
+    role: 'Marketing Specialist',
+    company: 'Castles Plaza Real Estate LLC',
+    companyDetail: 'Dubai, UAE Enterprise',
+    location: 'Dubai, UAE 🇦🇪',
+    image: '/placements/reshma.jpg',
+    badge: 'DUBAI ENTERPRISE'
+  },
+  {
+    id: 4,
+    name: 'Nahas',
+    role: 'Digital Marketing Specialist',
+    company: 'Khadamath Accounts & Operations',
+    companyDetail: '(UAE Billing Software)',
+    location: 'UAE 🇦🇪',
+    image: '/placements/nahas.jpg',
+    badge: 'INTERNATIONAL PLACEMENT'
+  },
+  {
+    id: 5,
+    name: 'Akshaya P',
+    role: 'Security Analyst',
+    company: 'EY (Ernst & Young)',
+    companyDetail: 'Building a better working world',
+    location: 'Global MNC 🌐',
+    image: '/placements/akshaya.jpg',
+    badge: 'BIG 4 GLOBAL MNC'
+  }
+];
+
 const TESTIMONIALS_DATA = [
   {
     quote: "Networkz Systems transformed my career trajectory. Within 3 months of completing the Python Full Stack program, I secured a Senior Developer role at an MNC.",
@@ -125,6 +178,51 @@ export default function NetworkzHome() {
   const [enrollmentSubmitted, setEnrollmentSubmitted] = useState(false);
   const [contactFormSubmitted, setContactFormSubmitted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [placementIndex, setPlacementIndex] = useState(0);
+  const [isPlacementPaused, setIsPlacementPaused] = useState(false);
+  const [placementModalImage, setPlacementModalImage] = useState(null);
+
+  // Auto-slide effect for recent placements
+  useEffect(() => {
+    if (isPlacementPaused) return;
+    const timer = setInterval(() => {
+      setPlacementIndex((prev) => (prev + 1) % RECENT_PLACEMENTS_DATA.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isPlacementPaused]);
+
+  const handlePrevPlacement = () => {
+    setPlacementIndex((prev) => (prev === 0 ? RECENT_PLACEMENTS_DATA.length - 1 : prev - 1));
+  };
+
+  const handleNextPlacement = () => {
+    setPlacementIndex((prev) => (prev + 1) % RECENT_PLACEMENTS_DATA.length);
+  };
+
+  const handleModalPrev = () => {
+    if (!placementModalImage) return;
+    const currentIndex = RECENT_PLACEMENTS_DATA.findIndex((p) => p.id === placementModalImage.id);
+    const prevIndex = currentIndex === 0 ? RECENT_PLACEMENTS_DATA.length - 1 : currentIndex - 1;
+    setPlacementModalImage(RECENT_PLACEMENTS_DATA[prevIndex]);
+  };
+
+  const handleModalNext = () => {
+    if (!placementModalImage) return;
+    const currentIndex = RECENT_PLACEMENTS_DATA.findIndex((p) => p.id === placementModalImage.id);
+    const nextIndex = (currentIndex + 1) % RECENT_PLACEMENTS_DATA.length;
+    setPlacementModalImage(RECENT_PLACEMENTS_DATA[nextIndex]);
+  };
+
+  useEffect(() => {
+    if (!placementModalImage) return;
+    const handleModalKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') handleModalPrev();
+      if (e.key === 'ArrowRight') handleModalNext();
+      if (e.key === 'Escape') setPlacementModalImage(null);
+    };
+    window.addEventListener('keydown', handleModalKeyDown);
+    return () => window.removeEventListener('keydown', handleModalKeyDown);
+  }, [placementModalImage]);
 
   // Flatten courses for searching/filtering
   const allCourses = Object.entries(COURSE_DETAILS).flatMap(([catId, cat]) =>
@@ -569,36 +667,299 @@ export default function NetworkzHome() {
         </div>
       </section>
 
-      {/* ─── SECTION 6: STUDENT SUCCESS (Nike Campaign Spotlight) ──── */}
+      {/* ─── SECTION 6: RECENT PLACEMENTS SLIDER & MOVING CAROUSEL ──── */}
       <section id="success" className="nz-success-section nz-section-padding">
         <div className="nz-container">
-          <span className="nz-eyebrow">CAREER IMPACT</span>
-          <h2 className="nz-heading-lg">STUDENT SPOTLIGHT.</h2>
-
-          <div className="nz-spotlight-card">
+          <div className="nz-placement-header">
             <div>
-              <div style={{ fontSize: '0.8rem', fontWeight: '800', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-accent)', marginBottom: '1rem' }}>
-                FEATURED GRADUATE ALUMNI
-              </div>
-              <p className="nz-spotlight-quote">
-                "Learning Python Full Stack at Networkz Systems gave me the exact production-grade skills required by international hiring managers."
+              <span className="nz-eyebrow">PROVEN PLACEMENT RECORDS</span>
+              <h2 className="nz-heading-lg">RECENT PLACEMENTS.</h2>
+              <p className="nz-body-lead" style={{ marginTop: '0.8rem' }}>
+                Congratulations to Networkz Systems Kollam students placed at top international & Technopark IT companies.
               </p>
-              <div className="nz-spotlight-author">
-                <span className="nz-spotlight-name">Sudheesh P S </span>
-                <span className="nz-spotlight-role">Full Stack Developer — Placed at TRENSER, Technopark </span>
+            </div>
+
+            {/* Slider Nav Buttons */}
+            <div className="nz-placement-nav-controls">
+              <button
+                type="button"
+                className="nz-placement-arrow-btn"
+                onClick={handlePrevPlacement}
+                aria-label="Previous placement slide"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                className="nz-placement-pause-btn"
+                onClick={() => setIsPlacementPaused((prev) => !prev)}
+                title={isPlacementPaused ? "Resume auto play" : "Pause auto play"}
+              >
+                {isPlacementPaused ? "▶ PLAY" : "❚❚ PAUSE"}
+              </button>
+              <button
+                type="button"
+                className="nz-placement-arrow-btn"
+                onClick={handleNextPlacement}
+                aria-label="Next placement slide"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          {/* Featured Spotlight Card with Active Poster Slide */}
+          <div
+            className="nz-placement-spotlight"
+            onMouseEnter={() => setIsPlacementPaused(true)}
+            onMouseLeave={() => setIsPlacementPaused(false)}
+          >
+            {/* Active Poster Image Frame */}
+            <div
+              className="nz-placement-poster-frame"
+              onClick={() => setPlacementModalImage(RECENT_PLACEMENTS_DATA[placementIndex])}
+              title="Click to expand official poster"
+            >
+              <img
+                src={RECENT_PLACEMENTS_DATA[placementIndex].image}
+                alt={`${RECENT_PLACEMENTS_DATA[placementIndex].name} - ${RECENT_PLACEMENTS_DATA[placementIndex].role}`}
+                className="nz-placement-poster-img"
+              />
+              <div className="nz-poster-zoom-hint">
+                <span>🔍 CLICK TO ENLARGE POSTER</span>
               </div>
             </div>
-            {/* 
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                alt="Sudheesh P S - Full Stack Developer Spotlight"
-                style={{ width: '100%', height: '340px', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center 20%' }}
-              />
-            </div> */}
+
+            {/* Candidate & Placement Info */}
+            <div className="nz-placement-info">
+              <span className="nz-placement-badge">
+                {RECENT_PLACEMENTS_DATA[placementIndex].badge}
+              </span>
+              <h3 className="nz-placement-name">
+                {RECENT_PLACEMENTS_DATA[placementIndex].name}
+              </h3>
+              <p className="nz-placement-role">
+                {RECENT_PLACEMENTS_DATA[placementIndex].role}
+              </p>
+
+              <div className="nz-placement-company-box">
+                <div className="nz-company-label">PLACED AT</div>
+                <div className="nz-company-title">
+                  {RECENT_PLACEMENTS_DATA[placementIndex].company}
+                </div>
+                <div className="nz-company-sub">
+                  {RECENT_PLACEMENTS_DATA[placementIndex].companyDetail}
+                </div>
+                <div className="nz-company-loc">
+                  📍 {RECENT_PLACEMENTS_DATA[placementIndex].location}
+                </div>
+              </div>
+
+              <div className="nz-placement-actions">
+                <button
+                  type="button"
+                  className="nz-nav-cta"
+                  onClick={() => setPlacementModalImage(RECENT_PLACEMENTS_DATA[placementIndex])}
+                >
+                  VIEW OFFICIAL POSTER ↗
+                </button>
+                <a
+                  href={`https://wa.me/918089030405?text=Hello%20Admissions!%20I%20saw%20${RECENT_PLACEMENTS_DATA[placementIndex].name}'s%20placement%20at%20${RECENT_PLACEMENTS_DATA[placementIndex].company}%20and%20would%20like%20to%20know%20more%20about%20the%20course.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nz-nav-login-btn"
+                  style={{ color: '#ffffff', borderColor: 'rgba(255, 255, 255, 0.3)' }}
+                >
+                  💬 ENQUIRE THIS COURSE
+                </a>
+              </div>
+
+              {/* Slider Dots */}
+              <div className="nz-placement-dots">
+                {RECENT_PLACEMENTS_DATA.map((item, idx) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`nz-placement-dot ${idx === placementIndex ? 'is-active' : ''}`}
+                    onClick={() => setPlacementIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Continuous Moving Slide Marquee Track */}
+          <div className="nz-placement-marquee-sec">
+            <div className="nz-marquee-label">
+              <span>⚡ MOVING RECENT PLACEMENT GALLERY (CLICK ANY POSTER TO VIEW)</span>
+            </div>
+            <div className="nz-placement-marquee-track">
+              {/* Duplicated items to create seamless infinite loop */}
+              {[...RECENT_PLACEMENTS_DATA, ...RECENT_PLACEMENTS_DATA, ...RECENT_PLACEMENTS_DATA].map((p, i) => (
+                <div
+                  key={`${p.id}-${i}`}
+                  className={`nz-marquee-card ${RECENT_PLACEMENTS_DATA[placementIndex].id === p.id ? 'is-highlighted' : ''}`}
+                  onClick={() => {
+                    setPlacementIndex(p.id - 1);
+                    setPlacementModalImage(p);
+                  }}
+                >
+                  <img src={p.image} alt={p.name} className="nz-marquee-img" />
+                  <div className="nz-marquee-overlay">
+                    <span className="nz-marquee-name">{p.name}</span>
+                    <span className="nz-marquee-role">{p.company}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Handcrafted High-End Lightbox Modal */}
+      {placementModalImage && (
+        <div className="nz-luxury-modal-backdrop" onClick={() => setPlacementModalImage(null)}>
+          <div className="nz-luxury-modal-container" onClick={(e) => e.stopPropagation()}>
+            
+            {/* Modal Header Bar */}
+            <div className="nz-luxury-modal-header">
+              <div className="nz-modal-brand-tag">
+                <img src="/nsk.jpeg" alt="NSK Logo" className="nz-modal-brand-logo" />
+                <div>
+                  <div className="nz-modal-brand-title">NETWORKZ SYSTEMS KOLLAM</div>
+                  <div className="nz-modal-brand-sub">VERIFIED ALUMNI PLACEMENT SPOTLIGHT</div>
+                </div>
+              </div>
+
+              <div className="nz-modal-header-actions">
+                <span className="nz-modal-counter">
+                  SLIDE {RECENT_PLACEMENTS_DATA.findIndex((p) => p.id === placementModalImage.id) + 1} OF {RECENT_PLACEMENTS_DATA.length}
+                </span>
+                <button
+                  type="button"
+                  className="nz-luxury-modal-close"
+                  onClick={() => setPlacementModalImage(null)}
+                  aria-label="Close modal"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body / Main Content */}
+            <div className="nz-luxury-modal-body">
+              
+              {/* Left Column: Poster Display with Side Nav Buttons */}
+              <div className="nz-modal-stage">
+                <button
+                  type="button"
+                  className="nz-modal-stage-arrow nz-arrow-left"
+                  onClick={handleModalPrev}
+                  aria-label="Previous Poster"
+                  title="Previous Poster (Left Arrow)"
+                >
+                  ‹
+                </button>
+                
+                <div className="nz-modal-poster-canvas">
+                  <img
+                    src={placementModalImage.image}
+                    alt={`${placementModalImage.name} - ${placementModalImage.role}`}
+                    className="nz-modal-main-poster"
+                  />
+                </div>
+
+                <button
+                  type="button"
+                  className="nz-modal-stage-arrow nz-arrow-right"
+                  onClick={handleModalNext}
+                  aria-label="Next Poster"
+                  title="Next Poster (Right Arrow)"
+                >
+                  ›
+                </button>
+              </div>
+
+              {/* Right Column: Handcrafted Details Panel */}
+              <div className="nz-modal-details-panel">
+                <span className="nz-modal-badge">
+                  {placementModalImage.badge}
+                </span>
+                
+                <h3 className="nz-modal-candidate-name">
+                  {placementModalImage.name}
+                </h3>
+                <p className="nz-modal-candidate-role">
+                  {placementModalImage.role}
+                </p>
+
+                <div className="nz-modal-company-card">
+                  <div className="nz-modal-company-hdr">PLACED AT</div>
+                  <div className="nz-modal-company-name">
+                    {placementModalImage.company}
+                  </div>
+                  <div className="nz-modal-company-desc">
+                    {placementModalImage.companyDetail}
+                  </div>
+                  <div className="nz-modal-company-location">
+                    📍 {placementModalImage.location}
+                  </div>
+                </div>
+
+                <div className="nz-modal-highlights">
+                  <div className="nz-highlight-item">
+                    <span className="nz-highlight-icon">🎓</span>
+                    <span><strong>Certification:</strong> ISO 9001:2015 Certified Academy</span>
+                  </div>
+                  <div className="nz-highlight-item">
+                    <span className="nz-highlight-icon">💼</span>
+                    <span><strong>Career Support:</strong> 100% Direct Placement Support</span>
+                  </div>
+                </div>
+
+                {/* Primary & Secondary Action CTAs */}
+                <div className="nz-modal-ctas">
+                  <a
+                    href={`https://wa.me/918089030405?text=Hello%20Networkz%20Systems!%20I%20saw%20${placementModalImage.name}'s%20placement%20at%20${placementModalImage.company}%20and%20want%20to%20know%20batch%20details.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nz-modal-primary-btn"
+                  >
+                    <span>💬 ENQUIRE ABOUT THIS COURSE</span>
+                  </a>
+                  <a
+                    href="tel:08089030405"
+                    className="nz-modal-secondary-btn"
+                  >
+                    <span>📞 CALL CAMPUS: +91 80890 30405</span>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Modal Bottom Thumbnail Gallery Switcher */}
+            <div className="nz-modal-thumbs-bar">
+              <div className="nz-thumbs-title">SWITCH PLACEMENT POSTER:</div>
+              <div className="nz-thumbs-list">
+                {RECENT_PLACEMENTS_DATA.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`nz-thumb-btn ${item.id === placementModalImage.id ? 'is-active' : ''}`}
+                    onClick={() => setPlacementModalImage(item)}
+                  >
+                    <img src={item.image} alt={item.name} className="nz-thumb-img" />
+                    <span className="nz-thumb-name">{item.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
 
       {/* ─── SECTION 7: PLACEMENT LOGO TICKER ─────────────────────── */}
       <section className="nz-placements-section">

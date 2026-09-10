@@ -1889,3 +1889,775 @@
 .nz-footer-dot {
   color: rgba(255, 255, 255, 0.3);
 }
+
+/* ─── SECTION 6: RECENT PLACEMENT SHOWCASE SLIDER & MARQUEE ────── */
+.nz-placement-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.nz-placement-nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.nz-placement-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-editorial);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nz-placement-arrow-btn:hover {
+  background: var(--color-accent);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 93, 66, 0.3);
+}
+
+.nz-placement-pause-btn {
+  padding: 0.6rem 1.1rem;
+  border-radius: 20px;
+  background: rgba(17, 17, 17, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nz-placement-pause-btn:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* Spotlight Card Grid */
+.nz-placement-spotlight {
+  background: #111111;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 992px) {
+  .nz-placement-spotlight {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Poster Frame & Zoom */
+.nz-placement-poster-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: transform 0.35s var(--ease-editorial), box-shadow 0.35s ease;
+  background: #000000;
+}
+
+.nz-placement-poster-frame:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 45px rgba(30, 93, 66, 0.4);
+}
+
+.nz-placement-poster-img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .nz-placement-poster-img {
+    height: 380px;
+  }
+}
+
+.nz-poster-zoom-hint {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.8rem;
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%);
+  text-align: center;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.nz-placement-poster-frame:hover .nz-poster-zoom-hint {
+  opacity: 1;
+  color: var(--color-accent);
+}
+
+/* Placement Info Box */
+.nz-placement-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nz-placement-badge {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+}
+
+.nz-placement-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 0.4rem 0;
+  line-height: 1;
+}
+
+.nz-placement-role {
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2rem;
+}
+
+.nz-placement-company-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+}
+
+.nz-company-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: 0.4rem;
+}
+
+.nz-company-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.nz-company-sub {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 0.25rem;
+}
+
+.nz-company-loc {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #34d399;
+  margin-top: 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.nz-placement-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.nz-placement-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.nz-placement-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.nz-placement-dot.is-active {
+  width: 32px;
+  border-radius: 8px;
+  background: var(--color-accent);
+}
+
+/* ── Moving Marquee Track ─────────────────── */
+.nz-placement-marquee-sec {
+  margin-top: 3.5rem;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.nz-marquee-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.nz-placement-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  animation: nzMarqueeSlide 28s linear infinite;
+}
+
+.nz-placement-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes nzMarqueeSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.nz-marquee-card {
+  width: 220px;
+  height: 290px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s var(--ease-editorial), box-shadow 0.3s ease;
+  background: #111111;
+}
+
+.nz-marquee-card:hover,
+.nz-marquee-card.is-highlighted {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 35px rgba(30, 93, 66, 0.3);
+  border-color: var(--color-accent);
+}
+
+.nz-marquee-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.nz-marquee-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem 0.85rem 0.75rem;
+  background: linear-gradient(0deg, rgba(17, 17, 17, 0.95) 0%, rgba(17, 17, 17, 0.7) 60%, transparent 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.nz-marquee-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.nz-marquee-role {
+  font-size: 0.72rem;
+  color: #34d399;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Handcrafted Luxury Editorial Lightbox Modal ─────────────── */
+.nz-luxury-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(8, 9, 12, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 2.5vw, 2.5rem);
+  animation: nzModalFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes nzModalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.nz-luxury-modal-container {
+  position: relative;
+  max-width: 1100px;
+  width: 100%;
+  max-height: 90vh;
+  background: linear-gradient(145deg, #15181e 0%, #0c0e12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  box-shadow: 0 40px 100px -15px rgba(0, 0, 0, 0.9), 0 0 50px rgba(30, 93, 66, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+/* Modal Header Bar */
+.nz-luxury-modal-header {
+  padding: 1rem 1.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nz-modal-brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nz-modal-brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.nz-modal-brand-title {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.nz-modal-brand-sub {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #34d399;
+  text-transform: uppercase;
+}
+
+.nz-modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nz-modal-counter {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nz-luxury-modal-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nz-luxury-modal-close:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.05);
+}
+
+/* Modal Body Stage */
+.nz-luxury-modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 1.75rem;
+  overflow-y: auto;
+  align-items: center;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .nz-luxury-modal-body {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+}
+
+.nz-modal-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #060709;
+  border-radius: 16px;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.nz-modal-stage-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-editorial);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.nz-arrow-left {
+  left: 10px;
+}
+
+.nz-arrow-right {
+  right: 10px;
+}
+
+.nz-modal-stage-arrow:hover {
+  background: var(--color-accent);
+  border-color: #34d399;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nz-modal-poster-canvas {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 520px;
+  overflow: hidden;
+}
+
+.nz-modal-main-poster {
+  max-width: 100%;
+  max-height: 500px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  display: block;
+}
+
+/* Modal Right Details Panel */
+.nz-modal-details-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nz-modal-badge {
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+.nz-modal-candidate-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 0.3rem 0;
+  line-height: 1.05;
+}
+
+.nz-modal-candidate-role {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.5rem;
+}
+
+.nz-modal-company-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1.25rem;
+}
+
+.nz-modal-company-hdr {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
+  margin-bottom: 0.3rem;
+}
+
+.nz-modal-company-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.nz-modal-company-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.2rem;
+}
+
+.nz-modal-company-location {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #34d399;
+  margin-top: 0.6rem;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.nz-modal-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.nz-highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nz-highlight-icon {
+  font-size: 1rem;
+}
+
+.nz-modal-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.nz-modal-primary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.5rem;
+  background: linear-gradient(135deg, #1E5D42 0%, #164632 100%);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(30, 93, 66, 0.35);
+  transition: all 0.25s var(--ease-editorial);
+  text-align: center;
+}
+
+.nz-modal-primary-btn:hover {
+  background: linear-gradient(135deg, #246d4e 0%, #1a523a 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(30, 93, 66, 0.5);
+}
+
+.nz-modal-secondary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.nz-modal-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #34d399;
+  color: #ffffff;
+}
+
+/* Modal Bottom Thumbnail Gallery Switcher */
+.nz-modal-thumbs-bar {
+  padding: 1rem 1.75rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.nz-thumbs-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.nz-thumbs-list {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.nz-thumb-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nz-thumb-btn:hover,
+.nz-thumb-btn.is-active {
+  background: rgba(30, 93, 66, 0.25);
+  border-color: #34d399;
+}
+
+.nz-thumb-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.nz-thumb-name {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
