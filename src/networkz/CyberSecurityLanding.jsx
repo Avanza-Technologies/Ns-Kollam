@@ -208,90 +208,7 @@ export default function CyberSecurityLanding() {
   }, [isCareerTrackHovered]);
 
   /* ── ON-PAGE SEO OPTIMIZATION FOR GOOGLE #1 RANKING IN KOLLAM ── */
-  useEffect(() => {
-    document.title = "Cyber Security Course in Kollam | Networkz Systems (100% Placement)";
 
-    // Set canonical link specifically for /cybersecurity
-    let canonicalEl = document.querySelector('link[rel="canonical"]');
-    if (canonicalEl) {
-      canonicalEl.setAttribute('href', 'https://nskollam.com/cybersecurity');
-    }
-
-    // Set meta description specifically for Cyber Security
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', 'Best Cyber Security & Ethical Hacking Course in Kollam, Kerala at Networkz Systems. ISO 9001:2015 certified training, hands-on penetration testing lab, CEH certification syllabus, and 100% placement support.');
-    }
-
-    // Inject Course & FAQ JSON-LD Schema
-    const scriptId = 'cyber-security-jsonld-schema';
-    let existingScript = document.getElementById(scriptId);
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.id = scriptId;
-      script.type = 'application/ld+json';
-      script.text = JSON.stringify({
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Course",
-            "name": "Ethical Hacking & Cyber Security Professional Course in Kollam",
-            "description": "Comprehensive Cyber Security, Ethical Hacking, Network Security & Penetration Testing certification course in Kollam, Kerala with 100% placement support.",
-            "provider": {
-              "@type": "EducationalOrganization",
-              "name": "Networkz Systems Kollam",
-              "sameAs": "https://nskollam.com/"
-            },
-            "educationalCredentialAwarded": "Certified Ethical Hacker & Networkz Professional Certification",
-            "hasCourseInstance": {
-              "@type": "CourseInstance",
-              "courseMode": "Offline / Classroom & Live Online",
-              "location": {
-                "@type": "Place",
-                "name": "Networkz Systems Kollam Campus",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Kollam",
-                  "addressRegion": "Kerala",
-                  "addressCountry": "IN"
-                }
-              }
-            }
-          },
-          {
-            "@type": "FAQPage",
-            "mainEntity": [
-              {
-                "@type": "Question",
-                "name": "Which is the best Cyber Security course in Kollam?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Networkz Systems Kollam offers the #1 Cyber Security & Ethical Hacking course in Kollam, featuring live lab training, ISO 9001:2015 certification, and 100% placement assistance."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "Does Networkz Systems Kollam offer placement for Cyber Security students?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Yes, Networkz Systems Kollam has a 100% placement assistance cell connecting Cyber Security students with top MNCs and IT security firms in Kerala and South India."
-                }
-              },
-              {
-                "@type": "Question",
-                "name": "What is the qualification required for the Cyber Security course in Kollam?",
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": "Students from B.Tech, BCA, BSc CS, Diploma, or any degree background interested in Ethical Hacking and Computer Networking can join the Cyber Security course at Networkz Systems Kollam."
-                }
-              }
-            ]
-          }
-        ]
-      });
-      document.head.appendChild(script);
-    }
-  }, []);
 
   const scrollCyberLeft = () => {
     if (cyberTrackRef.current) {
@@ -359,6 +276,7 @@ export default function CyberSecurityLanding() {
 
         {/* Desktop Links */}
         <ul className="nz-nav-menu">
+          <li><a href="/courses" className="nz-nav-link">ALL COURSES</a></li>
           <li><a href="#overview" className="nz-nav-link">OVERVIEW</a></li>
           <li><a href="#syllabus" className="nz-nav-link">SYLLABUS</a></li>
           <li><a href="#tools" className="nz-nav-link">SECURITY STACK</a></li>
@@ -515,8 +433,9 @@ export default function CyberSecurityLanding() {
               <span className="nz-cyber-pulse" /> AN ISO 9001:2015 CERTIFIED ACADEMY
             </div>
 
-            <h1 className="nz-cyber-hero-title">
-              #1 CYBER SECURITY &<br />
+            <nav aria-label="Breadcrumb" style={{marginBottom: "1rem", fontSize: "0.85rem"}}><a href="/">Home</a><span aria-hidden="true"> / </span><span aria-current="page">Cyber Security</span></nav>
+              <h1 className="nz-cyber-hero-title">
+              CYBER SECURITY &<br />
               <span className="nz-cyber-gradient-text">ETHICAL HACKING COURSE</span><br />
               IN KOLLAM, KERALA
             </h1>

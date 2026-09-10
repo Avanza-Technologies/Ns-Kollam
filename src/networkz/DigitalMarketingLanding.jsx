@@ -318,19 +318,7 @@ export default function DigitalMarketingLanding() {
   };
 
   /* ── ON-PAGE SEO OPTIMIZATION FOR DIGITAL MARKETING IN KOLLAM ── */
-  useEffect(() => {
-    document.title = "Digital Marketing Course in Kollam | Networkz Systems (100% Placement)";
 
-    let canonicalEl = document.querySelector('link[rel="canonical"]');
-    if (canonicalEl) {
-      canonicalEl.setAttribute('href', 'https://nskollam.com/digital-marketing');
-    }
-
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', 'Best Digital Marketing course in Kollam, Kerala at Networkz Systems. Master SEO, Google Ads, Meta Ads, Social Media, AI Tools & Content Marketing with 100% placement support.');
-    }
-  }, []);
 
   return (
     <div className="ix-theme-root">
@@ -346,6 +334,7 @@ export default function DigitalMarketingLanding() {
 
         {/* Desktop Links */}
         <ul className="nz-nav-menu">
+          <li><a href="/courses" className="nz-nav-link">ALL COURSES</a></li>
           <li><a href="#overview" className="nz-nav-link">OVERVIEW</a></li>
           <li><a href="#syllabus" className="nz-nav-link">SYLLABUS</a></li>
           <li><a href="#tools" className="nz-nav-link">TOOLS & AI</a></li>
@@ -484,8 +473,9 @@ export default function DigitalMarketingLanding() {
           <div className="ix-hero-grid">
             {/* HERO LEFT */}
             <div className="ix-hero-content">
+              <nav aria-label="Breadcrumb" style={{marginBottom: "1rem", fontSize: "0.85rem"}}><a href="/">Home</a><span aria-hidden="true"> / </span><span aria-current="page">Digital Marketing</span></nav>
               <h1 className="ix-hero-serif-title">
-                Unlock the power of<br />Digital Marketing Excellence
+                Digital Marketing<br />Course in Kollam
               </h1>
 
               <p className="ix-hero-subtitle">

@@ -1,9 +1,12 @@
+import CoursePage from './seo/CoursePage.jsx'
+import { coursePages, directoryPages } from './seo/catalog.js'
 import { useEffect } from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import Seo from './seo/Seo.jsx'
 import NetworkzHome from './networkz/NetworkzHome.jsx'
 import CyberSecurityLanding from './networkz/CyberSecurityLanding.jsx'
 import DigitalMarketingLanding from './networkz/DigitalMarketingLanding.jsx'
@@ -54,8 +57,10 @@ if (typeof window !== 'undefined' && window.location.pathname.startsWith('/exam'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <Seo />
       <PageTracker />
       <Routes>
+        {Object.keys({...coursePages, ...directoryPages}).map(path => <Route key={path} path={path} element={<CoursePage path={path} />} />)}
         {/* Networkz Systems cinematic experience — flagship route */}
         <Route path="/" element={<NetworkzHome />} />
 
@@ -73,6 +78,7 @@ createRoot(document.getElementById('root')).render(
         {/* Existing exam portal — preserved as a sub-route */}
         <Route path="/exam" element={<App />} />
         <Route path="/exam/*" element={<App />} />
+      <Route path="*" element={<main style={{padding: "6rem 2rem"}}><h1>Page not found</h1><p>This page could not be found.</p><a href="/">Return to Networkz Systems Kollam</a></main>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

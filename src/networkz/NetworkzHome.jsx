@@ -1,3 +1,4 @@
+import { coursePath } from '../seo/catalog.js';
 import React, { useState, useEffect } from 'react';
 import './NetworkzHome.css';
 import { COURSE_DETAILS } from './data/courseData';
@@ -251,13 +252,7 @@ export default function NetworkzHome() {
     return matchesTab;
   });
 
-  useEffect(() => {
-    document.title = "Networkz Systems Kollam | #1 CCNA, Python, Java & Cyber Security Institute in Kerala";
-    let canonicalEl = document.querySelector('link[rel="canonical"]');
-    if (canonicalEl) {
-      canonicalEl.setAttribute('href', 'https://nskollam.com/');
-    }
-  }, []);
+
 
   // Close mobile drawer on desktop resize or escape key
   useEffect(() => {
@@ -475,13 +470,13 @@ export default function NetworkzHome() {
               <span className="nz-eyebrow">AN ISO 9001:2015 CERTIFIED ACADEMY</span>
 
               <h1 className="nz-hero-title">
-                ARCHITECTING<br />
-                THE NEXT ERA OF<br />
-                <span>DIGITAL MASTERY.</span>
+                IT TRAINING<br />
+                IN KOLLAM FOR<br />
+                <span>TECHNOLOGY CAREERS.</span>
               </h1>
 
               <p className="nz-body-lead">
-                Kerala’s premier technology academy delivering high-impact programs in Software Full Stack, Artificial Intelligence, Cyber Security, and Cloud Architecture with 100% placement guarantee.
+                Kerala’s premier technology academy delivering high-impact programs in Software Full Stack, Artificial Intelligence, Cyber Security, and Cloud Architecture with practical training and placement assistance.
               </p>
 
               <div className="nz-hero-actions">
@@ -554,7 +549,8 @@ export default function NetworkzHome() {
           <div className="nz-catalog-header">
             <div>
               <span className="nz-eyebrow">ACADEMIC DISCIPLINES</span>
-              <h2 className="nz-heading-lg">PROGRAM CATALOG.</h2>
+              <h2 className="nz-heading-lg">IT COURSES IN KOLLAM.</h2>
+              <a href="/courses" style={{color: "inherit"}}>Explore all courses and internship programs →</a>
             </div>
 
             <div className="nz-catalog-controls">
@@ -602,7 +598,7 @@ export default function NetworkzHome() {
                 </div>
                 <div className="nz-course-content">
                   <div>
-                    <h3 className="nz-course-title">{course.name}</h3>
+                    <h3 className="nz-course-title"><a href={coursePath(course.id)} style={{color: "inherit", textDecoration: "none"}}>{course.name}</a></h3>
                     <p className="nz-course-desc" style={{ marginTop: '0.6rem' }}>{course.desc}</p>
                   </div>
                   <div>
