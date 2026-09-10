@@ -250,7 +250,7 @@ export default function DigitalMarketingLanding() {
   // Close mobile drawer on desktop resize or escape key
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 1100) {
+      if (window.innerWidth > 1250) {
         setMobileMenuOpen(false);
       }
     };
