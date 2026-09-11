@@ -1,34 +1,38 @@
-/* ── Results Summary — Luxury Editorial Design ────────────────── */
+/* ── Results Summary — Luxury Editorial Design (Dynamic & Responsive) ── */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700;900&display=swap');
 
 .done-page {
   min-height: 100vh;
+  min-height: 100dvh;
   background: #f8fafc;
   color: #0f172a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1.5rem;
+  padding: clamp(1.5rem, 4vh, 3.5rem) clamp(1rem, 3vw, 2rem);
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .done-card {
   width: 100%;
-  max-width: 540px;
-  padding: 3rem 2.5rem;
+  max-width: clamp(480px, 44vw, 600px);
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1.25rem, 3vw, 2.5rem);
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 24px;
   box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
   text-align: center;
   box-sizing: border-box;
+  margin: auto;
 }
 
 @media (max-width: 480px) {
   .done-card {
-    padding: 2rem 1.25rem;
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px;
   }
 }
 
@@ -38,28 +42,28 @@
   font-weight: 800;
   color: #64748b;
   letter-spacing: 0.1em;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.25rem, 2.5vh, 2rem);
   text-transform: uppercase;
 }
 
 .done-check {
-  width: 72px;
-  height: 72px;
+  width: clamp(60px, 7vw, 72px);
+  height: clamp(60px, 7vw, 72px);
   background: linear-gradient(135deg, #059669 0%, #10b981 100%);
   color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 2vw, 2rem);
   font-weight: 900;
-  margin: 0 auto 1.75rem;
+  margin: 0 auto clamp(1.25rem, 2.5vh, 1.75rem);
   box-shadow: 0 12px 25px -5px rgba(16, 185, 129, 0.4);
 }
 
 .done-title {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw + 0.3rem, 1.8rem);
   font-weight: 900;
   color: #0f172a;
   margin-bottom: 0.6rem;
@@ -67,16 +71,16 @@
 }
 
 .done-sub {
-  font-size: 0.95rem;
+  font-size: clamp(0.88rem, 0.9vw, 0.95rem);
   color: #64748b;
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.25rem, 2.5vh, 2rem);
 }
 
 .done-divider {
   height: 1px;
   background: #f1f5f9;
-  margin: 1.5rem 0;
+  margin: clamp(1rem, 2vh, 1.5rem) 0;
 }
 
 .done-cand {
@@ -89,6 +93,7 @@
   border-radius: 16px;
   margin-bottom: 1.5rem;
   text-align: left;
+  flex-wrap: wrap;
 }
 
 .done-avatar {
@@ -108,6 +113,7 @@
 
 .done-cand-info {
   flex: 1;
+  min-width: 160px;
 }
 
 .done-cand-name {
@@ -119,6 +125,7 @@
 .done-cand-email {
   font-size: 0.85rem;
   color: #64748b;
+  word-break: break-all;
 }
 
 .done-submitted {
@@ -131,6 +138,7 @@
   border-radius: 100px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .done-notice {
@@ -207,6 +215,7 @@
   justify-content: center;
   gap: 8px;
   margin-top: 12px;
+  flex-wrap: wrap;
 }
 
 .done-social-btn {
@@ -252,11 +261,11 @@
   background: linear-gradient(135deg, #059669 0%, #10b981 100%);
   color: #ffffff;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 1vw, 0.95rem);
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 1.1rem;
+  padding: clamp(0.85rem, 1.8vh, 1.1rem);
   border-radius: 12px;
   border: none;
   cursor: pointer;
@@ -279,10 +288,10 @@
   background: #f8fafc;
   color: #334155;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.92rem;
+  font-size: clamp(0.85rem, 0.9vw, 0.92rem);
   font-weight: 700;
   letter-spacing: 0.04em;
-  padding: 0.95rem;
+  padding: clamp(0.8rem, 1.5vh, 0.95rem);
   border-radius: 12px;
   border: 1.5px solid #e2e8f0;
   text-decoration: none;
@@ -310,3 +319,4 @@
 .done-home-btn:hover svg {
   color: #34d399;
 }
+

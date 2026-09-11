@@ -213,6 +213,298 @@
   transform-origin: left;
 }
 
+/* ── Mega Dropdown for Courses Navbar Item ── */
+.nz-nav-dropdown-wrapper {
+  position: relative;
+}
+
+.nz-dropdown-trigger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nz-caret {
+  transition: transform 0.25s ease;
+}
+.nz-caret.open {
+  transform: rotate(180deg);
+}
+
+/* ── Sideways Flyout Dropdown (Cascading Sub-Menu) ── */
+.nz-side-flyout-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  background: rgba(17, 17, 17, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 2000;
+  animation: sideFlyoutFade 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: visible;
+}
+
+.nz-side-flyout-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: transparent;
+}
+
+@keyframes sideFlyoutFade {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Left Category Column */
+.nz-side-cat-list {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.nz-side-cat-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.nz-side-cat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.nz-side-cat-item:hover,
+.nz-side-cat-item.is-active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.nz-side-chevron {
+  color: rgba(255, 255, 255, 0.4);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.nz-side-cat-item:hover .nz-side-chevron,
+.nz-side-cat-item.is-active .nz-side-chevron {
+  color: #38a169;
+  transform: translateX(2px);
+}
+
+.nz-side-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 4px 6px;
+}
+
+.nz-side-all-btn {
+  color: #38a169;
+  font-weight: 700;
+}
+.nz-side-all-btn:hover {
+  color: #48bb78;
+  background: rgba(56, 161, 105, 0.12);
+}
+
+/* Sidewise Sub-Panel */
+.nz-side-sub-panel {
+  width: 320px;
+  flex-shrink: 0;
+  background: rgba(12, 12, 12, 0.98);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  animation: subPanelSlide 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+}
+
+@keyframes subPanelSlide {
+  from { opacity: 0; transform: translateX(-4px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.nz-side-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.6rem 0.6rem 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 6px;
+}
+
+.nz-side-sub-cat-title {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.nz-side-sub-count {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #38a169;
+  background: rgba(56, 161, 105, 0.12);
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+.nz-side-sub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.nz-side-sub-list::-webkit-scrollbar {
+  width: 4px;
+}
+.nz-side-sub-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+}
+
+.nz-side-course-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  color: #cbd5e1;
+  font-size: 0.83rem;
+  font-weight: 500;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.nz-side-course-row:hover {
+  background: rgba(56, 161, 105, 0.16);
+  border-color: rgba(56, 161, 105, 0.3);
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+.nz-side-course-name {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.nz-side-course-dur {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.nz-side-course-row:hover .nz-side-course-dur {
+  color: #38a169;
+  background: rgba(56, 161, 105, 0.15);
+}
+
+/* Mobile Drawer Courses Accordion */
+.nz-mobile-courses-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.nz-mobile-courses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  margin-top: 0.5rem;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.nz-mobile-cat-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nz-mobile-cat-name {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #38a169;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.nz-mobile-course-subitem {
+  width: 100%;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 0.45rem 0.65rem;
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.nz-mobile-sub-dur {
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+
 .nz-nav-actions {
   display: flex;
   align-items: center;
@@ -1416,9 +1708,9 @@
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.18);
-  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: #38a169;
+  background: rgba(46, 125, 94, 0.12);
+  border: 1px solid rgba(46, 125, 94, 0.3);
   padding: 5px 12px;
   border-radius: 100px;
   backdrop-filter: blur(8px);
@@ -1445,7 +1737,7 @@
 }
 
 .nz-category-card:hover .nz-category-title {
-  color: #34d399 !important;
+  color: #38a169 !important;
 }
 
 .nz-category-cta {
@@ -2037,9 +2329,9 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #38a169;
+  background: rgba(46, 125, 94, 0.12);
+  border: 1px solid rgba(46, 125, 94, 0.3);
   padding: 0.35rem 0.85rem;
   border-radius: 100px;
   margin-bottom: 1.25rem;
@@ -2098,9 +2390,9 @@
   display: inline-block;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #34d399;
+  color: #38a169;
   margin-top: 0.75rem;
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(46, 125, 94, 0.12);
   padding: 0.25rem 0.65rem;
   border-radius: 6px;
 }
@@ -2226,7 +2518,7 @@
 
 .nz-marquee-role {
   font-size: 0.72rem;
-  color: #34d399;
+  color: #38a169;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
@@ -2310,7 +2602,7 @@
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #34d399;
+  color: #38a169;
   text-transform: uppercase;
 }
 
@@ -2415,7 +2707,7 @@
 
 .nz-modal-stage-arrow:hover {
   background: var(--color-accent);
-  border-color: #34d399;
+  border-color: #2e7d5e;
   color: #ffffff;
   transform: translateY(-50%) scale(1.1);
 }
@@ -2451,9 +2743,9 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #34d399;
-  background: rgba(52, 211, 153, 0.12);
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #38a169;
+  background: rgba(46, 125, 94, 0.12);
+  border: 1px solid rgba(46, 125, 94, 0.3);
   padding: 0.35rem 0.85rem;
   border-radius: 100px;
   margin-bottom: 1rem;
@@ -2511,9 +2803,9 @@
   display: inline-block;
   font-size: 0.82rem;
   font-weight: 700;
-  color: #34d399;
+  color: #38a169;
   margin-top: 0.6rem;
-  background: rgba(16, 185, 129, 0.1);
+  background: rgba(46, 125, 94, 0.12);
   padding: 0.2rem 0.6rem;
   border-radius: 6px;
 }
@@ -2595,7 +2887,7 @@
 
 .nz-modal-secondary-btn:hover {
   background: rgba(255, 255, 255, 0.12);
-  border-color: #34d399;
+  border-color: #2e7d5e;
   color: #ffffff;
 }
 
@@ -2643,7 +2935,7 @@
 .nz-thumb-btn:hover,
 .nz-thumb-btn.is-active {
   background: rgba(30, 93, 66, 0.25);
-  border-color: #34d399;
+  border-color: #2e7d5e;
 }
 
 .nz-thumb-img {

@@ -1,5 +1,5 @@
 import { coursePath } from '../seo/catalog.js';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './NetworkzHome.css';
 import { COURSE_DETAILS } from './data/courseData';
 
@@ -182,6 +182,21 @@ export default function NetworkzHome() {
   const [placementIndex, setPlacementIndex] = useState(0);
   const [isPlacementPaused, setIsPlacementPaused] = useState(false);
   const [placementModalImage, setPlacementModalImage] = useState(null);
+  const [coursesDropdownOpen, setCoursesDropdownOpen] = useState(false);
+  const [mobileCoursesOpen, setMobileCoursesOpen] = useState(false);
+  const [activeNavCategory, setActiveNavCategory] = useState('1');
+  const dropdownTimerRef = useRef(null);
+
+  const handleDropdownMouseEnter = () => {
+    if (dropdownTimerRef.current) clearTimeout(dropdownTimerRef.current);
+    setCoursesDropdownOpen(true);
+  };
+
+  const handleDropdownMouseLeave = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setCoursesDropdownOpen(false);
+    }, 250);
+  };
 
   // Auto-slide effect for recent placements
   useEffect(() => {
@@ -287,10 +302,94 @@ export default function NetworkzHome() {
 
         {/* Desktop Navigation Links */}
         <ul className="nz-nav-menu">
-          <li><a href="#features" className="nz-nav-link">PILLARS</a></li>
+          <li><a href="#features" className="nz-nav-link">HOME</a></li>
+          <li
+            className="nz-nav-dropdown-wrapper"
+            onMouseEnter={handleDropdownMouseEnter}
+            onMouseLeave={handleDropdownMouseLeave}
+          >
+            <button
+              type="button"
+              className="nz-nav-link nz-dropdown-trigger"
+              onClick={() => setCoursesDropdownOpen((prev) => !prev)}
+              aria-expanded={coursesDropdownOpen}
+            >
+              <span>COURSES</span>
+              <svg className={`nz-caret ${coursesDropdownOpen ? 'open' : ''}`} width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <path d="M1 1L5 5L9 1" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+
+            {coursesDropdownOpen && (
+              <div
+                className="nz-side-flyout-dropdown"
+                onMouseEnter={handleDropdownMouseEnter}
+                onMouseLeave={handleDropdownMouseLeave}
+              >
+                {/* Left side: Category List */}
+                <div className="nz-side-cat-list">
+                  {[
+                    { key: '1', name: 'Software Product Training' },
+                    { key: '2', name: 'AI & Electronics' },
+                    { key: '3', name: 'Networking & Cyber Security' },
+                    { key: '4', name: 'Business & Digital Marketing' },
+                    { key: '5', name: 'Internship Programs' },
+                  ].map((cat) => {
+                    const isOpen = activeNavCategory === cat.key;
+                    return (
+                      <div key={cat.key} className="nz-side-cat-wrapper">
+                        <button
+                          type="button"
+                          className={`nz-side-cat-item ${isOpen ? 'is-active' : ''}`}
+                          onMouseEnter={() => setActiveNavCategory(cat.key)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveNavCategory((prev) => (prev === cat.key ? null : cat.key));
+                          }}
+                        >
+                          <span>{cat.name}</span>
+                          <svg className="nz-side-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                          </svg>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Right side: Active Sub-Category Courses Flyout */}
+                {activeNavCategory && COURSE_DETAILS[activeNavCategory] && (
+                  <div className="nz-side-sub-panel">
+                    <div className="nz-side-sub-header">
+                      <span className="nz-side-sub-cat-title">
+                        {COURSE_DETAILS[activeNavCategory].name}
+                      </span>
+                      <span className="nz-side-sub-count">
+                        {COURSE_DETAILS[activeNavCategory].courses.length} Courses
+                      </span>
+                    </div>
+
+                    <div className="nz-side-courses-list">
+                      {COURSE_DETAILS[activeNavCategory].courses.map((c) => (
+                        <a
+                          key={c.id}
+                          href={coursePath(c.id)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="nz-side-course-row"
+                          onClick={() => setCoursesDropdownOpen(false)}
+                        >
+                          <span className="nz-side-course-title">{c.name}</span>
+                          <span className="nz-side-course-dur">{c.duration}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </li>
           <li><a href="#catalog" className="nz-nav-link">PROGRAMS</a></li>
-          <li><a href="/cybersecurity" className="nz-nav-link">CYBER SECURITY</a></li>
-          <li><a href="/digital-marketing" className="nz-nav-link">DIGITAL MARKETING</a></li>
           <li><a href="#why-us" className="nz-nav-link">ABOUT</a></li>
           <li><a href="#success" className="nz-nav-link">SUCCESS</a></li>
           <li><a href="#faq" className="nz-nav-link">FAQ</a></li>
@@ -342,6 +441,45 @@ export default function NetworkzHome() {
       {/* Mobile Drawer Dropdown List */}
       <div className={`nz-mobile-nav-drawer ${mobileMenuOpen ? 'is-open' : ''}`}>
         <ul className="nz-mobile-nav-list">
+          <li>
+            <button
+              type="button"
+              className="nz-mobile-nav-item nz-mobile-courses-trigger"
+              onClick={() => setMobileCoursesOpen((prev) => !prev)}
+            >
+              <span>Explore All Courses ({allCourses.length})</span>
+              <span className="nz-mobile-nav-arrow">{mobileCoursesOpen ? '▲' : '▼'}</span>
+            </button>
+            {mobileCoursesOpen && (
+              <div className="nz-mobile-courses-list">
+                {Object.entries(COURSE_DETAILS).map(([catKey, category]) => (
+                  <div key={catKey} className="nz-mobile-cat-group">
+                    <div className="nz-mobile-cat-name">{category.category}</div>
+                    {category.courses.map((c) => (
+                      <button
+                        key={c.id}
+                        type="button"
+                        className="nz-mobile-course-subitem"
+                        onClick={() => {
+                          setMobileMenuOpen(false);
+                          if (c.id === 'cyber' || c.id === 'ethical') {
+                            window.location.href = '/cybersecurity';
+                          } else if (c.id === 'digi' || c.id === 'digi_ai') {
+                            window.location.href = '/digital-marketing';
+                          } else {
+                            setSelectedCourseModal({ ...c, catId: catKey, catName: category.category });
+                          }
+                        }}
+                      >
+                        <span>{c.name}</span>
+                        <span className="nz-mobile-sub-dur">{c.duration}</span>
+                      </button>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+          </li>
           <li>
             <a href="#features" className="nz-mobile-nav-item" onClick={() => setMobileMenuOpen(false)}>
               <span>Pillars of Excellence</span>
@@ -550,7 +688,6 @@ export default function NetworkzHome() {
             <div>
               <span className="nz-eyebrow">ACADEMIC DISCIPLINES</span>
               <h2 className="nz-heading-lg">IT COURSES IN KOLLAM.</h2>
-              <a href="/courses" style={{color: "inherit"}}>Explore all courses and internship programs →</a>
             </div>
 
             <div className="nz-catalog-controls">

@@ -160,8 +160,7 @@ export default function Registration({ onStart }) {
         </h1>
 
         <p className="reg-side-desc">
-          A comprehensive IT assessment covering Networking, Cybersecurity,
-          Programming, Cloud Computing, AI/ML and more.
+          Comprehensive IT assessment in Networking, Cyber Security, Cloud Computing & Programming.
         </p>
 
         <div className="reg-details">
@@ -169,28 +168,28 @@ export default function Registration({ onStart }) {
             <div className="reg-detail-icon">📋</div>
             <div className="reg-detail-text">
               <div className="reg-detail-label">Questions</div>
-              <div className="reg-detail-val">50 Multiple Choice</div>
+              <div className="reg-detail-val">50 MCQs</div>
             </div>
           </div>
           <div className="reg-detail-row">
             <div className="reg-detail-icon">⏱</div>
             <div className="reg-detail-text">
               <div className="reg-detail-label">Duration</div>
-              <div className="reg-detail-val">30 Minutes</div>
+              <div className="reg-detail-val">30 Mins</div>
             </div>
           </div>
           <div className="reg-detail-row">
             <div className="reg-detail-icon">🏆</div>
             <div className="reg-detail-text">
               <div className="reg-detail-label">Marking</div>
-              <div className="reg-detail-val">1 Mark per Question</div>
+              <div className="reg-detail-val">1 pt / Q</div>
             </div>
           </div>
           <div className="reg-detail-row">
             <div className="reg-detail-icon">🌐</div>
             <div className="reg-detail-text">
               <div className="reg-detail-label">Topics</div>
-              <div className="reg-detail-val">Networking, Cyber, Cloud, Dev</div>
+              <div className="reg-detail-val">IT & Cyber</div>
             </div>
           </div>
         </div>
@@ -199,8 +198,7 @@ export default function Registration({ onStart }) {
           <div className="reg-side-footer-label">Organised by</div>
           <div className="reg-side-footer-org">Networkz Systems</div>
           <div className="reg-side-footer-addr">
-            Pattathuvila Plaza, Vadayattukotta Rd,<br />
-            Chinnakkada, Kollam<br />
+            Pattathuvila Plaza, Chinnakkada, Kollam<br />
             Ph: 80 89 03 04 05
           </div>
           <div className="reg-side-socials">

@@ -684,7 +684,7 @@ export default function DigitalMarketingLanding() {
                 </div>
 
                 <div className="ix-preview-hero-stat">
-                  <div className="ix-hero-stat-value" style={{ color: '#34d399' }}>4.8x ROAS</div>
+                  <div className="ix-hero-stat-value" style={{ color: '#38a169' }}>4.8x ROAS</div>
                   <div className="ix-hero-stat-sub">Live Ad Budgets Optimization</div>
                 </div>
 
