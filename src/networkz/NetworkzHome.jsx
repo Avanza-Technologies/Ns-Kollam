@@ -170,6 +170,213 @@ const FAQ_DATA = [
   }
 ];
 
+/* ─── OFFICIAL TECHNOLOGY LOGOS FOR MEGA MENU ─────────────────────── */
+function CourseLogo({ courseId }) {
+  const iconProps = { width: 22, height: 22, className: 'nz-side-course-logo' };
+  switch (courseId) {
+    case 'java':
+    case 'java_ai':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M11 25c5.5 0 9.5-1 12-2.5-3 .5-6 .5-9 .5-2 0-3.5 0-3 2z" fill="#E76F00"/>
+          <path d="M8.5 28.5c7.5 1 14.5-.5 18-2-4 .5-8 .5-12.5.5-4 0-5.5 0-5.5 1.5z" fill="#E76F00"/>
+          <path d="M21 17.5c2.5-3.5-1-6.5-1-6.5s3 2.5 1 5.5c-1.5 2.5-3 3-5 5 4-1 6.5-2.5 5-4z" fill="#5382A1"/>
+          <path d="M15 13.5c2-2.5 0-5.5 0-5.5s2 2 0 4.5c-1.5 2-2.5 2.5-4 4 3-.5 5-1.5 4-3z" fill="#E76F00"/>
+          <path d="M19.5 22c5-.5 7.5-2.5 7.5-2.5s-2 1-6.5 1.5c-4 .5-8 .5-11 0 0 0 3 1.5 10 1z" fill="#5382A1"/>
+        </svg>
+      );
+    case 'python':
+    case 'python_ai':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M15.9 3c-4.2 0-3.9 1.8-3.9 1.8l0 1.9h4.1v.6h-5.7c-2.3 0-4 1.4-4 4 0 2.6 1.5 3.9 3.5 3.9h1.2v-1.7c0-2 1.7-3.7 3.7-3.7h5.7c1.7 0 3-1.3 3-3 0-2.3-1.7-3.8-4-3.8h-3.6zm-1.8 1.4c.5 0 .9.4.9.9 0 .5-.4.9-.9.9s-.9-.4-.9-.9c0-.5.4-.9.9-.9z" fill="#3776AB"/>
+          <path d="M16.1 29c4.2 0 3.9-1.8 3.9-1.8l0-1.9h-4.1v-.6h5.7c2.3 0 4-1.4 4-4 0-2.6-1.5-3.9-3.5-3.9h-1.2v1.7c0 2-1.7 3.7-3.7 3.7h-5.7c-1.7 0-3 1.3-3 3 0 2.3 1.7 3.8 4 3.8h3.6zm1.8-1.4c-.5 0-.9-.4-.9-.9 0-.5.4-.9.9-.9s.9.4.9.9c0 .5-.4.9-.9.9z" fill="#FFD43B"/>
+        </svg>
+      );
+    case 'cpp':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M16 3l11 6.5v13L16 29 5 22.5v-13L16 3z" fill="#00599C"/>
+          <text x="16" y="20.5" fill="#ffffff" fontSize="11" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">C++</text>
+        </svg>
+      );
+    case 'react':
+    case 'mern':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <circle cx="16" cy="16" r="2.5" fill="#61DAFB"/>
+          <ellipse cx="16" cy="16" rx="11" ry="4.2" fill="none" stroke="#61DAFB" strokeWidth="1.5"/>
+          <ellipse cx="16" cy="16" rx="11" ry="4.2" fill="none" stroke="#61DAFB" strokeWidth="1.5" transform="rotate(60 16 16)"/>
+          <ellipse cx="16" cy="16" rx="11" ry="4.2" fill="none" stroke="#61DAFB" strokeWidth="1.5" transform="rotate(120 16 16)"/>
+        </svg>
+      );
+    case 'mean':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M16 4l10 3.5-1.5 13.5L16 27l-8.5-6L6 7.5 16 4z" fill="#DD0031"/>
+          <path d="M16 6.5l7 2.5-1 10.5-6 4.5-6-4.5-1-10.5 7-2.5z" fill="#C3002F"/>
+          <path d="M16 9l4.5 11h-2l-1-2.5h-3l-1 2.5h-2L16 9zm1.2 6.5L16 13.5l-1.2 2h2.4z" fill="#ffffff"/>
+        </svg>
+      );
+    case 'webdev':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M6 5l2 20 8 2.5 8-2.5 2-20H6z" fill="#E44D26"/>
+          <path d="M16 7v18.5l6-2 1.5-16.5H16z" fill="#F16529"/>
+          <path d="M11 11h10l-.4 4.5H13l.3 3.5 2.7.8 2.7-.8.2-2.2h2l-.3 3.8-4.6 1.4-4.6-1.4-.4-5.3h7.2l.2-2.3H10.7L11 11z" fill="#ffffff"/>
+        </svg>
+      );
+    case 'ds':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="4" y="4" width="24" height="24" rx="4" fill="#0284C7"/>
+          <path d="M8 22l4-7 4 4 6-9" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="22" cy="10" r="2" fill="#F59E0B"/>
+        </svg>
+      );
+    case 'testing':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M16 4l10 4v8c0 6.5-5 11-10 12-5-1-10-5.5-10-12V8l10-4z" fill="#10B981"/>
+          <polyline points="11 16 14.5 19.5 21 13" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      );
+    case 'uiux':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M11 6h5v5h-5a2.5 2.5 0 0 1 0-5z" fill="#F24E1E"/>
+          <path d="M16 6h5a2.5 2.5 0 0 1 0 5h-5V6z" fill="#FF7262"/>
+          <path d="M11 11h5v5h-5a2.5 2.5 0 0 1 0-5z" fill="#A259FF"/>
+          <path d="M16 11h5a2.5 2.5 0 0 1 0 5h-5v-5z" fill="#1ABCFE"/>
+          <path d="M11 16h5v2.5a2.5 2.5 0 0 1-5 0V16z" fill="#0ACF83"/>
+        </svg>
+      );
+    case 'ml':
+    case 'ai':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="5" y="5" width="22" height="22" rx="4" fill="#8B5CF6"/>
+          <circle cx="16" cy="16" r="3.5" fill="#ffffff"/>
+          <path d="M16 5v4M16 23v4M5 16h4M23 16h4M8.5 8.5l3 3M20.5 20.5l3 3M8.5 23.5l3-3M20.5 11.5l3-3" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      );
+    case 'dl':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="4" y="4" width="24" height="24" rx="4" fill="#4F46E5"/>
+          <circle cx="10" cy="10" r="2.5" fill="#ffffff"/>
+          <circle cx="10" cy="22" r="2.5" fill="#ffffff"/>
+          <circle cx="22" cy="10" r="2.5" fill="#ffffff"/>
+          <circle cx="22" cy="22" r="2.5" fill="#ffffff"/>
+          <circle cx="16" cy="16" r="2.5" fill="#A5B4FC"/>
+          <path d="M10 10l6 6 6-6M10 22l6-6 6 6M10 10v12M22 10v12" stroke="#C7D2FE" strokeWidth="1.2"/>
+        </svg>
+      );
+    case 'genai':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="4" y="4" width="24" height="24" rx="5" fill="#10A37F"/>
+          <path d="M16 8l1.5 5 5 1.5-5 1.5-1.5 5-1.5-5-5-1.5 5-1.5L16 8zM23 19l.7 2.3 2.3.7-2.3.7-.7 2.3-.7-2.3-2.3-.7 2.3-.7.7-2.3z" fill="#ffffff"/>
+        </svg>
+      );
+    case 'embedded':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="7" y="7" width="18" height="18" rx="2" fill="#00979D"/>
+          <circle cx="12" cy="12" r="1.5" fill="#ffffff"/>
+          <circle cx="20" cy="20" r="1.5" fill="#ffffff"/>
+          <path d="M12 20h8v-5h-8v-3" fill="none" stroke="#ffffff" strokeWidth="1.5"/>
+          <path d="M11 4v3M16 4v3M21 4v3M11 25v3M16 25v3M21 25v3M4 11h3M4 16h3M4 21h3M25 11h3M25 16h3M25 21h3" stroke="#00979D" strokeWidth="1.8"/>
+        </svg>
+      );
+    case 'robotics':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="6" y="8" width="20" height="16" rx="4" fill="#0284C7"/>
+          <circle cx="12" cy="14" r="2" fill="#ffffff"/>
+          <circle cx="20" cy="14" r="2" fill="#ffffff"/>
+          <line x1="12" y1="19" x2="20" y2="19" stroke="#ffffff" strokeWidth="2" strokeLinecap="round"/>
+          <line x1="16" y1="4" x2="16" y2="8" stroke="#0284C7" strokeWidth="2.5"/>
+          <circle cx="16" cy="4" r="1.5" fill="#EF4444"/>
+        </svg>
+      );
+    case 'ccna':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="4" y="6" width="24" height="20" rx="3" fill="#049FD9"/>
+          <path d="M8 12h16M8 16h16M8 20h16" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="2 2"/>
+          <circle cx="9" cy="12" r="1.5" fill="#ffffff"/>
+          <circle cx="23" cy="16" r="1.5" fill="#ffffff"/>
+          <circle cx="14" cy="20" r="1.5" fill="#ffffff"/>
+          <text x="16" y="10" fill="#ffffff" fontSize="5" fontWeight="bold" textAnchor="middle">CISCO</text>
+        </svg>
+      );
+    case 'cyber':
+    case 'ethical':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M16 4l11 4.5v7.5c0 6.5-5 11-11 12-6-1-11-5.5-11-12V8.5L16 4z" fill="#DC2626"/>
+          <rect x="12" y="14" width="8" height="6" rx="1" fill="#ffffff"/>
+          <path d="M13.5 14v-2a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="#ffffff" strokeWidth="1.8"/>
+        </svg>
+      );
+    case 'linux':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M16 5c-3 0-5 2.5-5 5.5 0 2 .5 3.5 0 5-1 1-3 3-3 6.5 0 3 2.5 5 8 5s8-2 8-5c0-3.5-2-5.5-3-6.5-.5-1.5 0-3 0-5C21 7.5 19 5 16 5z" fill="#111827"/>
+          <ellipse cx="16" cy="18" rx="4.5" ry="6" fill="#F3F4F6"/>
+          <circle cx="14" cy="9.5" r="1" fill="#ffffff"/>
+          <circle cx="18" cy="9.5" r="1" fill="#ffffff"/>
+          <circle cx="14" cy="9.5" r="0.5" fill="#000000"/>
+          <circle cx="18" cy="9.5" r="0.5" fill="#000000"/>
+          <polygon points="16,11 14.5,13 17.5,13" fill="#F59E0B"/>
+          <path d="M11 25c-2 1-3 2-2 3 1.5 1 4 0 4-1l-2-2zM21 25c2 1 3 2 2 3-1.5 1-4 0-4-1l2-2z" fill="#F59E0B"/>
+        </svg>
+      );
+    case 'azure':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M7 25h9l4.5-8-6.5-12H8l6 10-7 10z" fill="#0078D4"/>
+          <path d="M16 25h9l-7-14-3 5 4.5 9h-3.5z" fill="#50E6FF"/>
+        </svg>
+      );
+    case 'aws':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="4" y="6" width="24" height="20" rx="4" fill="#232F3E"/>
+          <text x="16" y="16.5" fill="#ffffff" fontSize="8" fontWeight="900" textAnchor="middle" fontFamily="sans-serif">aws</text>
+          <path d="M10 20c4 2.5 8 2.5 12 0" fill="none" stroke="#FF9900" strokeWidth="1.8" strokeLinecap="round"/>
+          <polygon points="22.5,20 20,18.5 21,21" fill="#FF9900"/>
+        </svg>
+      );
+    case 'digi':
+    case 'digi_ai':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <path d="M7 11h3l7-5v18l-7-5H7a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z" fill="#EA4335"/>
+          <path d="M21 11c1.5 1.5 2.5 3 2.5 5s-1 3.5-2.5 5" fill="none" stroke="#FBBC05" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M24 8c2.5 2.5 4 5 4 8s-1.5 5.5-4 8" fill="none" stroke="#34A853" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      );
+    case 'msoffice':
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="5" y="5" width="22" height="22" rx="4" fill="#D83B01"/>
+          <path d="M12 10h8v12h-8z" fill="#ffffff" opacity="0.3"/>
+          <text x="16" y="21.5" fill="#ffffff" fontSize="13" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">O</text>
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 32 32" {...iconProps}>
+          <rect x="5" y="8" width="22" height="16" rx="3" fill="#1E5D42"/>
+          <path d="M11 8V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3" fill="none" stroke="#1E5D42" strokeWidth="2"/>
+          <circle cx="16" cy="16" r="2" fill="#ffffff"/>
+        </svg>
+      );
+  }
+}
+
 export default function NetworkzHome() {
   const [activeCategoryTab, setActiveCategoryTab] = useState('SOFTWARE');
   const [searchQuery, setSearchQuery] = useState('');
@@ -293,12 +500,15 @@ export default function NetworkzHome() {
     <div className="nz-luxury-root">
 
       {/* ─── SECTION 1: LUXURY STICKY HEADER NAVIGATION ─────────────── */}
-      <nav className="nz-luxury-nav">
-        <a href="/" className="nz-nav-brand">
-          <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
+      <nav className="nz-luxury-nav nz-asymmetric-nav">
+        <div className="nz-nav-brand-wrap">
+          <a href="/" className="nz-nav-brand">
+            <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
           <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
           <span className="nz-brand-tag">KOLLAM CAMPUS</span>
         </a>
+
+        </div>
 
         {/* Desktop Navigation Links */}
         <ul className="nz-nav-menu">
@@ -329,11 +539,57 @@ export default function NetworkzHome() {
                 {/* Left side: Category List */}
                 <div className="nz-side-cat-list">
                   {[
-                    { key: '1', name: 'Software Product Training' },
-                    { key: '2', name: 'AI & Electronics' },
-                    { key: '3', name: 'Networking & Cyber Security' },
-                    { key: '4', name: 'Business & Digital Marketing' },
-                    { key: '5', name: 'Internship Programs' },
+                    {
+                      key: '1',
+                      name: 'Software Product Training',
+                      icon: (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nz-side-cat-icon">
+                          <polyline points="16 18 22 12 16 6" />
+                          <polyline points="8 6 2 12 8 18" />
+                        </svg>
+                      )
+                    },
+                    {
+                      key: '2',
+                      name: 'AI & Electronics',
+                      icon: (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nz-side-cat-icon">
+                          <rect x="4" y="4" width="16" height="16" rx="2" />
+                          <rect x="9" y="9" width="6" height="6" />
+                          <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+                        </svg>
+                      )
+                    },
+                    {
+                      key: '3',
+                      name: 'Networking & Cyber Security',
+                      icon: (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nz-side-cat-icon">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                      )
+                    },
+                    {
+                      key: '4',
+                      name: 'Business & Digital Marketing',
+                      icon: (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nz-side-cat-icon">
+                          <line x1="18" y1="20" x2="18" y2="10" />
+                          <line x1="12" y1="20" x2="12" y2="4" />
+                          <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                      )
+                    },
+                    {
+                      key: '5',
+                      name: 'Internship Programs',
+                      icon: (
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="nz-side-cat-icon">
+                          <rect x="2" y="7" width="20" height="14" rx="2" />
+                          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                        </svg>
+                      )
+                    },
                   ].map((cat) => {
                     const isOpen = activeNavCategory === cat.key;
                     return (
@@ -347,7 +603,10 @@ export default function NetworkzHome() {
                             setActiveNavCategory((prev) => (prev === cat.key ? null : cat.key));
                           }}
                         >
-                          <span>{cat.name}</span>
+                          <span className="nz-side-cat-content">
+                            {cat.icon}
+                            <span>{cat.name}</span>
+                          </span>
                           <svg className="nz-side-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                             <polyline points="9 18 15 12 9 6"></polyline>
                           </svg>
@@ -374,8 +633,6 @@ export default function NetworkzHome() {
                         <a
                           key={c.id}
                           href={coursePath(c.id)}
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className="nz-side-course-row"
                           onClick={() => setCoursesDropdownOpen(false)}
                         >
@@ -653,24 +910,69 @@ export default function NetworkzHome() {
 
           {/* INTEGRATED CORE PILLARS DECK IN HERO MAIN AREA */}
           <div className="nz-hero-pillars-deck" id="features">
-            <div className="nz-hero-pillars-header">
-              <span className="nz-eyebrow" style={{ marginBottom: '0.3rem' }}>CORE PILLARS</span>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: '900', letterSpacing: '-0.02em', textTransform: 'uppercase', color: 'var(--color-primary)' }}>
-                ENGINEERED FOR EXCELLENCE.
-              </h2>
+            {/* Left Forest-Green Section */}
+            <div className="nz-hero-pillars-banner">
+              <div className="nz-pillars-banner-content">
+                <span className="nz-pillars-eyebrow">CORE PILLARS</span>
+                <h2 className="nz-pillars-title">
+                  ENGINEERED<br />
+                  FOR<br />
+                  EXCELLENCE.
+                </h2>
+              </div>
+              <svg className="nz-pillars-waves" viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0,90 C90,130 170,50 320,110 L320,180 L0,180 Z" fill="#134e32" opacity="0.85" />
+                <path d="M0,120 C110,80 190,150 320,95 L320,180 L0,180 Z" fill="#18633f" opacity="0.65" />
+                <path d="M0,145 C100,125 210,170 320,130 L320,180 L0,180 Z" fill="#22c55e" opacity="0.3" />
+              </svg>
             </div>
 
+            {/* Right Cards Deck */}
             <div className="nz-hero-pillars-grid">
-              {FEATURES_DATA.map((feat, idx) => (
-                <div key={idx} className="nz-hero-pillar-card">
-                  <div className="nz-hero-pillar-top">
-                    <span className="nz-hero-pillar-num">{feat.num}</span>
-                    <span className="nz-hero-pillar-indicator" />
+              {FEATURES_DATA.map((feat, idx) => {
+                const isOrange = idx === 1;
+                return (
+                  <div key={idx} className={`nz-hero-pillar-card-wrapper ${isOrange ? 'nz-theme-orange' : 'nz-theme-green'}`}>
+                    {/* Layered background card/tab */}
+                    <div className="nz-hero-pillar-shadow-layer" />
+
+                    {/* Main White Floating Card */}
+                    <div className="nz-hero-pillar-card">
+                      <div className="nz-hero-pillar-top">
+                        <div className={`nz-hero-pillar-icon-box ${isOrange ? 'nz-icon-orange' : 'nz-icon-green'}`}>
+                          {idx === 0 && (
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <circle cx="12" cy="9" r="6" />
+                              <circle cx="12" cy="9" r="2.5" />
+                              <path d="M8.2 13.8L6.5 21.5l5.5-2.5 5.5 2.5-1.7-7.7" />
+                            </svg>
+                          )}
+                          {idx === 1 && (
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="2" y="3" width="20" height="14" rx="2" />
+                              <line x1="8" y1="21" x2="16" y2="21" />
+                              <line x1="12" y1="17" x2="12" y2="21" />
+                            </svg>
+                          )}
+                          {idx === 2 && (
+                            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <rect x="2" y="7" width="20" height="14" rx="2" />
+                              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                              <path d="M12 12v2" />
+                              <path d="M2 13h20" />
+                            </svg>
+                          )}
+                        </div>
+                        <div className="nz-hero-pillar-meta">
+                          <span className="nz-hero-pillar-num">{feat.num}</span>
+                          <h3 className="nz-hero-pillar-title">{feat.title}</h3>
+                        </div>
+                      </div>
+                      <p className="nz-hero-pillar-desc">{feat.desc}</p>
+                    </div>
                   </div>
-                  <h3 className="nz-hero-pillar-title">{feat.title}</h3>
-                  <p className="nz-hero-pillar-desc">{feat.desc}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
