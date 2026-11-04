@@ -38,24 +38,29 @@
   }
 }
 
-/* Top Ribbon */
+/* Top Ribbon – Attached Flush with Fixed Asymmetric Navbar */
 .nz-cyber-ribbon {
-  background: #111111;
+  background: linear-gradient(90deg, #0d3824 0%, #164632 50%, #1e5d42 100%);
   color: #ffffff;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-align: center;
-  padding: 0.75rem 1.5rem;
-  margin-top: 70px;
+  padding: 0.55rem 1.5rem;
+  margin-top: 64px;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(22, 70, 50, 0.12);
 }
 
 .nz-cyber-ribbon span {
   color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero Section */
@@ -973,8 +978,8 @@
 
   .nz-cyber-ribbon {
     margin-top: 54px !important;
-    padding: 0.5rem 0.75rem !important;
-    font-size: 0.68rem !important;
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.66rem !important;
   }
 
   .nz-cyber-hero {

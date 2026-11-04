@@ -38,10 +38,13 @@ export default function CoursePage({ path }) {
       {/* ── Sticky Luxury Header ── */}
       <header className="cp-nav">
         <div className="cp-nav-inner">
-          <a href="/" className="cp-brand">
-            <span className="cp-brand-title">NETWORKZ SYSTEMS</span>
-            <span className="cp-brand-tag">KOLLAM CAMPUS</span>
-          </a>
+          <div className="cp-brand-wrap">
+            <a href="/" className="cp-brand">
+              <img src="/nsk.jpeg" alt="Networkz Systems" className="cp-brand-img" />
+              <span className="cp-brand-title">NETWORKZ SYSTEMS</span>
+              <span className="cp-brand-tag">KOLLAM CAMPUS</span>
+            </a>
+          </div>
 
           <ul className="cp-menu">
             <li><a href="/" className="cp-menu-link">HOME</a></li>

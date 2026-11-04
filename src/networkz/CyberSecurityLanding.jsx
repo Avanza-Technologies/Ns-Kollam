@@ -166,14 +166,14 @@ export default function CyberSecurityLanding() {
   }, []);
 
   /* ── 15-SECOND RECURRING AUTO POPUP MODAL ── */
-  useEffect(() => {
+  /*useEffect(() => {
     if (submitted) return;
     const timer = setTimeout(() => {
       setShowOfferModal(true);
     }, 15000);
 
     return () => clearTimeout(timer);
-  }, [showOfferModal, submitted]);
+  }, [showOfferModal, submitted]);*/
 
   /* ── AUTO-MOVING BANNER SLIDER FOR SYLLABUS CARDS ── */
   useEffect(() => {
@@ -267,12 +267,14 @@ export default function CyberSecurityLanding() {
       {/* ─────────────────────────────────────────────────────────
          TOP NAVIGATION (EXACT HOMEPAGE HEADER & LOGO)
       ───────────────────────────────────────────────────────── */}
-      <nav className="nz-luxury-nav">
-        <Link to="/" className="nz-nav-brand">
-          <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
-          <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
-          <span className="nz-brand-tag">KOLLAM CAMPUS</span>
-        </Link>
+      <nav className="nz-luxury-nav nz-asymmetric-nav">
+        <div className="nz-nav-brand-wrap">
+          <Link to="/" className="nz-nav-brand">
+            <img src="/nsk.jpeg" alt="Networkz Systems" className="nz-brand-emblem-img" />
+            <span className="nz-brand-name">NETWORKZ SYSTEMS</span>
+            <span className="nz-brand-tag">KOLLAM CAMPUS</span>
+          </Link>
+        </div>
 
         {/* Desktop Links */}
         <ul className="nz-nav-menu">
@@ -290,9 +292,8 @@ export default function CyberSecurityLanding() {
             CLAIM 20% OFFER ↗
           </button>
           <button
-            className="nz-btn-secondary nz-nav-home-btn"
+            className="nz-nav-login-btn nz-nav-home-btn"
             onClick={() => navigate('/')}
-            style={{ padding: '0.65rem 1.1rem', fontSize: '0.78rem', background: '#222222', color: '#ffffff', border: '1px solid #333333' }}
           >
             ← HOME
           </button>
