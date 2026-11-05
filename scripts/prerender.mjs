@@ -19,7 +19,9 @@ try {
     mkdirSync(file.slice(0, file.lastIndexOf('/')), { recursive: true });
     writeFileSync(file, html);
   }
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${Object.keys(pages).map(path => `  <url><loc>${getSeo(path).canonical}</loc></url>`).join('\n')}\n</urlset>\n`;
+  const lastmod = new Date().toISOString();
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${Object.keys(pages).map(path => `  <url>\n    <loc>${getSeo(path).canonical}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`).join('\n')}\n</urlset>\n`;
   writeFileSync('dist/sitemap.xml', sitemap);
+  writeFileSync('public/sitemap.xml', sitemap);
   console.log('Prerendered public pages, aliases, exam and 404; generated canonical sitemap.');
 } finally { await server.close(); }

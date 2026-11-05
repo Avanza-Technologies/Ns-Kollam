@@ -115,7 +115,7 @@ export const COURSE_DETAILS = {
       },
       {
         id: 'data-analytics',
-        name: 'Data Analytics',
+        name: 'Advanced Data Analytics',
         desc: 'Microsoft Excel · SQL · Python · Power BI · Tableau · AI Tools · Data Visualization · Data Analytics Course in Kollam',
         level: 'ADVANCED',
         duration: '200 Hours',

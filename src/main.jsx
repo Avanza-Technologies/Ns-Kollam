@@ -3,13 +3,29 @@ import { coursePages, directoryPages } from './seo/catalog.js'
 import { useEffect } from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Seo from './seo/Seo.jsx'
 import NetworkzHome from './networkz/NetworkzHome.jsx'
 import CyberSecurityLanding from './networkz/CyberSecurityLanding.jsx'
 import DigitalMarketingLanding from './networkz/DigitalMarketingLanding.jsx'
+import NotFound from './seo/NotFound.jsx'
+
+// ── Trailing Slash Normalizer (Ensures clean slash-free URLs match canonical) ──
+function TrailingSlashNormalizer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname.length > 1 && location.pathname.endsWith('/')) {
+      const cleanPath = location.pathname.replace(/\/+$/, '') + location.search + location.hash;
+      navigate(cleanPath, { replace: true });
+    }
+  }, [location, navigate]);
+
+  return null;
+}
 
 // ── Google Tag SPA Route Tracker ───────────────────────────────────────────
 function PageTracker() {
@@ -57,6 +73,7 @@ if (typeof window !== 'undefined' && window.location.pathname.startsWith('/exam'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <TrailingSlashNormalizer />
       <Seo />
       <PageTracker />
       <Routes>
@@ -78,7 +95,7 @@ createRoot(document.getElementById('root')).render(
         {/* Existing exam portal — preserved as a sub-route */}
         <Route path="/exam" element={<App />} />
         <Route path="/exam/*" element={<App />} />
-      <Route path="*" element={<main style={{padding: "6rem 2rem"}}><h1>Page not found</h1><p>This page could not be found.</p><a href="/">Return to Networkz Systems Kollam</a></main>} />
+      <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
