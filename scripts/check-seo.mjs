@@ -18,6 +18,8 @@ for (const path of [...Object.keys(pages), ...Object.keys(aliases), '/exam', '/4
 }
 const sitemap = readFileSync('dist/sitemap.xml', 'utf8');
 assert.equal((sitemap.match(/<loc>/g) || []).length, Object.keys(pages).length);
+assert.equal((sitemap.match(/<lastmod>/g) || []).length, Object.keys(pages).length);
+assert.ok(sitemap.includes('<lastmod>20'));
 assert.ok(!sitemap.includes('/exam'));
 console.log(`SEO checks passed for ${Object.keys(pages).length + Object.keys(aliases).length + 2} generated documents.`);
 

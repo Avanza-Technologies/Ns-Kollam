@@ -1,0 +1,429 @@
+/* ─── CUSTOM 404 ERROR PAGE STYLES ───────────────────────────────── */
+
+.nf-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F8F8F5;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── Full-Width Asymmetric Header ── */
+.nf-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+  padding: 0 1.5rem 0 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nf-nav-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(0.5rem, 1.2vw, 1.5rem);
+}
+
+.nf-brand-wrap {
+  height: 100%;
+  width: clamp(390px, 32vw, 470px);
+  background: #164632;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 32px) 100%, 0 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 3.6rem 0 1.5rem;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease;
+}
+
+.nf-brand-wrap:hover {
+  background: #123828;
+}
+
+.nf-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.nf-brand-img {
+  width: 34px;
+  height: 34px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.nf-brand-title {
+  font-size: clamp(0.88rem, 1.05vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nf-brand-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.18rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+}
+
+.nf-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.8rem, 1.6vw, 2rem);
+  list-style: none;
+  margin: 0;
+  padding: 0 0.5rem;
+  flex: 1;
+}
+
+.nf-menu-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1e293b;
+  text-decoration: none;
+  padding: 0.35rem 0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.nf-menu-link:hover {
+  color: #1E5D42;
+}
+
+.nf-nav-ctas {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.nf-btn-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.nf-btn-home:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+.nf-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #1E5D42;
+  color: #ffffff;
+  padding: 0.55rem 1.15rem;
+  border-radius: 8px 18px 18px 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(30, 93, 66, 0.25);
+}
+
+.nf-btn-whatsapp:hover {
+  background: #164632;
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+/* ── 404 Hero Container ── */
+.nf-hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 4rem 1.5rem 5rem;
+  background: radial-gradient(circle at 50% 30%, rgba(30, 93, 66, 0.07) 0%, transparent 65%), #F8F8F5;
+  text-align: center;
+  overflow: hidden;
+}
+
+.nf-watermark-404 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  font-size: clamp(14rem, 28vw, 24rem);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(22, 70, 50, 0.04);
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: -0.05em;
+}
+
+.nf-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1E5D42;
+  background: rgba(30, 93, 66, 0.08);
+  border: 1px solid rgba(30, 93, 66, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+}
+
+.nf-title {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #0f172a;
+  line-height: 1.1;
+  margin: 0 0 1.25rem 0;
+}
+
+.nf-subtitle {
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+  color: #475569;
+  line-height: 1.65;
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ── Primary Action Buttons ── */
+.nf-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.nf-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #164632;
+  color: #ffffff;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(22, 70, 50, 0.25);
+}
+
+.nf-btn-primary:hover {
+  background: #123828;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(22, 70, 50, 0.35);
+  color: #ffffff;
+}
+
+.nf-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  padding: 0.85rem 1.75rem;
+  border-radius: 9999px;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.nf-btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+  color: #0f172a;
+}
+
+/* ── Quick Directory Cards ── */
+.nf-quick-section {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto 2.5rem;
+}
+
+.nf-quick-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.nf-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+}
+
+.nf-quick-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 1rem 0.85rem;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.nf-quick-card:hover {
+  transform: translateY(-3px);
+  border-color: #1E5D42;
+  box-shadow: 0 8px 20px rgba(30, 93, 66, 0.12);
+}
+
+.nf-card-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+}
+
+.nf-card-sub {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #1E5D42;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Admissions Desk Strip ── */
+.nf-assist-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 0.9rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  color: #475569;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.nf-assist-link {
+  color: #1E5D42;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nf-assist-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive Queries ── */
+@media (max-width: 991px) {
+  .nf-menu {
+    display: none !important;
+  }
+  .nf-brand-wrap {
+    width: auto;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+    padding: 0 1.6rem 0 1rem;
+  }
+  .nf-quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nf-nav {
+    height: 54px;
+    padding-right: 0.8rem;
+  }
+  .nf-brand-tag {
+    display: none !important;
+  }
+  .nf-brand-wrap {
+    padding: 0 1.4rem 0 0.8rem;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+  }
+  .nf-hero {
+    padding: 3rem 1.25rem 4rem;
+  }
+  .nf-quick-grid {
+    grid-template-columns: 1fr;
+  }
+  .nf-btn-whatsapp {
+    display: none;
+  }
+}
