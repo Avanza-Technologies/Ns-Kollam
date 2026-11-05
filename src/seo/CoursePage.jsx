@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { catalog, coursePages, directoryPages } from './catalog.js';
 import { COURSE_DETAILS } from '../networkz/data/courseData.js';
+import { generateCourseDescription } from '../utils/courseSEO.js';
 import './CoursePage.css';
 
 export default function CoursePage({ path }) {
@@ -126,11 +127,9 @@ export default function CoursePage({ path }) {
           <h1 className="cp-hero-title">{page.name}</h1>
 
           <p className="cp-hero-desc">
-            {isDirectory ? (
-              page.description
-            ) : (
-              `Master ${page.name.replace(' Course in Kollam', '')} with industry-grade practical training at Networkz Systems Kollam Campus (Chinnakada). Covered topics include ${page.topics.join(', ')}.`
-            )}
+            {isDirectory
+              ? page.description
+              : generateCourseDescription(page)}
           </p>
 
           <div className="cp-hero-actions">
