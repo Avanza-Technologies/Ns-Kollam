@@ -249,68 +249,68 @@
 
 @media (max-width: 991px) {
   .cp-nav {
-    height: 58px !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    height: 58px;
+    width: 100%;
+    max-width: 100%;
     margin-top: 0;
-    padding: 0 1rem 0 0 !important;
+    padding: 0 1rem 0 0;
   }
   .cp-menu {
-    display: none !important;
+    display: none;
   }
   .cp-mobile-toggle {
-    display: block !important;
+    display: block;
   }
   .cp-brand-wrap {
     width: auto;
-    height: 100% !important;
+    height: 100%;
     clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
     padding: 0 1.6rem 0 1rem;
-    margin: 0 !important;
+    margin: 0;
   }
 }
 
 @media (max-width: 768px) {
   .cp-nav {
-    height: 54px !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    height: 54px;
+    width: 100%;
+    max-width: 100%;
     margin-top: 0;
-    padding: 0 0.75rem 0 0 !important;
+    padding: 0 0.75rem 0 0;
   }
   .cp-brand-tag {
-    display: inline-block !important;
-    font-size: 0.52rem !important;
-    font-weight: 800 !important;
-    padding: 0.12rem 0.35rem !important;
-    border-radius: 4px !important;
-    letter-spacing: 0.05em !important;
+    display: inline-block;
+    font-size: 0.52rem;
+    font-weight: 800;
+    padding: 0.12rem 0.35rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.25);
   }
   .cp-brand-wrap {
-    height: 100% !important;
+    height: 100%;
     padding: 0 1.35rem 0 0.8rem;
     clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
-    margin: 0 !important;
+    margin: 0;
   }
   .cp-brand {
     gap: 0.55rem;
   }
   .cp-brand-title {
-    font-size: 0.82rem !important;
+    font-size: 0.82rem;
     letter-spacing: -0.01em;
   }
   .cp-brand-img {
-    width: 28px !important;
-    height: 28px !important;
+    width: 28px;
+    height: 28px;
   }
 }
 
 @media (max-width: 580px) {
   .cp-btn-call {
-    display: none !important;
+    display: none;
   }
   .cp-btn-whatsapp span {
     display: none;

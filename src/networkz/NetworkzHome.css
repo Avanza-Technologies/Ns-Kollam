@@ -588,61 +588,61 @@
 /* Responsive Media Queries for Asymmetric Navbar */
 @media (max-width: 1250px) {
   .nz-luxury-nav.nz-asymmetric-nav {
-    height: 58px !important;
+    height: 58px;
     top: 0;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 1rem 0 0 !important;
-    margin: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem 0 0;
+    margin: 0;
   }
   .nz-asymmetric-nav .nz-nav-menu {
-    display: none !important;
+    display: none;
   }
   .nz-asymmetric-nav .nz-hamburger-btn {
-    display: flex !important;
+    display: flex;
   }
   .nz-asymmetric-nav .nz-nav-brand-wrap {
     width: auto;
-    height: 100% !important;
+    height: 100%;
     clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
     padding: 0 1.6rem 0 1rem;
-    margin: 0 !important;
+    margin: 0;
   }
 }
 
 @media (max-width: 768px) {
   .nz-luxury-nav.nz-asymmetric-nav {
     top: 0;
-    height: 54px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 0.75rem 0 0 !important;
-    margin: 0 !important;
+    height: 54px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 0.75rem 0 0;
+    margin: 0;
   }
   .nz-asymmetric-nav .nz-nav-brand-wrap {
-    height: 100% !important;
+    height: 100%;
     padding: 0 1.35rem 0 0.8rem;
     clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
-    margin: 0 !important;
+    margin: 0;
   }
   .nz-asymmetric-nav .nz-nav-brand {
     gap: 0.55rem;
   }
   .nz-asymmetric-nav .nz-brand-name {
-    font-size: 0.82rem !important;
+    font-size: 0.82rem;
     letter-spacing: -0.01em;
   }
   .nz-asymmetric-nav .nz-brand-emblem-img {
-    width: 28px !important;
-    height: 28px !important;
+    width: 28px;
+    height: 28px;
   }
   .nz-asymmetric-nav .nz-brand-tag {
-    display: inline-block !important;
-    font-size: 0.52rem !important;
-    font-weight: 800 !important;
-    padding: 0.12rem 0.35rem !important;
-    border-radius: 4px !important;
-    letter-spacing: 0.05em !important;
+    display: inline-block;
+    font-size: 0.52rem;
+    font-weight: 800;
+    padding: 0.12rem 0.35rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
     background: rgba(255, 255, 255, 0.15);
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -651,21 +651,21 @@
 
 @media (max-width: 580px) {
   .nz-luxury-nav.nz-asymmetric-nav {
-    padding: 0 0.65rem 0 0 !important;
+    padding: 0 0.65rem 0 0;
   }
   .nz-asymmetric-nav .nz-nav-cta {
-    display: none !important;
+    display: none;
   }
   .nz-asymmetric-nav .nz-nav-login-btn {
     padding: 0.45rem 0.65rem;
     font-size: 0.68rem;
   }
   .nz-asymmetric-nav .nz-brand-name {
-    font-size: 0.78rem !important;
+    font-size: 0.78rem;
   }
   .nz-asymmetric-nav .nz-brand-emblem-img {
-    width: 26px !important;
-    height: 26px !important;
+    width: 26px;
+    height: 26px;
   }
 }
 
@@ -677,573 +677,9 @@
     padding: 0.45rem 0.55rem;
   }
   .nz-asymmetric-nav .nz-brand-tag {
-    display: none !important;
+    display: none;
   }
 }
-.nz-luxury-nav:not(.nz-asymmetric-nav) {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: rgba(17, 17, 17, 0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.8rem clamp(1rem, 2.5vw, 3rem);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(0.5rem, 1.2vw, 1.5rem);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  transition: all 0.3s var(--ease-editorial);
-  box-sizing: border-box;
-  max-width: 100vw;
-  width: 100%;
-}
-
-.nz-nav-brand {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.4rem, 0.6vw, 0.65rem);
-  text-decoration: none;
-  flex-shrink: 0;
-}
-
-.nz-brand-emblem-img {
-  width: clamp(28px, 2.2vw, 36px);
-  height: clamp(28px, 2.2vw, 36px);
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-  display: block;
-}
-
-.nz-brand-name {
-  font-family: var(--font-display);
-  font-size: clamp(0.85rem, 1.05vw, 1.12rem);
-  font-weight: 900;
-  letter-spacing: -0.01em;
-  color: #ffffff;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.nz-brand-tag {
-  font-size: clamp(0.55rem, 0.62vw, 0.65rem);
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  background: #ffffff;
-  color: var(--color-accent);
-  padding: 0.18rem clamp(0.35rem, 0.5vw, 0.55rem);
-  border-radius: 6px;
-  border: 1px solid #333333;
-  white-space: nowrap;
-  transition: opacity 0.2s ease;
-}
-
-.nz-nav-menu {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.5rem, 1.1vw, 1.8rem);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex-shrink: 1;
-  min-width: 0;
-}
-
-.nz-nav-link {
-  font-family: var(--font-display);
-  font-size: clamp(0.68rem, 0.8vw, 0.8rem);
-  font-weight: 700;
-  letter-spacing: clamp(0.03em, 0.08vw, 0.1em);
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  position: relative;
-  padding: 0.3rem 0;
-  white-space: nowrap;
-  transition: color 0.2s ease;
-}
-
-.nz-nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s var(--ease-editorial);
-}
-
-.nz-nav-link:hover,
-.nz-nav-link.active {
-  color: #ffffff;
-}
-
-.nz-nav-link:hover::after,
-.nz-nav-link.active::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* ── Mega Dropdown for Courses Navbar Item ── */
-.nz-nav-dropdown-wrapper {
-  position: relative;
-}
-
-.nz-dropdown-trigger {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.nz-caret {
-  transition: transform 0.25s ease;
-}
-.nz-caret.open {
-  transform: rotate(180deg);
-}
-
-/* ── Sideways Flyout Dropdown (Cascading Sub-Menu) ── */
-.nz-side-flyout-dropdown {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  display: flex;
-  background: rgba(17, 17, 17, 0.98);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  z-index: 2000;
-  animation: sideFlyoutFade 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  overflow: visible;
-}
-
-.nz-side-flyout-dropdown::before {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 0;
-  right: 0;
-  height: 12px;
-  background: transparent;
-}
-
-@keyframes sideFlyoutFade {
-  from { opacity: 0; transform: translateY(3px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Left Category Column */
-.nz-side-cat-list {
-  width: 280px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-  box-sizing: border-box;
-}
-
-.nz-side-cat-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.nz-side-cat-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.7rem 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 0.86rem;
-  font-weight: 600;
-  text-decoration: none;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.15s ease;
-  font-family: inherit;
-  box-sizing: border-box;
-}
-
-.nz-side-cat-item:hover,
-.nz-side-cat-item.is-active {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-}
-
-.nz-side-chevron {
-  color: rgba(255, 255, 255, 0.4);
-  transition: transform 0.15s ease, color 0.15s ease;
-}
-
-.nz-side-cat-item:hover .nz-side-chevron,
-.nz-side-cat-item.is-active .nz-side-chevron {
-  color: #38a169;
-  transform: translateX(2px);
-}
-
-.nz-side-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  margin: 4px 6px;
-}
-
-.nz-side-all-btn {
-  color: #38a169;
-  font-weight: 700;
-}
-.nz-side-all-btn:hover {
-  color: #48bb78;
-  background: rgba(56, 161, 105, 0.12);
-}
-
-/* Sidewise Sub-Panel */
-.nz-side-sub-panel {
-  width: 320px;
-  flex-shrink: 0;
-  background: rgba(12, 12, 12, 0.98);
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 0 10px 10px 0;
-  display: flex;
-  flex-direction: column;
-  padding: 8px 10px;
-  animation: subPanelSlide 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
-}
-
-@keyframes subPanelSlide {
-  from { opacity: 0; transform: translateX(-4px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.nz-side-sub-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 0.6rem 0.6rem 0.6rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 6px;
-}
-
-.nz-side-sub-cat-title {
-  font-family: var(--font-display);
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #ffffff;
-}
-
-.nz-side-sub-count {
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: #38a169;
-  background: rgba(56, 161, 105, 0.12);
-  padding: 2px 7px;
-  border-radius: 100px;
-}
-
-.nz-side-sub-list {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  max-height: 420px;
-  overflow-y: auto;
-}
-
-.nz-side-sub-list::-webkit-scrollbar {
-  width: 4px;
-}
-.nz-side-sub-list::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 4px;
-}
-
-.nz-side-course-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.5rem 0.65rem;
-  color: #cbd5e1;
-  font-size: 0.83rem;
-  font-weight: 500;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
-  transition: all 0.15s ease;
-  font-family: inherit;
-  box-sizing: border-box;
-}
-
-.nz-side-course-row:hover {
-  background: rgba(56, 161, 105, 0.16);
-  border-color: rgba(56, 161, 105, 0.3);
-  color: #ffffff;
-  transform: translateX(2px);
-}
-
-.nz-side-course-name {
-  font-size: 0.83rem;
-  font-weight: 600;
-  color: inherit;
-}
-
-.nz-side-course-dur {
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: #94a3b8;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 2px 6px;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-
-.nz-side-course-row:hover .nz-side-course-dur {
-  color: #38a169;
-  background: rgba(56, 161, 105, 0.15);
-}
-
-/* Mobile Drawer Courses Accordion */
-.nz-mobile-courses-trigger {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: transparent;
-  border: none;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
-
-.nz-mobile-courses-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  margin-top: 0.5rem;
-  max-height: 380px;
-  overflow-y: auto;
-}
-
-.nz-mobile-cat-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.nz-mobile-cat-name {
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #38a169;
-  letter-spacing: 0.08em;
-  margin-bottom: 2px;
-}
-
-.nz-mobile-course-subitem {
-  width: 100%;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
-  padding: 0.45rem 0.65rem;
-  color: #e2e8f0;
-  font-size: 0.8rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.nz-mobile-sub-dur {
-  font-size: 0.68rem;
-  color: #94a3b8;
-}
-
-.nz-nav-actions {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.4rem, 0.7vw, 0.75rem);
-  flex-shrink: 0;
-}
-
-.nz-nav-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-display);
-  font-size: clamp(0.68rem, 0.76vw, 0.78rem);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: var(--color-accent);
-  color: var(--color-secondary);
-  padding: clamp(0.48rem, 0.65vw, 0.7rem) clamp(0.7rem, 1.05vw, 1.35rem);
-  border-radius: var(--radius-btn);
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.3s var(--ease-editorial);
-  box-shadow: 0 4px 15px rgba(30, 93, 66, 0.2);
-}
-
-.nz-nav-cta:hover {
-  background: var(--color-accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(30, 93, 66, 0.35);
-}
-
-.nz-nav-login-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  font-family: var(--font-display);
-  font-size: clamp(0.66rem, 0.74vw, 0.76rem);
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  padding: clamp(0.45rem, 0.6vw, 0.65rem) clamp(0.6rem, 0.9vw, 1.15rem);
-  border-radius: var(--radius-btn);
-  text-decoration: none;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.3s var(--ease-editorial);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.nz-nav-login-btn:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: var(--color-accent);
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-}
-
-.nz-mobile-login-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-  padding: 0.8rem 1.25rem;
-  border-radius: var(--radius-btn);
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
-  transition: all 0.25s ease;
-}
-
-.nz-mobile-login-btn:hover,
-.nz-mobile-login-btn:active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: var(--color-accent);
-  color: #ffffff;
-}
-
-.nz-footer-employee-link {
-  color: var(--color-accent) !important;
-  font-weight: 700;
-}
-
-.nz-footer-employee-link:hover {
-  text-decoration: underline;
-}
-
-/* ─── HAMBURGER BUTTON (SYMBOL) ─────────────────── */
-.nz-hamburger-btn {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.25s ease;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1002;
-}
-
-.nz-hamburger-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: var(--color-accent);
-}
-
-.nz-hamburger-icon {
-  width: 20px;
-  height: 14px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.nz-hamburger-icon span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: #ffffff;
-  border-radius: 2px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, background-color 0.3s ease;
-  transform-origin: center;
-}
-
-.nz-hamburger-btn.is-active .nz-hamburger-icon span:nth-child(1) {
-  transform: translateY(6px) rotate(45deg);
-  background: var(--color-accent);
-}
-
-.nz-hamburger-btn.is-active .nz-hamburger-icon span:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.nz-hamburger-btn.is-active .nz-hamburger-icon span:nth-child(3) {
-  transform: translateY(-6px) rotate(-45deg);
-  background: var(--color-accent);
-}
-
 /* ─── MOBILE BACKDROP & DRAWER LIST ─────────────── */
 .nz-mobile-nav-backdrop {
   position: fixed;
@@ -1535,100 +971,6 @@
   color: #15803d;
   text-decoration: none;
   font-weight: 700;
-}
-
-/* ─── RESPONSIVE BREAKPOINTS FOR NAVIGATION ──────────────── */
-@media (max-width: 1400px) {
-  .nz-luxury-nav:not(.nz-asymmetric-nav) {
-    padding: 0.8rem 1.8rem;
-    gap: 1rem;
-  }
-  .nz-nav-brand {
-    gap: 0.5rem;
-  }
-  .nz-brand-name {
-    font-size: 1rem;
-  }
-  .nz-brand-tag {
-    font-size: 0.6rem;
-    padding: 0.15rem 0.45rem;
-  }
-  .nz-nav-menu {
-    gap: 1rem;
-  }
-  .nz-nav-link {
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-  }
-  .nz-nav-actions {
-    gap: 0.5rem;
-  }
-  .nz-nav-cta {
-    padding: 0.55rem 0.95rem;
-    font-size: 0.7rem;
-  }
-  .nz-nav-login-btn {
-    padding: 0.55rem 0.85rem;
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 1250px) {
-  .nz-luxury-nav:not(.nz-asymmetric-nav) {
-    padding: 0.8rem 1.5rem;
-  }
-  .nz-nav-menu {
-    display: none !important;
-  }
-  .nz-hamburger-btn {
-    display: flex !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .nz-luxury-nav:not(.nz-asymmetric-nav) {
-    padding: 0.75rem 1.2rem;
-  }
-  .nz-brand-tag {
-    display: none !important;
-  }
-  .nz-nav-home-btn {
-    display: none !important;
-  }
-}
-
-@media (max-width: 580px) {
-  .nz-luxury-nav:not(.nz-asymmetric-nav) {
-    padding: 0.65rem 0.9rem;
-  }
-  .nz-brand-name {
-    font-size: 0.88rem !important;
-  }
-  .nz-brand-emblem-img {
-    width: 30px !important;
-    height: 30px !important;
-  }
-  .nz-nav-actions .nz-nav-cta {
-    display: none !important;
-  }
-  .nz-nav-login-btn {
-    padding: 0.45rem 0.75rem;
-    font-size: 0.68rem;
-  }
-  .nz-mobile-nav-drawer {
-    top: 58px;
-    max-height: calc(100vh - 58px);
-    padding: 1rem 1rem 1.5rem;
-  }
-}
-
-@media (max-width: 400px) {
-  .nz-nav-login-btn span {
-    display: none;
-  }
-  .nz-nav-login-btn {
-    padding: 0.45rem 0.55rem;
-  }
 }
 
 /* ─── SECTION 2: HERO FULL VIEWPORT EXPERIENCE ─────────────────── */
