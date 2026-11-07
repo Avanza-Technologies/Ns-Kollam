@@ -713,24 +713,15 @@ export default function NetworkzHome() {
                   <div key={catKey} className="nz-mobile-cat-group">
                     <div className="nz-mobile-cat-name">{category.category}</div>
                     {category.courses.map((c) => (
-                      <button
+                      <a
                         key={c.id}
-                        type="button"
+                        href={coursePath(c.id)}
                         className="nz-mobile-course-subitem"
-                        onClick={() => {
-                          setMobileMenuOpen(false);
-                          if (c.id === 'cyber' || c.id === 'ethical') {
-                            window.location.href = '/cybersecurity';
-                          } else if (c.id === 'digi' || c.id === 'digi_ai') {
-                            window.location.href = '/digital-marketing';
-                          } else {
-                            setSelectedCourseModal({ ...c, catId: catKey, catName: category.category });
-                          }
-                        }}
+                        onClick={() => setMobileMenuOpen(false)}
                       >
                         <span>{c.name}</span>
                         <span className="nz-mobile-sub-dur">{c.duration}</span>
-                      </button>
+                      </a>
                     ))}
                   </div>
                 ))}
