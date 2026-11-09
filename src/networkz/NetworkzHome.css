@@ -242,12 +242,21 @@
   transform-origin: left;
 }
 
+.nz-asymmetric-nav .nz-nav-dropdown-wrapper {
+  position: relative;
+}
+
 .nz-asymmetric-nav .nz-dropdown-trigger {
   gap: 5px;
 }
 
 .nz-asymmetric-nav .nz-caret {
   stroke: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.nz-asymmetric-nav .nz-caret.open {
+  transform: rotate(180deg);
 }
 
 /* ── Light-Themed Luxury Mega Menu (Asymmetric Nav) ── */
