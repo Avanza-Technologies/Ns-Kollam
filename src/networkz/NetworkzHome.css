@@ -242,12 +242,21 @@
   transform-origin: left;
 }
 
+.nz-asymmetric-nav .nz-nav-dropdown-wrapper {
+  position: relative;
+}
+
 .nz-asymmetric-nav .nz-dropdown-trigger {
   gap: 5px;
 }
 
 .nz-asymmetric-nav .nz-caret {
   stroke: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.nz-asymmetric-nav .nz-caret.open {
+  transform: rotate(180deg);
 }
 
 /* ── Light-Themed Luxury Mega Menu (Asymmetric Nav) ── */
@@ -649,15 +658,18 @@
   }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 640px) {
   .nz-luxury-nav.nz-asymmetric-nav {
     padding: 0 0.65rem 0 0;
   }
   .nz-asymmetric-nav .nz-nav-cta {
     display: none;
   }
+  .nz-asymmetric-nav .nz-nav-login-btn span {
+    display: none;
+  }
   .nz-asymmetric-nav .nz-nav-login-btn {
-    padding: 0.45rem 0.65rem;
+    padding: 0.45rem 0.6rem;
     font-size: 0.68rem;
   }
   .nz-asymmetric-nav .nz-brand-name {
@@ -670,14 +682,20 @@
 }
 
 @media (max-width: 420px) {
-  .nz-asymmetric-nav .nz-nav-login-btn span {
-    display: none;
+  .nz-asymmetric-nav .nz-nav-brand-wrap {
+    padding: 0 1.1rem 0 0.65rem;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
   }
-  .nz-asymmetric-nav .nz-nav-login-btn {
-    padding: 0.45rem 0.55rem;
+  .nz-asymmetric-nav .nz-brand-name {
+    font-size: 0.72rem;
   }
   .nz-asymmetric-nav .nz-brand-tag {
-    display: none;
+    display: inline-block;
+    font-size: 0.46rem;
+    padding: 0.1rem 0.28rem;
+  }
+  .nz-asymmetric-nav .nz-nav-login-btn {
+    padding: 0.4rem 0.5rem;
   }
 }
 /* ─── MOBILE BACKDROP & DRAWER LIST ─────────────── */
@@ -2151,6 +2169,25 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.nz-footer-brand .nz-brand-emblem-img {
+  width: 38px;
+  height: 38px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.nz-footer-brand .nz-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nz-footer-title {
