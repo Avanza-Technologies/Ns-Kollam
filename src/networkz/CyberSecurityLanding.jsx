@@ -259,7 +259,7 @@ export default function CyberSecurityLanding() {
 
   const scrollToBooking = () => {
     const el = document.getElementById('nz-booking-sec');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) el.scrollIntoView();
   };
 
   return (

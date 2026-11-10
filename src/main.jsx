@@ -1,9 +1,10 @@
+import Lenis from 'lenis'
 import CoursePage from './seo/CoursePage.jsx'
 import { coursePages, directoryPages } from './seo/catalog.js'
 import { useEffect } from 'react'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, useNavigationType } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Seo from './seo/Seo.jsx'
@@ -23,6 +24,103 @@ function TrailingSlashNormalizer() {
       navigate(cleanPath, { replace: true });
     }
   }, [location, navigate]);
+
+  return null;
+}
+
+// ── Smooth Inertial Scrolling Motion ───────────────────────────────────────
+function SmoothScrollManager() {
+  const { pathname, hash } = useLocation();
+  const navigationType = useNavigationType();
+
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: no-preference)');
+    let lenis;
+
+    let multiTouch = false;
+    let touchTime = 0;
+    let touchSpeed = 0;
+    let lastTouchMove;
+
+    function handleScrollInput(input) {
+      const { event, deltaX, deltaY } = input;
+      if (event.type === 'touchstart') {
+        multiTouch = event.touches.length > 1;
+        touchTime = event.timeStamp;
+        touchSpeed = 0;
+        lastTouchMove = undefined;
+      }
+      // Let the browser handle zoom and sideways swipes.
+      if (event.touches && multiTouch) return false;
+      if (event.ctrlKey || event.shiftKey || Math.abs(deltaX) > Math.abs(deltaY)) return false;
+
+      if (event.type === 'touchmove') {
+        touchSpeed = deltaY / Math.max(8, event.timeStamp - touchTime);
+        touchTime = event.timeStamp;
+        lastTouchMove = event;
+      }
+      if (event.type === 'touchend' && lastTouchMove?.defaultPrevented) {
+        // Estimate the fling from the finger's speed. A pause before lifting cancels the coast.
+        const releaseFactor = Math.max(0, 1 - (event.timeStamp - touchTime) / 100);
+        const maxTravel = window.innerHeight * 0.85;
+        const coast = Math.max(-maxTravel, Math.min(maxTravel, touchSpeed * 220 * releaseFactor));
+        lenis.scrollTo(lenis.targetScroll + coast, {
+          duration: 0.8,
+          easing: (progress) => 1 - (1 - progress) ** 3,
+        });
+        return false;
+      }
+      if (event.type === 'wheel') {
+        if (deltaY * (lenis.targetScroll - lenis.actualScroll) < 0) interruptScroll();
+        // Add travel to larger wheel steps. Keep fine adjustments and page-sized steps exact.
+        if (event.deltaMode !== WheelEvent.DOM_DELTA_PAGE) {
+          const extraTravel = Math.min(Math.max(0, Math.abs(deltaY) - 12) * 1.6, window.innerHeight * 0.22);
+          input.deltaY += Math.sign(deltaY) * extraTravel;
+        }
+      }
+      return true;
+    }
+
+    function updatePreference() {
+      lenis?.destroy();
+      lenis = undefined;
+      if (preference.matches) {
+        lenis = new Lenis({
+          autoRaf: true,
+          allowNestedScroll: true,
+          duration: 1.1,
+          easing: (progress) => 1 - (1 - progress) ** 2,
+          syncTouch: true,
+          virtualScroll: handleScrollInput,
+        });
+      }
+    }
+
+    // Yield immediately when the user clicks a link, drags the scrollbar or uses the keyboard.
+    function interruptScroll() {
+      if (lenis?.isScrolling === 'smooth') {
+        lenis.scrollTo(window.scrollY, { immediate: true });
+      }
+    }
+
+    updatePreference();
+    preference.addEventListener('change', updatePreference);
+    window.addEventListener('pointerdown', interruptScroll);
+    window.addEventListener('keydown', interruptScroll);
+
+    return () => {
+      preference.removeEventListener('change', updatePreference);
+      window.removeEventListener('pointerdown', interruptScroll);
+      window.removeEventListener('keydown', interruptScroll);
+      lenis?.destroy();
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    if (navigationType === 'PUSH' && !hash) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [pathname, hash, navigationType]);
 
   return null;
 }
@@ -73,6 +171,7 @@ if (typeof window !== 'undefined' && window.location.pathname.startsWith('/exam'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <SmoothScrollManager />
       <TrailingSlashNormalizer />
       <Seo />
       <PageTracker />

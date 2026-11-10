@@ -314,7 +314,7 @@ export default function DigitalMarketingLanding() {
 
   const scrollToBooking = () => {
     const el = document.getElementById('nz-booking-sec');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) el.scrollIntoView();
   };
 
   /* ── ON-PAGE SEO OPTIMIZATION FOR DIGITAL MARKETING IN KOLLAM ── */
