@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
 const STAGES = ['LEARN', 'BUILD', 'CREATE', 'DEPLOY', 'WORK', 'GROW'];
 

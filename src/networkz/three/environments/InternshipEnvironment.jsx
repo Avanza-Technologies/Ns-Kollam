@@ -1,6 +1,5 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
 const MILESTONES = [
   { label: 'FOUNDATION', x: -10, color: '#3a5a7a' },

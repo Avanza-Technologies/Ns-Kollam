@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import CustomSelect from './components/CustomSelect';
 import './NetworkzHome.css';
@@ -116,40 +116,6 @@ const MARKETING_MODULES = [
   }
 ];
 
-/* ── 5 STAT CARDS (EXACT PASTEL BADGES) ── */
-const STAT_CARDS = [
-  {
-    value: '1,000+',
-    label: 'Graduates Trained & Placed in Top Firms',
-    icon: '🎓',
-    theme: 'pink'
-  },
-  {
-    value: '₹500K+',
-    label: 'Live Ad Budgets Managed in Campaigns',
-    icon: '🚀',
-    theme: 'green'
-  },
-  {
-    value: '70%',
-    label: 'Practical Hands-On & Live Projects',
-    icon: '⚡',
-    theme: 'purple'
-  },
-  {
-    value: '100%',
-    label: 'Placement & Direct Referral Drives',
-    icon: '🏆',
-    theme: 'lime'
-  },
-  {
-    value: '2,000+',
-    label: '5-Star Reviews from Alumni',
-    icon: '⭐',
-    theme: 'blue'
-  }
-];
-
 /* ── 6 TREE TIERS PAIRING HIGHLIGHTS & TOOLS ── */
 const TREE_TIERS = [
   {
@@ -224,18 +190,6 @@ const TREE_TIERS = [
       { name: 'Alumni Network', desc: 'Direct corporate referral network' }
     ]
   }
-];
-
-/* ── RADIAL TOOL NODES (EXACT POSITIONS) ── */
-const RADIAL_NODES = [
-  { icon: '🔍', x: 22, y: 22 },
-  { icon: '🎯', x: 78, y: 20 },
-  { icon: '📱', x: 88, y: 50 },
-  { icon: '📊', x: 76, y: 80 },
-  { icon: '🎨', x: 50, y: 88 },
-  { icon: '🤖', x: 24, y: 80 },
-  { icon: '🌐', x: 12, y: 50 },
-  { icon: '✉️', x: 50, y: 12 }
 ];
 
 const ROLE_OPTIONS = ['Student (Study)', 'Job Seeker (Job)', 'Business Owner / Entrepreneur', 'Working Professional', 'Other'];

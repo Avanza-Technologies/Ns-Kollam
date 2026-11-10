@@ -1,5 +1,3 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /** Glass curtain-wall panel */
@@ -47,8 +45,6 @@ function WindowGrid({ cx, cy, cz, cols, rows, ww = 1.4, wh = 1.1, gap = 0.18 }) 
 }
 
 export default function InstituteEnvironment() {
-  const spotTargetRef = useRef();
-
   return (
     <group>
       {/* ── Main building body ── */}

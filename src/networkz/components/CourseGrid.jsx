@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { COURSE_DETAILS } from '../data/courseData';
 
 /** A single course card */

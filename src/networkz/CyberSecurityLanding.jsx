@@ -21,33 +21,6 @@ const getWhatsAppUrl = (customMsg) => {
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`;
 };
 
-/* ── BRAND LOGO COMPONENT ── */
-function NetworkzOfficialLogo() {
-  return (
-    <Link to="/" className="nz-cyber-logo-link">
-      <div className="nz-cyber-logo-text-box">
-        <div className="nz-cyber-logo-main">NETWORKZ</div>
-        <div className="nz-cyber-logo-sub">SYSTEMS</div>
-        <div className="nz-cyber-logo-divider" />
-        <div className="nz-cyber-logo-iso">AN ISO 9001 : 2015 CERTIFIED COMPANY</div>
-      </div>
-      <div className="nz-cyber-emblem-wrap">
-        <span className="nz-cyber-reg-mark">®</span>
-        <div className="nz-cyber-emblem-box">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="15.2" cy="4" r="1.4" fill="#ffffff" stroke="none" />
-            <path d="M11.5 16.5 L 16 9.5 L 20 4.5" />
-            <path d="M14.5 11 L 11 13 L 13 9.5" />
-            <path d="M 19.8 4.2 C 19.8 4.2 21 3 21 2 C 20 2.2 19 3.2 19.8 4.2 Z" fill="#ffffff" stroke="none" />
-            <path d="M 15 13 L 9.5 20.5" />
-            <path d="M 12 16.5 L 15 17 L 18 20.5" />
-          </svg>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
 /* ── SYLLABUS MODULE DATA ── */
 const SYLLABUS_MODULES = [
   {

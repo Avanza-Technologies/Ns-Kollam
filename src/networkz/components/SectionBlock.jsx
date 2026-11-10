@@ -35,9 +35,9 @@ export default function SectionBlock({ chapterId }) {
 
   const chapter = CHAPTERS[chapterId];
   const data = COURSE_DETAILS[chapterId];
-  if (!chapter || !data) return null;
 
   useEffect(() => {
+    if (!sectionRef.current || !data) return;
     const timeouts = [];
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -56,12 +56,14 @@ export default function SectionBlock({ chapterId }) {
       { threshold: 0.08, rootMargin: '-60px 0px' }
     );
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    observer.observe(sectionRef.current);
     return () => {
       observer.disconnect();
       timeouts.forEach(clearTimeout);
     };
-  }, [data.courses]);
+  }, [data]);
+
+  if (!chapter || !data) return null;
 
   return (
     <section

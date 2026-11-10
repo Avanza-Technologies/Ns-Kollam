@@ -1,6 +1,5 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
 
 /** A single orbital ring around the central structure */
 function OrbitalRing({ radius, axis, speed, color, opacity }) {
