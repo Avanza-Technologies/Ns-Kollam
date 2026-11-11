@@ -151,20 +151,34 @@ const PROCESS_STEPS = [
   }
 ];
 
+const FAQ_PILL_ROTATIONS = [-10, 14, -7, 12];
+
 const FAQ_DATA = [
   {
+    id: 'cert',
+    shortQ: "What certifications do I get?",
+    tag: "Global Certification",
     q: "What certifications will I receive upon completing a program at Networkz Systems?",
     a: "You receive official Networkz Systems course completion certificates along with preparation for international certifications including Cisco CCNA, AWS Solutions Architect, Microsoft Azure, and Pearson VUE accredited credentials."
   },
   {
+    id: 'practical',
+    shortQ: "Are programs 100% practical?",
+    tag: "Hands-on Labs",
     q: "Are the training programs 100% practical or theoretical?",
     a: "All programs are structured with an 80% practical live lab focus and 20% conceptual foundation. You work directly on enterprise hardware, server racks, and live codebases."
   },
   {
+    id: 'placement',
+    shortQ: "How does placement support work?",
+    tag: "Placement Support",
     q: "How does the 100% Placement Support program work?",
     a: "Our dedicated placement cell conducts mock technical interviews, resume refinement, soft-skills workshops, and routes your profile to our network of 200+ partner tech companies across Kerala, Tamil Nadu, and Karnataka."
   },
   {
+    id: 'eligibility',
+    shortQ: "Can non-CS students join?",
+    tag: "Eligibility & Prereqs",
     q: "Can non-computer science students enroll in Software and AI courses?",
     a: "Yes. Our foundation modules start from core logic building (C/C++ & Python fundamentals) before progressing to advanced full-stack framework engineering."
   }
@@ -381,6 +395,178 @@ export default function NetworkzHome() {
   const [activeCategoryTab, setActiveCategoryTab] = useState('SOFTWARE');
   const [searchQuery, setSearchQuery] = useState('');
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [chatTyping, setChatTyping] = useState(false);
+  const [displayedAnswer, setDisplayedAnswer] = useState('');
+  const [pillOffsets, setPillOffsets] = useState([
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 }
+  ]);
+  const [activeDragIdx, setActiveDragIdx] = useState(null);
+  const activeDragIdxRef = useRef(null);
+  const pillRefs = useRef([]);
+  const rafRef = useRef(null);
+  const dragStartRef = useRef(null);
+  const hasMovedRef = useRef(false);
+  const lastDragTimeRef = useRef(0);
+
+  // Clean up any pending animation frame when component unmounts
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, []);
+
+  const handlePillPointerDown = (idx, e) => {
+    if (e.button !== undefined && e.button !== 0) return;
+    try {
+      if (e.currentTarget?.setPointerCapture) {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      }
+    } catch (err) {}
+
+    const curOffset = pillOffsets[idx] || { x: 0, y: 0 };
+    activeDragIdxRef.current = idx;
+    hasMovedRef.current = false;
+    dragStartRef.current = {
+      idx,
+      startX: e.clientX,
+      startY: e.clientY,
+      initX: curOffset.x,
+      initY: curOffset.y,
+      currentX: curOffset.x,
+      currentY: curOffset.y
+    };
+    setActiveDragIdx(idx);
+  };
+
+  const handlePillPointerMove = (idx, e) => {
+    const start = dragStartRef.current;
+    if (!start || start.idx !== idx) return;
+
+    const dx = e.clientX - start.startX;
+    const dy = e.clientY - start.startY;
+    const dist = Math.hypot(dx, dy);
+
+    // Any movement greater than 5px marks this interaction strictly as a drag, not a click
+    if (dist > 5) {
+      hasMovedRef.current = true;
+    }
+
+    start.currentX = start.initX + dx;
+    start.currentY = start.initY + dy;
+
+    // Direct GPU-accelerated requestAnimationFrame transform
+    if (!rafRef.current) {
+      rafRef.current = requestAnimationFrame(() => {
+        const pillEl = pillRefs.current[idx];
+        if (pillEl && dragStartRef.current) {
+          const rot = FAQ_PILL_ROTATIONS[idx] || 0;
+          pillEl.style.transform = `translate3d(${dragStartRef.current.currentX}px, ${dragStartRef.current.currentY}px, 0) rotate(${rot}deg) scale(1.08)`;
+        }
+        rafRef.current = null;
+      });
+    }
+  };
+
+  const handlePillPointerUp = (idx, e) => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+
+    try {
+      if (e?.currentTarget && e?.pointerId !== undefined && e.currentTarget.hasPointerCapture?.(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+    } catch (err) {}
+
+    const start = dragStartRef.current;
+    const moved = hasMovedRef.current;
+
+    // Reset synchronous tracking refs immediately
+    activeDragIdxRef.current = null;
+    dragStartRef.current = null;
+    hasMovedRef.current = false;
+    setActiveDragIdx(null);
+
+    if (!start || start.idx !== idx) return;
+
+    if (moved) {
+      // User moved/dragged the pill: ONLY update coordinates, NEVER open the popup
+      lastDragTimeRef.current = Date.now();
+      const finalX = start.currentX;
+      const finalY = start.currentY;
+      setPillOffsets((prev) => {
+        const next = [...prev];
+        next[idx] = { x: finalX, y: finalY };
+        return next;
+      });
+    } else {
+      // Pure click without dragging: Open the detailed answer dialog
+      setOpenFaqIndex((prev) => (prev === idx ? null : idx));
+    }
+  };
+
+  const handleResetPillPositions = () => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    activeDragIdxRef.current = null;
+    dragStartRef.current = null;
+    hasMovedRef.current = false;
+    setActiveDragIdx(null);
+
+    setPillOffsets([
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 },
+      { x: 0, y: 0 }
+    ]);
+
+    pillRefs.current.forEach((el, i) => {
+      if (el) {
+        const rot = FAQ_PILL_ROTATIONS[i] || 0;
+        el.style.transform = `translate3d(0px, 0px, 0) rotate(${rot}deg)`;
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (openFaqIndex === null) {
+      setDisplayedAnswer('');
+      setChatTyping(false);
+      return;
+    }
+
+    const fullAnswer = FAQ_DATA[openFaqIndex]?.a || '';
+    setDisplayedAnswer('');
+    setChatTyping(true);
+
+    let intervalId;
+    const startDelay = setTimeout(() => {
+      let charIndex = 0;
+      intervalId = setInterval(() => {
+        charIndex += 4;
+        if (charIndex >= fullAnswer.length) {
+          setDisplayedAnswer(fullAnswer);
+          setChatTyping(false);
+          clearInterval(intervalId);
+        } else {
+          setDisplayedAnswer(fullAnswer.slice(0, charIndex));
+        }
+      }, 16);
+    }, 280);
+
+    return () => {
+      clearTimeout(startDelay);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [openFaqIndex]);
   const [selectedCourseModal, setSelectedCourseModal] = useState(null);
   const [selectedEnrollmentCourse, setSelectedEnrollmentCourse] = useState(null);
   const [enrollmentSubmitted, setEnrollmentSubmitted] = useState(false);
@@ -512,7 +698,7 @@ export default function NetworkzHome() {
 
         {/* Desktop Navigation Links */}
         <ul className="nz-nav-menu">
-          <li><a href="#features" className="nz-nav-link">HOME</a></li>
+          <li><a href="#home" className="nz-nav-link">HOME</a></li>
           <li
             className="nz-nav-dropdown-wrapper"
             onMouseEnter={handleDropdownMouseEnter}
@@ -699,6 +885,12 @@ export default function NetworkzHome() {
       <div className={`nz-mobile-nav-drawer ${mobileMenuOpen ? 'is-open' : ''}`}>
         <ul className="nz-mobile-nav-list">
           <li>
+            <a href="#home" className="nz-mobile-nav-item" onClick={() => setMobileMenuOpen(false)}>
+              <span>Home</span>
+              <span className="nz-mobile-nav-arrow">→</span>
+            </a>
+          </li>
+          <li>
             <button
               type="button"
               className="nz-mobile-nav-item nz-mobile-courses-trigger"
@@ -847,7 +1039,7 @@ export default function NetworkzHome() {
       </div>
 
       {/* ─── SECTION 2: HERO FULL VIEWPORT EXPERIENCE ───────────────── */}
-      <section className="nz-hero-section">
+      <section id="home" className="nz-hero-section">
         <div className="nz-hero-glow-emerald" />
         <div className="nz-hero-glow-dark" />
         <div className="nz-container">
@@ -1391,7 +1583,7 @@ export default function NetworkzHome() {
       <section className="nz-placements-section">
         <div className="nz-container">
           <div style={{ textAlign: 'center', marginBottom: '2.5rem', fontSize: '0.8rem', fontWeight: '800', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-text-muted)' }}>
-            RECRUITMENT PARTNERS & ENTERPRISE EMPLOYERS
+            WHERE OUR STUDENTS WORK
           </div>
           <div className="nz-logo-cloud">
             <span className="nz-partner-tag">TCS</span>
@@ -1401,6 +1593,7 @@ export default function NetworkzHome() {
             <span className="nz-partner-tag">COGNIZANT</span>
             <span className="nz-partner-tag">ACCENTURE</span>
             <span className="nz-partner-tag">IBM</span>
+            <span className="nz-partner-tag">EY</span>
           </div>
         </div>
       </section>
@@ -1496,35 +1689,191 @@ export default function NetworkzHome() {
         </div>
       </section>
 
-      {/* ─── SECTION 12: FAQ ACCORDION ─────────────────────────────── */}
+      {/* ─── SECTION 12: SCATTERED EDITORIAL FAQ (DRAGGABLE & TACTILE) ─── */}
       <section id="faq" className="nz-faq-section nz-section-padding">
         <div className="nz-container">
-          <div style={{ textAlign: 'center' }}>
-            <span className="nz-eyebrow">COMMON QUESTIONS</span>
-            <h2 className="nz-heading-lg">FREQUENTLY ASKED QUESTIONS.</h2>
-          </div>
+          {/* Authentic Minimalist Scattered Cluster — No Giant White Box */}
+          <div className="nz-faq-cluster-stage">
+            {/* Background Typography */}
+            <div className="nz-faq-cluster-center">
+              <h2 className="nz-faq-cluster-title">
+                <span className="nz-cluster-line-ask">You asked.</span>
+                <span className="nz-cluster-line-ans">We answered.</span>
+              </h2>
+            </div>
 
-          <div className="nz-faq-list">
-            {FAQ_DATA.map((faq, idx) => (
-              <div key={idx} className="nz-faq-item">
-                <div
-                  className="nz-faq-question"
-                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+            {/* Draggable & Movable Scattered Question Pills */}
+            <div className="nz-faq-cluster-pills">
+              {FAQ_DATA.map((faq, idx) => {
+                const isActive = openFaqIndex === idx;
+                const isDragging = activeDragIdx === idx;
+                const offset = pillOffsets[idx] || { x: 0, y: 0 };
+                return (
+                  <button
+                    key={faq.id || idx}
+                    ref={(el) => { pillRefs.current[idx] = el; }}
+                    type="button"
+                    className={`nz-cluster-pill nz-cluster-pill-${idx + 1} ${isActive ? 'is-active' : ''} ${isDragging ? 'is-dragging' : ''}`}
+                    style={{
+                      transform: `translate3d(${offset.x}px, ${offset.y}px, 0) rotate(${FAQ_PILL_ROTATIONS[idx] || 0}deg)${isDragging ? ' scale(1.08)' : ''}`
+                    }}
+                    onPointerDown={(e) => handlePillPointerDown(idx, e)}
+                    onPointerMove={(e) => handlePillPointerMove(idx, e)}
+                    onPointerUp={(e) => handlePillPointerUp(idx, e)}
+                    onPointerCancel={(e) => handlePillPointerUp(idx, e)}
+                    onLostPointerCapture={(e) => handlePillPointerUp(idx, e)}
+                    onClick={(e) => {
+                      if (Date.now() - lastDragTimeRef.current < 350) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }
+                    }}
+                    aria-expanded={isActive}
+                    aria-label={`Question: ${faq.shortQ}. Drag to move, tap to expand.`}
+                  >
+                    <span className="nz-cluster-pill-drag-grip" aria-hidden="true">⋮⋮</span>
+                    <span>{faq.shortQ}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Subtle Interactive Instruction & Reset Action */}
+            <div className="nz-cluster-hint-bar">
+              <span className="nz-cluster-hint">
+                <span className="nz-hint-hand" aria-hidden="true">👆</span>
+                <span>Drag questions anywhere to rearrange • Click to view answer</span>
+              </span>
+              {pillOffsets.some((p) => p.x !== 0 || p.y !== 0) && (
+                <button
+                  type="button"
+                  className="nz-cluster-reset-btn"
+                  onClick={handleResetPillPositions}
+                  title="Snap questions back to original positions"
                 >
-                  <span>{faq.q}</span>
-                  <span style={{ fontSize: '1.4rem', fontWeight: '900' }}>
-                    {openFaqIndex === idx ? '−' : '+'}
-                  </span>
-                </div>
-                {openFaqIndex === idx && (
-                  <div className="nz-faq-answer">
-                    <p>{faq.a}</p>
-                  </div>
-                )}
-              </div>
-            ))}
+                  ↺ Reset layout
+                </button>
+              )}
+            </div>
           </div>
         </div>
+
+        {/* ── Chat Style Popup Dialog (Rendered at Section Root to ensure 100% click, scroll & selection) ── */}
+        {openFaqIndex !== null && FAQ_DATA[openFaqIndex] && (
+          <div className="nz-faq-chat-overlay-root">
+            {/* Backdrop Dimmer */}
+            <div
+              className="nz-faq-chat-backdrop"
+              onClick={() => setOpenFaqIndex(null)}
+              aria-label="Close dialog"
+            />
+
+            {/* Modern Floating Chat Window */}
+            <div
+              className="nz-faq-chat-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Admissions Advisor Chat"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Chat Header */}
+              <div className="nz-chat-header">
+                <div className="nz-chat-profile">
+                  <div className="nz-chat-avatar">
+                    <span className="nz-chat-avatar-text">NS</span>
+                    <span className="nz-chat-online-dot" />
+                  </div>
+                  <div className="nz-chat-profile-info">
+                    <div className="nz-chat-name">Networkz Admissions Desk</div>
+                    <div className="nz-chat-status">
+                      <span className="nz-status-pill">Official Advisor • Kollam</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="nz-chat-close-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setOpenFaqIndex(null);
+                  }}
+                  aria-label="Close Chat"
+                  title="Close chat"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Chat Thread Messages */}
+              <div className="nz-chat-body">
+                {/* 1. Student Message Bubble (Right) */}
+                <div className="nz-chat-row nz-chat-row-user">
+                  <div className="nz-chat-bubble nz-chat-bubble-user">
+                    <span className="nz-chat-user-text">{FAQ_DATA[openFaqIndex].q}</span>
+                    <span className="nz-chat-time">Just now ✓✓</span>
+                  </div>
+                </div>
+
+                {/* 2. Advisor Generating Message Bubble (Left) */}
+                <div className="nz-chat-row nz-chat-row-bot">
+                  <div className="nz-chat-bot-avatar" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  </div>
+
+                  <div className="nz-chat-bubble nz-chat-bubble-bot">
+                    <div className="nz-chat-badge-row">
+                      <span className="nz-chat-cat-tag">
+                        ★ {FAQ_DATA[openFaqIndex].tag}
+                      </span>
+                      <span className="nz-chat-verified-badge">VERIFIED</span>
+                    </div>
+
+                    {/* Typing indicator while generating */}
+                    {chatTyping && !displayedAnswer && (
+                      <div className="nz-chat-typing-indicator" aria-label="Generating response">
+                        <span className="nz-typing-dot" />
+                        <span className="nz-typing-dot" />
+                        <span className="nz-typing-dot" />
+                      </div>
+                    )}
+
+                    {/* Live streaming / generated text */}
+                    {displayedAnswer && (
+                      <p className="nz-chat-bot-text">
+                        {displayedAnswer}
+                        {chatTyping && <span className="nz-chat-cursor">|</span>}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Chat Footer Quick Actions */}
+              <div className="nz-chat-footer">
+                <div className="nz-chat-quick-actions">
+                  <a
+                    href="https://wa.me/918089030405"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="nz-chat-action-btn nz-chat-wa"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/>
+                    </svg>
+                    <span>Ask on WhatsApp ↗</span>
+                  </a>
+
+                  <a href="tel:08089030405" className="nz-chat-action-btn nz-chat-call">
+                    <span>📞 Call Advisor: 80890 30405</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* ─── SECTION 13: CONTACT FORM & FOOTER ────────────────────── */}
