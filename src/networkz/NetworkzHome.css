@@ -34,12 +34,51 @@
 }
 
 .nz-section-padding {
-  padding: 8rem 0;
+  padding-top: 3.5rem;
+  padding-bottom: 5.5rem;
 }
 
+/* ── 1. Desktop Scroll Margin Alignment (Fixed Navbar) ── */
+#catalog,
+#why-us,
+#success,
+#process,
+#faq,
+#contact {
+  scroll-margin-top: 8px;
+}
+
+#home {
+  scroll-margin-top: 0;
+}
+
+#features.nz-hero-pillars-deck {
+  scroll-margin-top: 80px;
+}
+
+/* ── 2. Mobile View Settings & Scroll Margins (Overrides Desktop on <=768px) ── */
 @media (max-width: 768px) {
   .nz-section-padding {
-    padding: 5rem 0;
+    padding-top: 2.25rem;
+    padding-bottom: 3.5rem;
+  }
+
+  /* ── Mobile Scroll Margin Offset (Adjust gap from 54px fixed mobile navbar) ── */
+  #catalog,
+  #why-us,
+  #success,
+  #process,
+  #faq,
+  #contact {
+    scroll-margin-top: 25px !important; /* <── CHANGE THIS for gap on mobile sections (e.g. 55px to 100px) */
+  }
+
+  #home {
+    scroll-margin-top: 0px !important;
+  }
+
+  #features.nz-hero-pillars-deck {
+    scroll-margin-top: 65px !important;
   }
 }
 
@@ -994,8 +1033,8 @@
 /* ─── SECTION 2: HERO FULL VIEWPORT EXPERIENCE ─────────────────── */
 .nz-hero-section {
   min-height: 100vh;
-  padding-top: 9rem;
-  padding-bottom: 5rem;
+  padding-top: 4.75rem;
+  padding-bottom: 4.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1003,7 +1042,14 @@
   background: radial-gradient(circle at 15% 25%, rgba(30, 93, 66, 0.08) 0%, transparent 45%),
     radial-gradient(circle at 85% 75%, rgba(17, 17, 17, 0.04) 0%, transparent 50%),
     #F8F8F5;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+@media (max-width: 768px) {
+  .nz-hero-section {
+    padding-top: 4.25rem;
+  }
 }
 
 .nz-hero-section::before {
@@ -2041,46 +2087,738 @@
   margin-top: 0.75rem;
 }
 
-/* ─── SECTION 12: FAQ ACCORDION ─────────────────────────────────── */
+/* ─── SECTION 12: SCATTERED EDITORIAL FAQ (COHESIVE CLUSTER) ─────── */
 .nz-faq-section {
-  background: var(--color-bg-warm);
-}
-
-.nz-faq-list {
-  max-width: 900px;
-  margin: 4rem auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.nz-faq-item {
-  background: var(--color-secondary);
-  border-radius: var(--radius-card);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.nz-faq-question {
-  padding: 1.8rem 2.2rem;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
+  background: #FBFBFB;
+  position: relative;
+  overflow: visible;
+  padding-top: 4.5rem;
+  padding-bottom: 5.5rem;
   user-select: none;
 }
 
-.nz-faq-answer {
-  padding: 0 2.2rem 1.8rem;
-  font-size: 1rem;
-  color: var(--color-text-sub);
-  line-height: 1.65;
+/* Compact Cluster Stage — Tightly Encloses the Typography */
+.nz-faq-cluster-stage {
+  position: relative;
+  max-width: 760px; /* Ample stage width so 'We answered.' fits on a single line */
+  margin: 0 auto;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.6rem 1rem 1.6rem;
+  box-sizing: border-box;
 }
 
+/* Central Editorial Typography (Exact tight look from reference) */
+.nz-faq-cluster-center {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  user-select: none;
+  pointer-events: none;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.nz-faq-cluster-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(2.8rem, 5.8vw, 4.3rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #111111;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem; /* Tight line gap */
+  line-height: 1.02;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.nz-cluster-line-ask {
+  font-style: italic;
+  font-weight: 800;
+  color: #111111;
+  display: block;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.nz-cluster-line-ans {
+  font-style: normal;
+  font-weight: 900;
+  color: #111111;
+  display: block;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Scattered Pills Container (Hugs tightly over and around the typography) */
+.nz-faq-cluster-pills {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Individual Scattered Draggable Question Pill */
+.nz-cluster-pill {
+  position: absolute;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none; /* Prevents page scroll while dragging on touch screens */
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.5rem 0.75rem 1.2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #6C7D8A;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 9999px;
+  box-shadow:
+    0 12px 24px -6px rgba(45, 62, 74, 0.3),
+    0 3px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  letter-spacing: -0.015em;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+  user-select: none;
+  outline: none;
+  will-change: transform;
+}
+
+/* Draggable Grip Handle Indicator */
+.nz-cluster-pill-drag-grip {
+  font-size: 0.82rem;
+  opacity: 0.45;
+  letter-spacing: -1px;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.nz-cluster-pill:hover .nz-cluster-pill-drag-grip {
+  opacity: 0.85;
+}
+
+/* ── Cohesive Scattered Coordinates (Asymmetric, Not Parallel, Not Distant) ── */
+
+/* Pill 1: Top-Left (angled -10deg, hovering gently over "You asked.") */
+.nz-cluster-pill-1 {
+  top: -4px;
+  left: 3%;
+  background: #6C7D8A;
+}
+
+/* Pill 2: Top-Right (angled +14deg, staggered 34px lower than Pill 1, snug on "asked.") */
+.nz-cluster-pill-2 {
+  top: 30px;
+  right: 2%;
+  background: #8495A2;
+  font-size: 0.9rem;
+}
+
+/* Pill 3: Bottom-Left (angled -7deg, tucked comfortably under "We answered.") */
+.nz-cluster-pill-3 {
+  bottom: 14px;
+  left: 4%;
+  background: #5A6D7B;
+}
+
+/* Pill 4: Bottom-Right (angled +12deg, staggered 24px higher than Pill 3, framing "answered.") */
+.nz-cluster-pill-4 {
+  bottom: 38px;
+  right: 3%;
+  background: #637583;
+}
+
+/* Hover States — Lift & Tactile Elevation */
+.nz-cluster-pill:hover {
+  cursor: grab;
+  box-shadow:
+    0 22px 36px -8px rgba(30, 48, 60, 0.42),
+    0 6px 14px rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* While Actively Dragging (Instant 0ms tracking without lag) */
+.nz-cluster-pill.is-dragging {
+  cursor: grabbing !important;
+  z-index: 99 !important;
+  box-shadow:
+    0 30px 60px -10px rgba(15, 30, 40, 0.52),
+    0 12px 24px rgba(0, 0, 0, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.95) !important;
+  transition: none !important;
+}
+
+/* Active State — Highlighted Forest Green */
+.nz-cluster-pill.is-active {
+  background: #1E5D42 !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 16px 30px -6px rgba(30, 93, 66, 0.4),
+    0 0 0 3px rgba(30, 93, 66, 0.25) !important;
+  z-index: 10;
+}
+/* ─── Chat Style Popup Dialog (Full Interaction, Scroll & Selection) ─── */
+.nz-faq-chat-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: 99999 !important;
+  pointer-events: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nz-faq-chat-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 20, 16, 0.6);
+  z-index: 100000;
+  pointer-events: auto !important;
+  cursor: pointer;
+  animation: nzFadeIn 0.2s ease;
+}
+
+@keyframes nzFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.nz-faq-chat-modal {
+  position: relative;
+  z-index: 100001 !important;
+  pointer-events: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  width: calc(100% - 2rem);
+  max-width: 540px;
+  max-height: 85vh;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow:
+    0 35px 70px -15px rgba(10, 24, 18, 0.45),
+    0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: nzChatPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes nzChatPop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Chat Header */
+.nz-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.15rem 1.4rem;
+  background: #F9FAF9;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  pointer-events: auto;
+  user-select: none;
+}
+
+.nz-chat-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nz-chat-avatar {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1E5D42;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 10px rgba(30, 93, 66, 0.25);
+}
+
+.nz-chat-online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: #10B981;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+.nz-chat-profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nz-chat-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #111111;
+  line-height: 1.2;
+}
+
+.nz-chat-status {
+  font-size: 0.74rem;
+  color: #555555;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.15rem;
+}
+
+.nz-status-pill {
+  color: #1E5D42;
+  font-weight: 600;
+}
+
+/* Close button - high z-index and click hit-area */
+.nz-chat-close-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  border-radius: 50%;
+  color: #333333;
+  font-size: 1rem;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.nz-chat-close-btn:hover {
+  background: #111111;
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* Chat Body / Messages Thread — Full scrolling and selection */
+.nz-chat-body {
+  padding: 1.5rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-height: 55vh;
+  background: #ffffff;
+  pointer-events: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* Row alignment */
+.nz-chat-row {
+  display: flex;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.nz-chat-row-user {
+  justify-content: flex-end;
+}
+
+.nz-chat-row-bot {
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+/* 1. Student Message Bubble (Right) */
+.nz-chat-bubble-user {
+  max-width: 82%;
+  background: #6C7D8A;
+  color: #ffffff;
+  padding: 0.85rem 1.2rem;
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 4px 12px rgba(45, 62, 74, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  animation: nzBubbleRight 0.25s ease;
+}
+
+@keyframes nzBubbleRight {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.nz-chat-user-text {
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.35;
+  user-select: text !important;
+}
+
+.nz-chat-time {
+  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.7);
+  align-self: flex-end;
+}
+
+/* 2. Advisor Generating Bubble (Left) */
+.nz-chat-bot-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #E8F4EC;
+  color: #1E5D42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.nz-chat-bubble-bot {
+  max-width: 88%;
+  background: #F8FAF9;
+  border: 1px solid #E2E8E4;
+  padding: 1.15rem 1.35rem;
+  border-radius: 4px 18px 18px 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+  animation: nzBubbleLeft 0.3s ease;
+}
+
+@keyframes nzBubbleLeft {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.nz-chat-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nz-chat-cat-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  color: #1E5D42;
+  background: #E8F4EC;
+  border: 1px solid #C4DFC9;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.nz-chat-verified-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.nz-chat-bot-text {
+  font-size: 0.98rem;
+  line-height: 1.68;
+  color: #2D3748;
+  margin: 0;
+  white-space: pre-line;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* Blinking Cursor while generating */
+.nz-chat-cursor {
+  display: inline-block;
+  font-weight: 900;
+  color: #1E5D42;
+  margin-left: 2px;
+  animation: nzBlink 0.8s infinite;
+}
+
+@keyframes nzBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 3-Dot Typing Indicator */
+.nz-chat-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.4rem 0.2rem;
+}
+
+.nz-typing-dot {
+  width: 7px;
+  height: 7px;
+  background: #1E5D42;
+  border-radius: 50%;
+  animation: nzDotBounce 1.3s infinite ease-in-out;
+}
+
+.nz-typing-dot:nth-child(1) { animation-delay: 0s; }
+.nz-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.nz-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes nzDotBounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Chat Footer Quick Actions */
+.nz-chat-footer {
+  padding: 0.9rem 1.4rem 1.1rem;
+  background: #F9FAF9;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  pointer-events: auto;
+}
+
+.nz-chat-quick-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.nz-chat-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-decoration: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+.nz-chat-wa {
+  background: #25D366;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
+}
+
+.nz-chat-wa:hover {
+  background: #1ebd5a;
+  transform: translateY(-1px);
+}
+
+.nz-chat-call {
+  background: #E8F4EC;
+  color: #1E5D42;
+  border: 1px solid #C4DFC9;
+}
+
+.nz-chat-call:hover {
+  background: #1E5D42;
+  color: #ffffff;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+  .nz-faq-chat-modal {
+    width: calc(100% - 1.25rem);
+    max-height: 85vh;
+    border-radius: 20px;
+  }
+  .nz-chat-body {
+    padding: 1.1rem 1rem;
+    max-height: 52vh;
+  }
+  .nz-chat-bubble-user {
+    max-width: 90%;
+  }
+  .nz-chat-bubble-bot {
+    max-width: 92%;
+    padding: 0.95rem 1.1rem;
+  }
+  .nz-chat-quick-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .nz-chat-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* Subtle Interactive Instruction Bar */
+.nz-cluster-hint-bar {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nz-cluster-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: #777777;
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+
+.nz-hint-hand {
+  animation: nzHandBob 2s infinite ease-in-out;
+}
+
+@keyframes nzHandBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.nz-cluster-reset-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #555555;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nz-cluster-reset-btn:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+/* ── Responsive Adaptations (Mobile Snug, Scattered & Noticeable) ── */
+@media (max-width: 680px) {
+  .nz-faq-section {
+    padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
+    overflow-x: clip;
+  }
+
+  .nz-faq-cluster-stage {
+    min-height: 270px;
+    padding: 2rem 0.6rem 1.4rem;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .nz-faq-cluster-center {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 0;
+  }
+
+  .nz-faq-cluster-title {
+    font-size: clamp(2rem, 9.2vw, 2.65rem);
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .nz-cluster-line-ask,
+  .nz-cluster-line-ans {
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .nz-faq-cluster-pills {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Compact tactile pill size for mobile screens */
+  .nz-cluster-pill {
+    position: absolute;
+    pointer-events: auto;
+    font-size: 0.78rem;
+    padding: 0.52rem 0.95rem 0.52rem 0.75rem;
+    gap: 0.35rem;
+    box-shadow:
+      0 10px 20px -4px rgba(45, 62, 74, 0.32),
+      0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .nz-cluster-pill-drag-grip {
+    font-size: 0.7rem;
+    opacity: 0.5;
+  }
+
+  /* Mobile Asymmetrical Stagger (Noticeable, Snug, Not Distant, Non-Parallel) */
+  .nz-cluster-pill-1 {
+    top: 0px;
+    left: 1%;
+  }
+
+  .nz-cluster-pill-2 {
+    top: 30px;
+    right: 1%;
+  }
+
+  .nz-cluster-pill-3 {
+    bottom: 16px;
+    left: 1%;
+  }
+
+  .nz-cluster-pill-4 {
+    bottom: 40px;
+    right: 1%;
+  }
+
+  .nz-cluster-hint-bar {
+    margin-top: 1.8rem;
+    font-size: 0.78rem;
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .nz-cluster-pill {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.92rem 0.5rem 0.72rem;
+  }
+  .nz-faq-cluster-title {
+    font-size: 2.2rem;
+  }
+}
 /* ─── SECTION 13: CONTACT FORM & FOOTER ────────────────────────── */
 .nz-contact-section {
   background: var(--color-bg-light);

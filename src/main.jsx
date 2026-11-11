@@ -12,6 +12,7 @@ import NetworkzHome from './networkz/NetworkzHome.jsx'
 import CyberSecurityLanding from './networkz/CyberSecurityLanding.jsx'
 import DigitalMarketingLanding from './networkz/DigitalMarketingLanding.jsx'
 import NotFound from './seo/NotFound.jsx'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 
 // ── Trailing Slash Normalizer (Ensures clean slash-free URLs match canonical) ──
 function TrailingSlashNormalizer() {
