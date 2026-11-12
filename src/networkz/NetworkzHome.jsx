@@ -1690,7 +1690,7 @@ export default function NetworkzHome() {
       </section>
 
       {/* ─── SECTION 12: SCATTERED EDITORIAL FAQ (DRAGGABLE & TACTILE) ─── */}
-      <section id="faq" className="nz-faq-section nz-section-padding">
+      <section id="faq" className="nz-faq-section">
         <div className="nz-container">
           {/* Authentic Minimalist Scattered Cluster — No Giant White Box */}
           <div className="nz-faq-cluster-stage">
@@ -1737,24 +1737,24 @@ export default function NetworkzHome() {
                 );
               })}
             </div>
+          </div>
 
-            {/* Subtle Interactive Instruction & Reset Action */}
-            <div className="nz-cluster-hint-bar">
-              <span className="nz-cluster-hint">
-                <span className="nz-hint-hand" aria-hidden="true">👆</span>
-                <span>Drag questions anywhere to rearrange • Click to view answer</span>
-              </span>
-              {pillOffsets.some((p) => p.x !== 0 || p.y !== 0) && (
-                <button
-                  type="button"
-                  className="nz-cluster-reset-btn"
-                  onClick={handleResetPillPositions}
-                  title="Snap questions back to original positions"
-                >
-                  ↺ Reset layout
-                </button>
-              )}
-            </div>
+          {/* Subtle Interactive Instruction & Reset Action (Outside pill stage to prevent overlap) */}
+          <div className="nz-cluster-hint-bar">
+            <span className="nz-cluster-hint">
+              {/* <span className="nz-hint-hand" aria-hidden="true">👆</span> */}
+              <span>Drag questions anywhere to rearrange • Click to view answer</span>
+            </span>
+            {pillOffsets.some((p) => p.x !== 0 || p.y !== 0) && (
+              <button
+                type="button"
+                className="nz-cluster-reset-btn"
+                onClick={handleResetPillPositions}
+                title="Snap questions back to original positions"
+              >
+                ↺ Reset layout
+              </button>
+            )}
           </div>
         </div>
 
