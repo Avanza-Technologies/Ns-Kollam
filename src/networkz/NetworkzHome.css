@@ -34,8 +34,8 @@
 }
 
 .nz-section-padding {
-  padding-top: 3.5rem;
-  padding-bottom: 5.5rem;
+  padding-top: 0.5rem; /* Snug top padding so headings sit close to navbar */
+  padding-bottom: 4.5rem;
 }
 
 /* ── 1. Desktop Scroll Margin Alignment (Fixed Navbar) ── */
@@ -45,7 +45,7 @@
 #process,
 #faq,
 #contact {
-  scroll-margin-top: 8px;
+  scroll-margin-top: 54px; /* Snug offset under 64px fixed navbar */
 }
 
 #home {
@@ -59,8 +59,8 @@
 /* ── 2. Mobile View Settings & Scroll Margins (Overrides Desktop on <=768px) ── */
 @media (max-width: 768px) {
   .nz-section-padding {
-    padding-top: 2.25rem;
-    padding-bottom: 3.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 3rem;
   }
 
   /* ── Mobile Scroll Margin Offset (Adjust gap from 54px fixed mobile navbar) ── */
@@ -70,7 +70,7 @@
   #process,
   #faq,
   #contact {
-    scroll-margin-top: 25px !important; /* <── CHANGE THIS for gap on mobile sections (e.g. 55px to 100px) */
+    scroll-margin-top: 54px !important; /* <── Set to mobile navbar height (54px) */
   }
 
   #home {
@@ -86,12 +86,12 @@
 .nz-eyebrow {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.45rem; /* Tightened to pull section headings closer */
 }
 
 .nz-heading-xl {
@@ -1730,7 +1730,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-  align-items: center;
+  align-items: start; /* Prevents heading from being pushed down by tall stat cards */
 }
 
 @media (max-width: 992px) {
@@ -2092,8 +2092,8 @@
   background: #FBFBFB;
   position: relative;
   overflow: visible;
-  padding-top: 4.5rem;
-  padding-bottom: 5.5rem;
+  padding-top: 1.5rem; /* Clean, snug spacing under navbar */
+  padding-bottom: 3.5rem;
   user-select: none;
 }
 
@@ -2102,12 +2102,12 @@
   position: relative;
   max-width: 760px; /* Ample stage width so 'We answered.' fits on a single line */
   margin: 0 auto;
-  min-height: 320px;
+  min-height: 290px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2.6rem 1rem 1.6rem;
+  padding: 1.25rem 1rem 1rem;
   box-sizing: border-box;
 }
 
@@ -2133,8 +2133,8 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem; /* Tight line gap */
-  line-height: 1.02;
+  gap: 0.05rem; /* Ultra tight, refined line gap between 'You asked.' and 'We answered.' */
+  line-height: 0.98;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
@@ -2213,30 +2213,30 @@
 
 /* Pill 1: Top-Left (angled -10deg, hovering gently over "You asked.") */
 .nz-cluster-pill-1 {
-  top: -4px;
-  left: 3%;
+  top: 6px;
+  left: 4%;
   background: #6C7D8A;
 }
 
-/* Pill 2: Top-Right (angled +14deg, staggered 34px lower than Pill 1, snug on "asked.") */
+/* Pill 2: Top-Right (angled +14deg, staggered 22px lower than Pill 1, snug on "asked.") */
 .nz-cluster-pill-2 {
-  top: 30px;
-  right: 2%;
+  top: 28px;
+  right: 4%;
   background: #8495A2;
   font-size: 0.9rem;
 }
 
-/* Pill 3: Bottom-Left (angled -7deg, tucked comfortably under "We answered.") */
+/* Pill 3: Bottom-Left (angled -7deg, tucked under "We answered." safely clear of hint text) */
 .nz-cluster-pill-3 {
-  bottom: 14px;
-  left: 4%;
+  bottom: 16px;
+  left: 5%;
   background: #5A6D7B;
 }
 
-/* Pill 4: Bottom-Right (angled +12deg, staggered 24px higher than Pill 3, framing "answered.") */
+/* Pill 4: Bottom-Right (angled +12deg, staggered 20px higher than Pill 3, framing "answered.") */
 .nz-cluster-pill-4 {
-  bottom: 38px;
-  right: 3%;
+  bottom: 36px;
+  right: 5%;
   background: #637583;
 }
 
@@ -2679,7 +2679,7 @@
 }
 /* Subtle Interactive Instruction Bar */
 .nz-cluster-hint-bar {
-  margin-top: 2rem;
+  margin-top: 2.6rem; /* Clean clearance below the pills so they never overlap the hint text */
   display: flex;
   align-items: center;
   justify-content: center;

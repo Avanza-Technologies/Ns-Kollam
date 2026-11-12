@@ -1690,7 +1690,7 @@ export default function NetworkzHome() {
       </section>
 
       {/* ─── SECTION 12: SCATTERED EDITORIAL FAQ (DRAGGABLE & TACTILE) ─── */}
-      <section id="faq" className="nz-faq-section nz-section-padding">
+      <section id="faq" className="nz-faq-section">
         <div className="nz-container">
           {/* Authentic Minimalist Scattered Cluster — No Giant White Box */}
           <div className="nz-faq-cluster-stage">
